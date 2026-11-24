@@ -1,0 +1,9 @@
+{
+  "appId": "com.jyotishsaathi.app",
+  "appName": "Jyotish Saathi",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#6B1824",
+    "allowMixedContent": false
+  }
+}

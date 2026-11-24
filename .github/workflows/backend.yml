@@ -1,0 +1,50 @@
+name: Deploy login server
+
+on:
+  push:
+    branches: [main]
+    paths: ['backend/**', 'source/palm-prompt.js', '.github/workflows/backend.yml']
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Cloudflare secrets
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN secret not set - skipping. See START-HERE.md, Step 8."
+            echo "SKIP=1" >> "$GITHUB_ENV"
+          fi
+      - uses: actions/setup-node@v4
+        if: env.SKIP != '1'
+        with:
+          node-version: '22'
+      - name: Deploy to Cloudflare Workers
+        if: env.SKIP != '1'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: backend
+          secrets: |
+            WA_TOKEN
+            WA_PHONE_ID
+            OTP_SECRET
+            ADMIN_KEY
+            ANTHROPIC_API_KEY
+            WA_BUSINESS_NUMBER
+            WA_VERIFY_TOKEN
+            WA_APP_SECRET
+        env:
+          WA_TOKEN: ${{ secrets.WA_TOKEN || 'none' }}
+          WA_PHONE_ID: ${{ secrets.WA_PHONE_ID || 'none' }}
+          OTP_SECRET: ${{ secrets.OTP_SECRET || 'none' }}
+          ADMIN_KEY: ${{ secrets.ADMIN_KEY || 'none' }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY || 'none' }}
+          WA_BUSINESS_NUMBER: ${{ secrets.WA_BUSINESS_NUMBER || 'none' }}
+          WA_VERIFY_TOKEN: ${{ secrets.WA_VERIFY_TOKEN || 'none' }}
+          WA_APP_SECRET: ${{ secrets.WA_APP_SECRET || 'none' }}

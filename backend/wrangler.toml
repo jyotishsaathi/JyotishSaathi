@@ -1,0 +1,43 @@
+name = "jyotish-saathi-api"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Storage: a SQLite database inside a Durable Object (created automatically on first deploy, free plan OK)
+[[durable_objects.bindings]]
+name = "STORE"
+class_name = "Store"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Store"]
+
+[vars]
+# ---- AI palm reading (cost control) ----
+PALM_MODEL = "claude-haiku-5-5"            # free readings: lowest cost
+PALM_MODEL_PREMIUM = "claude-sonnet-5-5"   # Premium readings: most accurate (about 20x the cost of Haiku)
+PREMIUM_BEST_PER_MONTH = "4"               # Premium readings per month on the accurate model; after that Haiku
+PALM_MAX_TOKENS = "5000"          # longest answer allowed
+FREE_PALM_READINGS = "3"          # free AI readings per verified number, then Premium
+PALM_PER_USER_DAY = "5"           # max readings per number per day (even for Premium)
+PALM_PER_IP_DAY = "8"             # max per device/network per day
+COMPAT_MODEL = "claude-haiku-5-5"        # free AI marriage match (about ₹0.15 each)
+COMPAT_PER_DAY = "3"              # free AI marriage matches per person per day
+COMPAT_PER_IP_DAY = "10"          # per network per day
+ASK_MODEL = "claude-haiku-5-5"           # Premium AI Jyotishi (about ₹0.10 per answer)
+ASK_PER_DAY = "20"                # AI Jyotishi questions per Premium member per day
+REPORT_MODEL = "claude-haiku-5-5"        # Premium AI Life Report (about ₹0.50 each); "claude-sonnet-5-5" writes richer reports at a higher cost
+REPORTS_PER_MONTH = "6"           # Life Reports per Premium member per month (covers family members)
+PALM_REQUIRE_LOGIN = "false"      # "true" = only logged-in users can use AI palm reading
+# ---- WhatsApp ----
+GRAPH_VERSION = "v23.0"
+OTP_TEMPLATE = "jyotish_otp"      # only for loginMethod "otp"
+WELCOME_TEMPLATE = ""             # paid marketing template after OTP login – empty = off (the free WhatsApp login replies for free instead)
+LANG_EN = "en"
+LANG_HI = "hi"
+APP_LINK = ""                     # e.g. your Play Store link, added to the free welcome reply
+ALLOWED_ORIGIN = "*"
+DEV_MODE = "false"                # "true" only for local testing
+
+# Secrets (set by the GitHub workflow, never written here):
+# WA_TOKEN, WA_PHONE_ID, WA_BUSINESS_NUMBER, WA_VERIFY_TOKEN, WA_APP_SECRET,
+# OTP_SECRET, ADMIN_KEY, ANTHROPIC_API_KEY

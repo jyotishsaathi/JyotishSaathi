@@ -1,0 +1,26 @@
+{
+  "name": "android-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor-community/text-to-speech": "^8.0.2",
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/camera": "^8.2.6",
+    "@capacitor/cli": "^8.6.2",
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/geolocation": "^8.2.5",
+    "@capacitor/share": "^8.0.3",
+    "@fontsource/mukta": "^5.3.0",
+    "@fontsource/tiro-devanagari-hindi": "^5.3.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1"
+  }
+}
