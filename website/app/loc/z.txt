@@ -1,0 +1,790 @@
+Kakinada|Surat|Dohad|Kupwara|Narmada|Palghar|Kishtwar|Mandla|Amravati|Nashik|Ahmadabad|Maharajganj|Hingoli|Kurung Kumey|Solapur|Sangli|Parbhani|Latur|Gadchiroli|Kachchh|Kulgam|Poonch|Samba|Gonda|Gorakhpur|Wardha|Leh Ladakh|Gondia|Vijayapura|Surendranagar|Pratapgarh|Mau|Maldah|Arvalli|Pulwama|Anantnag|Sirohi|Srinagar|Udaipur|Barnala|Doda|Patan|Ganderbal|Mon|Vizianagaram|Budgam|Hoshiarpur|Gurdaspur|Jamnagar|Palnadu|Banas Kantha|Fatehpur|Barabanki|West Singhbhum|Ghazipur|Jaunpur|Begusarai|Latehar|Pali|Baramulla|Kargil|Vadodara|Ratnagiri|Phek|Karnal|Valsad|Yavatmal|Bhavnagar|Prayagraj|Kurukshetra|Shamli|Saharanpur|Malerkotla|Baghpat|Bulandshahr|Kannauj|Alwar|Ayodhya|Sultanpur|Ambedkar Nagar|Meerut|Auraiya|West|Shravasti|North District|Sambhal|Kalaburagi|Peren|Banda|Bijnor|Amroha|Unnao|Nagpur|Botad|Aizawl|Shopian|Kangra|Kolasib|Rajkot|Satara|Kiphire|Baksa|Saitual|Kanpur Dehat|Medinipur East|Buldhana|Banka|Azamgarh|24 Paraganas North|Ambala|Muzaffarnagar|Sonipat|Mahoba|Moradabad|Nalanda|Hardoi|Varanasi|Rae Bareli|Nirmal|Katihar|Gautam Buddha Nagar|Etah|Bhadohi|Rohtak|Ballia|Arwal|Haridwar|Aligarh|Burhanpur|Rewari|Lucknow|Dindori|Vidisha|Ranga Reddy|Sagar|Etawah|Firozabad|Mainpuri|Sitapur|Bahraich|Amethi|Junagadh|Tapi|Gaya|Hoshangabad|Fatehabad|Bharuch|Mirzapur|Bareilly|Jangoan|Chandauli|Rampur|Jagitial|Sabar Kantha|Pilibhit|Basti|Spsr Nellore|Bhilwara|Nagaur|Chittorgarh|North|Panch Mahals|Shahjahanpur|Jhajjar|Ahmednagar|Saiha|Sangareddy|Patna|Bilaspur|Kheri|Munger|Ujjain|Belagavi|Navsari|Garhwa|Kinnaur|Shimla|West Godavari|South East|Budaun|Karur|Chengalpattu|Hyderabad|Tirupati|Prakasam|Jabalpur|Jaipur|Coimbatore|Cuttack|Balrampur|Bapatla|Y.s.r.|Chittoor|Dang|Jayashankar Bhupalapally|Ranchi|Tirupathur|Shahid Bhagat Singh Nagar|Sonbhadra|Bhojpur|South West|Siddipet|Krishna|Namakkal|Dinajpur Dakshin|Tuticorin|Eluru|Medak|Kaushambi|Sawai Madhopur|Ariyalur|Ghaziabad|Deoria|Virudhunagar|Sindhudurg|Anantapur|Anakapalli|Chhotaudepur|West District|Pakyong|Ramban|Siwan|Rajgarh|Kohima|Alluri Sitharama Raju|Tawang|Kangpokpi|Rajnandgaon|Dhule|24 Paraganas South|Jiribam|Zunheboto|Senapati|Chandigarh|Dima Hasao|Firozepur|Lower Subansiri|Thane|Raigad|Chitrakoot|Khargone|West Siang|Nanded|South West Garo Hills|Chamoli|Mahisagar|Pashchim Champaran|Chandrapur|Faridabad|Hathras|Siddharth Nagar|Bandipora|Morbi|Hamirpur|Purnia|Mandi|Saran|Devbhumi Dwarka|Farrukhabad|S.a.s Nagar|Sundargarh|Kathua|Rajouri|Balaghat|Dewas|Upper Subansiri|Kasganj|Aurangabad|Nizamabad|Visakhapatanam|Nalgonda|Yadadri Bhuvanagiri|Udam Singh Nagar|Konaseema|Almora|Washim|Akola|Lunglei|Bhagalpur|Chandel|Serchhip|Kheda|Champhai|Agra|Kamrup Metro|Dhemaji|Nawada|Rohtas|Gopalganj|Lawngtlai|Ganganagar|Ajmer|Raipur|Nandurbar|Guntur|Khawzawl|Gir Somnath|Ludhiana|Darbhanga|Sangrur|Jalgaon|Rajsamand|Dibrugarh|South Goa|Kurnool|Annamayya
+Z Ragampeta	0	1	17.16	82.04
+Zab	1	9	21.3	73.231
+Zab	2	9	22.619	73.944
+Zab	3	12	34.578	74.438
+Zak	4	9	21.497	73.499
+Zap	5	19	19.837	73.282
+Zar	6	12	33.282	76.125
+Zar	7	18	30.973	77.71
+Zabu	2	9	22.67	74.164
+Zada	8	19	20.79	78.27
+Zadi	9	19	20.417	74.419
+Zanu	10	9	23.024	72.69
+Zara	11	33	27.477	83.46
+Zara	12	19	19.645	77.384
+Zara	13	2	28.933	93.46
+Zare	14	19	18.329	75.138
+Zare	15	19	17.38	74.93
+Zari	5	19	20.116	72.919
+Zari	16	19	19.316	76.447
+Zari	17	19	18.096	76.263
+Zari	18	19	20.17	75.28
+Zari	16	19	19.406	76.771
+Zaru	19	9	23.195	70.001
+Zaban	20	12	33.71	74.986
+Zaban	21	12	33.498	75.142
+Zaban	22	12	33.666	75.809
+Zabti	23	33	26.99	82.598
+Zabti	24	33	26.805	83.358
+Zadsi	25	19	20.863	78.638
+Zagok	26	16	33.761	78.025
+Zalia	27	19	21.362	80.43
+Zalki	28	14	17.255	75.802
+Zamar	29	9	22.818	71.761
+Zamin	30	33	25.861	82.187
+Zamin	31	33	26.201	83.693
+Zanak	32	35	27.902	88.274
+Zarda	33	9	23.554	73.518
+Zardi	23	33	27.046	83.387
+Zasau	34	12	33.829	74.933
+Zatil	6	12	33.309	75.614
+Zawag	35	12	33.533	75.585
+Zawal	36	27	24.992	72.749
+Zawan	37	12	34.126	74.673
+Zawar	38	27	24.349	73.694
+Zawar	39	26	33.313	75.781
+Zayin	40	12	33.355	75.685
+Zazam	41	9	15.593	72.329
+Zazun	42	12	34.229	74.685
+Zaboka	43	23	26.933	95.143
+Zadaba	44	1	18.948	83.363
+Zagpur	45	12	33.971	74.564
+Zahura	46	26	31.42	74.12
+Zahura	47	26	31.621	75.614
+Zaiwan	7	18	33.347	75.33
+Zakhar	48	9	22.36	69.77
+Zaladi	49	1	16.13	80.246
+Zaldur	35	12	33.632	75.191
+Zaliya	27	19	21.56	80.26
+Zalmor	50	9	24.095	71.868
+Zameni	51	33	25.762	80.623
+Zamina	52	33	26.935	81.55
+Zamind	53	13	22.66	85.562
+Zamira	54	33	25.758	83.574
+Zamira	55	33	26.101	83.607
+Zamira	56	4	25.442	86.056
+Zamira	57	13	23.679	84.795
+Zamlan	6	12	33.269	75.037
+Zamora	58	27	25.579	73.794
+Zangam	59	12	34.145	74.566
+Zangil	3	12	34.546	74.273
+Zangla	60	16	33.67	76.885
+Zangla	60	16	33.659	76.99
+Zansir	35	12	33.478	75.57
+Zanzad	61	9	15.593	73.258
+Zapade	62	19	16.862	73.549
+Zapami	63	23	25.535	94.247
+Zarifa	64	10	29.719	76.958
+Zaroli	65	9	20.245	72.905
+Zarwad	9	19	19.885	73.534
+Zatala	66	19	19.991	78.339
+Zavame	63	23	25.513	94.314
+Zawara	37	12	34.053	74.926
+Zabagul	45	12	33.964	74.606
+Zadakla	67	9	21.372	71.621
+Zadgaon	66	19	20.42	78.516
+Zadibal	37	12	34.114	74.807
+Zadipur	68	33	25.623	82.0
+Zagabug	45	12	33.985	74.698
+Zaidpur	52	33	26.835	81.322
+Zaigund	35	12	33.875	75.238
+Zainpur	69	10	29.974	77.024
+Zainpur	69	10	30.196	76.851
+Zainpur	70	33	29.55	77.14
+Zainpur	71	33	29.889	77.32
+Zainpur	24	33	30.935	75.746
+Zainpur	72	26	30.447	75.952
+Zainpur	73	33	29.068	77.129
+Zainpur	74	33	28.465	77.818
+Zainpur	75	33	26.903	79.883
+Zainpur	54	33	25.601	83.204
+Zainpur	76	27	27.823	76.274
+Zainpur	51	33	26.002	80.75
+Zainpur	77	33	26.632	82.149
+Zainpur	78	33	26.127	82.56
+Zainpur	20	12	33.777	75.007
+Zainpur	79	33	26.397	83.068
+Zainpur	80	33	29.116	77.761
+Zainpur	81	33	26.524	79.349
+Zakhira	82	7	28.666	77.165
+Zakhira	83	33	27.547	81.813
+Zakhung	84	28	27.903	88.416
+Zakoora	37	12	34.164	74.83
+Zakupur	85	33	28.025	78.812
+Zalapur	59	12	34.227	74.585
+Zalapur	45	12	33.991	74.684
+Zalki K	86	14	17.45	76.48
+Zalki.B	86	14	17.45	76.43
+Zaloora	59	12	34.412	74.374
+Zalukie	87	23	25.512	93.738
+Zalurah	59	12	34.41	74.374
+Zamandu	7	18	33.397	75.246
+Zamania	54	33	25.414	83.558
+Zamapur	88	33	25.305	80.389
+Zamapur	89	33	29.226	78.626
+Zamapur	90	33	28.835	78.418
+Zamipur	91	33	26.25	80.824
+Zamkola	66	19	20.056	78.952
+Zamkoli	92	19	20.731	79.19
+Zamrala	93	9	22.096	71.841
+Zamuang	94	22	24.1	92.398
+Zamunma	7	18	33.285	75.305
+Zanabot	95	12	33.742	74.894
+Zandala	41	9	15.593	72.329
+Zandpur	96	11	32.064	76.617
+Zanjmer	67	9	21.183	72.062
+Zanlawn	97	22	23.981	92.717
+Zanziya	27	19	21.35	80.2
+Zanzmer	98	9	21.196	72.085
+Zanzwad	99	19	17.922	73.656
+Zaonger	100	23	25.857	94.881
+Zaripur	3	12	34.569	74.235
+Zaripur	20	12	33.669	75.053
+Zarkona	101	3	26.607	91.581
+Zarpada	27	19	20.803	79.989
+Zarpara	19	9	22.838	69.648
+Zarwani	4	9	21.81	73.705
+Zaunsar	96	11	33.214	76.261
+Zawlpui	94	22	23.038	92.336
+Zawlpui	94	22	24.12	92.341
+Zawngin	102	22	23.9	93.015
+Zabardon	3	12	34.526	74.488
+Zabarpur	103	33	26.428	79.683
+Zabilpur	35	12	33.782	75.1
+Zabrapur	51	33	25.989	80.603
+Zabtaili	104	35	25.337	87.03
+Zadegaon	105	19	20.791	76.68
+Zadiyana	29	9	23.44	71.736
+Zafardih	106	4	24.354	84.537
+Zafarpur	107	33	12.167	77.107
+Zafarpur	108	35	22.384	88.452
+Zafarpur	109	10	30.318	77.143
+Zafarpur	110	33	29.503	77.588
+Zafarpur	111	10	29.166	77.003
+Zafarpur	112	33	25.262	83.1
+Zafarpur	68	33	25.974	82.042
+Zafarpur	55	33	25.805	82.679
+Zafarpur	113	33	28.745	78.708
+Zafarpur	78	33	26.229	82.566
+Zafarpur	54	33	25.785	83.44
+Zafarpur	79	33	26.283	82.769
+Zafarpur	52	33	27.128	81.321
+Zafarpur	114	4	25.589	87.952
+Zafarpur	115	33	27.53	80.234
+Zafarpur	115	33	27.096	80.01
+Zafarwal	47	26	31.917	75.328
+Zafrabad	116	33	25.281	82.931
+Zafrabad	51	33	25.837	81.251
+Zaframau	107	33	26.253	83.018
+Zafrapur	117	33	26.142	81.167
+Zafrapur	118	30	19.031	78.35
+Zaharpur	119	4	25.635	87.941
+Zahidpur	120	33	28.358	77.719
+Zahidpur	121	33	27.706	78.541
+Zahidpur	122	33	25.405	82.588
+Zahidpur	123	10	28.505	76.709
+Zahidpur	89	33	29.38	78.765
+Zahidpur	85	33	28.134	78.83
+Zahidpur	55	33	26.547	82.551
+Zahidpur	124	33	26.097	83.866
+Zahidpur	46	26	31.728	75.21
+Zahidpur	47	26	31.959	75.549
+Zahidpur	46	26	31.958	75.68
+Zahidpur	47	26	31.788	75.57
+Zahidpur	115	33	27.205	80.62
+Zahidpur	113	33	28.992	78.847
+Zahidpur	124	33	26.047	84.108
+Zahidpur	125	4	25.325	84.957
+Zahirpur	126	34	29.658	77.809
+Zahirpur	121	33	27.594	78.813
+Zahirpur	127	33	26.065	82.949
+Zaidpura	71	33	29.695	77.404
+Zaigipur	34	12	33.889	74.809
+Zainabad	29	9	23.285	71.767
+Zainabad	128	18	21.3	76.233
+Zainabad	129	10	28.288	76.382
+Zainabad	89	33	29.254	78.333
+Zainabad	130	33	26.927	81.059
+Zainabad	52	33	26.827	81.257
+Zainabad	131	18	26.791	81.633
+Zainakut	37	12	34.104	74.73
+Zainapur	79	33	26.309	82.691
+Zainapur	79	33	26.404	82.656
+Zakariya	132	18	24.793	84.735
+Zalaguda	133	30	17.273	78.145
+Zalampur	134	18	24.12	78.924
+Zalimpur	135	33	26.992	79.176
+Zalimpur	136	33	27.381	78.33
+Zalimpur	137	33	27.013	79.111
+Zalimpur	138	33	27.614	81.12
+Zalimpur	139	33	27.494	81.224
+Zalimpur	140	33	26.313	81.762
+Zalimpur	130	33	27.086	80.955
+Zalutola	27	19	21.46	80.195
+Zamaitha	55	33	26.58	82.47
+Zambarub	35	12	34.053	75.318
+Zammandu	35	12	33.814	75.367
+Zammandu	7	18	33.398	75.255
+Zampodad	141	9	21.522	70.246
+Zampodad	29	9	22.741	71.782
+Zamshung	60	16	34.521	76.133
+Zanairag	34	12	34.062	75.035
+Zandbaba	3	12	34.386	74.329
+Zandwain	59	12	34.322	74.459
+Zangipur	54	33	25.654	83.553
+Zangipur	54	33	25.648	83.557
+Zangipur	54	33	25.613	83.457
+Zangipur	55	33	25.84	82.497
+Zangipur	55	33	26.092	82.619
+Zangkham	43	23	26.804	95.159
+Zankhari	142	9	21.11	73.397
+Zankhvav	1	9	21.451	73.322
+Zanzarka	10	9	23.05	72.25
+Zanzarva	10	9	23.03	72.29
+Zaranpur	143	4	24.564	84.666
+Zarbdial	46	26	31.572	75.78
+Zarigund	42	12	34.224	74.706
+Zaripura	127	33	27.485	78.17
+Zarrapur	144	18	22.77	77.71
+Zatinpur	20	12	33.687	74.913
+Zauqabad	55	33	25.973	82.59
+Zawlnuam	94	22	23.726	92.719
+Zazarpur	20	12	33.671	75.02
+Zab Baihk	59	12	34.255	74.207
+Zabtewala	145	10	29.663	75.7
+Zachaldor	3	12	34.406	74.199
+Zadeshwar	146	9	21.714	73.034
+Zafarabad	55	33	25.705	82.728
+Zafarabad	137	33	27.07	78.512
+Zafarabad	147	33	25.072	83.075
+Zafarganj	148	33	28.787	79.513
+Zafargarh	120	33	28.159	77.692
+Zafargarh	149	30	17.768	79.484
+Zafarpura	150	33	25.143	83.151
+Zaffarpur	109	10	30.316	77.235
+Zaffarpur	151	33	28.854	78.955
+Zaffarwal	47	26	31.92	75.33
+Zagasagar	152	30	18.782	78.617
+Zagsundar	59	12	34.333	74.294
+Zahidbagh	35	12	33.809	75.028
+Zahirabad	153	9	23.609	72.949
+Zahirpura	135	33	26.5	79.136
+Zahurabad	54	33	25.752	83.723
+Zahurabad	24	33	26.549	83.287
+Zahurganj	154	33	28.793	79.635
+Zainakote	37	12	34.101	74.735
+Zainuddin	155	33	26.935	82.42
+Zairikhan	42	12	34.293	74.838
+Zaladanki	156	1	14.884	79.912
+Zalimganj	91	33	26.279	80.87
+Zalimganj	30	33	25.719	81.553
+Zalimpura	38	27	24.322	73.343
+Zalimpura	157	27	25.515	75.156
+Zalimpura	157	27	25.645	75.246
+Zalimpura	158	27	26.68	74.574
+Zalimpura	159	27	25.104	74.446
+Zamanabad	96	11	31.12	76.266
+Zamanabad	154	33	28.896	78.225
+Zamin Sir	107	33	25.752	82.975
+Zaminganj	52	33	26.691	81.425
+Zaminganj	151	33	29.051	79.06
+Zampathar	34	12	33.777	74.746
+Zampathar	35	12	33.98	75.349
+Zamtarwan	35	12	34.051	75.308
+Zanburpur	91	33	26.445	80.861
+Zangibagh	37	12	34.007	74.852
+Zangirpur	160	7	28.752	77.181
+Zankharia	161	9	22.468	73.523
+Zarainpur	162	33	27.665	79.59
+Zardakpur	163	10	28.634	76.862
+Zare Wadi	62	19	17.017	73.414
+Zarekathi	164	19	19.498	74.444
+Zariandar	20	12	33.448	74.986
+Zariawadi	4	9	21.92	73.729
+Zarifabad	64	10	29.692	76.868
+Zarnawadi	4	9	21.608	73.556
+Zawngling	165	22	22.266	93.045
+Zabarnagar	23	33	26.842	81.894
+Zabtanagar	89	33	29.337	78.739
+Zabtanganj	89	33	29.614	78.357
+Zabtapuram	152	30	18.784	78.974
+Zabti Pura	77	33	26.77	82.159
+Zachaldara	3	12	34.4	74.28
+Zafarkhani	3	12	34.437	74.159
+Zaffargadh	149	30	17.768	79.486
+Zaheerabad	166	30	17.68	77.611
+Zakar Chak	117	33	24.988	85.536
+Zakariapur	138	33	27.455	80.628
+Zakariapur	167	4	25.588	85.196
+Zakatkhana	168	11	31.28	76.713
+Zaki Purwa	115	33	27.654	80.202
+Zalim Ahir	124	33	25.979	83.815
+Zalimnagar	169	33	27.862	81.195
+Zalimnagar	138	33	27.615	81.106
+Zalimnagar	139	33	27.986	81.28
+Zamania RS	54	33	25.416	83.56
+Zamin Bari	107	33	26.08	83.019
+Zamindigri	170	4	25.355	86.401
+Zaminpakri	55	33	25.74	82.639
+Zamistapur	171	18	17.414	78.503
+Zammavaram	156	1	14.716	79.722
+Zammipalem	156	1	14.493	80.033
+Zangatihal	172	14	16.249	74.724
+Zarasangam	166	30	17.764	77.711
+Zari Jamni	66	19	19.867	78.728
+ZariVansda	173	9	20.78	73.23
+Zarif Chak	174	13	24.378	84.521
+Zarifnagar	85	33	28.147	78.64
+Zartaltola	27	19	21.065	80.326
+Zashinagar	27	19	20.89	80.21
+Zabar Dogri	175	11	31.586	78.451
+Zabar Purwa	138	33	27.608	81.174
+Zafar Purwa	140	33	26.222	81.97
+Zagat Khana	176	11	31.452	77.631
+Zahir Bigha	125	4	24.951	84.912
+Zahur Nagra	148	33	28.082	79.757
+Zahur Purwa	169	33	27.861	80.111
+Zaina Kadal	37	12	34.094	74.811
+Zainab Chak	54	33	25.738	83.717
+Zajulakunta	177	1	16.918	81.316
+Zakir Nagar	178	7	28.567	77.279
+Zakir Nagra	148	33	28.066	79.784
+Zalalapalem	49	1	16.089	79.726
+Zalim Khera	130	33	26.703	80.915
+Zalim Khera	91	33	26.434	80.801
+Zalim Khera	91	33	26.469	80.454
+Zalim Nagla	179	33	27.911	79.347
+Zalim Nagla	148	33	28.53	79.387
+Zalim Purwa	139	33	27.641	81.511
+Zalim Singh	23	33	27.079	81.791
+Zamin Athur	180	29	10.68	78.02
+Zamin Basti	55	33	25.902	82.614
+Zamin Bedui	117	33	26.221	82.96
+Zamin Budur	181	29	12.338	80.032
+Zamin Pakri	55	33	25.793	82.712
+Zamin Palia	107	33	26.082	83.05
+Zamin Sakat	107	33	25.67	83.123
+Zamin Santi	107	33	26.152	83.103
+Zamistanpur	182	30	17.414	78.505
+Zari Buzarg	2	9	22.677	74.355
+ZariChikhli	173	9	20.67	73.24
+Zarugumalli	183	1	14.443	79.986
+Zarugumilli	184	1	15.313	79.988
+Zawar Mines	38	27	24.356	73.746
+Zabardastpur	126	34	29.823	77.943
+Zafar Manzil	127	33	27.952	78.468
+Zagalnakchan	26	16	34.758	76.946
+Zaidpurkhapa	185	18	21.63	79.847
+Zainuddinpur	79	33	26.543	82.834
+Zainuddinpur	138	33	27.46	80.872
+Zalim ka Bas	186	27	27.216	75.593
+Zamin Bhanti	124	33	26.03	84.023
+Zamin Biruki	31	33	26.0	83.651
+Zamin Degree	170	4	25.375	86.474
+Zamin Gangua	79	33	26.204	83.098
+Zamin Jaideo	54	33	25.689	83.375
+Zamin Kaithi	55	33	26.454	83.218
+Zamin Muthur	187	29	10.677	76.969
+Zamin Pindri	188	24	26.236	83.242
+Zamin Sarwan	31	33	25.903	83.614
+Zamin Shukul	24	33	26.335	83.453
+Zamin Sisend	124	33	26.1	83.829
+Zamindar Dih	189	33	27.264	82.471
+Zammulapalem	184	1	15.346	80.017
+Zammulapalem	190	1	15.959	80.433
+Zangalapalle	49	1	16.01	79.777
+Zangalapalle	191	1	15.007	78.506
+Zangalapalle	192	1	13.244	78.74
+Zangalapalle	184	1	15.352	79.73
+Zangalapalle	184	1	15.272	79.597
+Zangalapalle	184	1	15.049	79.796
+Zangalapalli	183	1	13.789	79.922
+Zangalapalli	183	1	13.972	79.609
+Zangalapalli	183	1	13.865	79.792
+Zanzva panai	153	9	24.113	73.046
+Zaphar Purwa	52	33	26.694	81.241
+Zaridungarda	193	9	20.626	73.702
+Zafarpur Adal	31	33	25.898	83.318
+Zahiruddinpur	107	33	25.933	82.982
+Zahiruddinpur	194	30	26.866	81.285
+Zahiruddinpur	77	33	26.607	82.21
+Zahuruddinpur	55	33	25.964	82.625
+Zahuruddinpur	79	33	26.266	82.74
+Zahuruddinpur	79	33	26.213	82.583
+Zahuruddinpur	107	33	26.09	82.6
+Zainpur Khurd	126	34	29.796	77.99
+Zainpur Nagar	135	33	26.818	78.945
+Zainpur Sadan	7	18	29.922	77.074
+Zalim ka Adda	135	33	26.801	79.006
+Zalimberatoli	195	13	23.46	85.763
+Zamania Bazar	54	33	25.388	83.548
+Zamin Ahrauli	79	33	26.381	83.041
+Zamin Dhamaur	55	33	25.936	82.615
+Zamin Katghar	107	33	26.09	83.0
+Zamin Kathgar	107	33	26.046	83.094
+Zamin Kusmaha	24	33	26.209	83.521
+Zamin Manauli	31	33	26.172	83.669
+Zamin Tinhari	31	33	26.111	83.677
+Zamin Unchera	124	33	25.806	83.934
+Zammalamadaka	49	1	16.511	79.437
+Zammalamadaka	184	1	15.909	79.882
+Zammulamadaka	184	1	15.909	79.882
+Zadgaon Gosavi	25	19	20.675	78.602
+Zafarpur Mahal	78	33	26.124	82.398
+Zafersahibbath	196	29	12.691	78.608
+Zahidpur Kalan	120	33	28.192	77.756
+Zahidpur Khurd	74	33	28.214	77.803
+Zaildar Da Khu	197	26	31.03	76.106
+Zainuddinnagar	115	33	27.822	79.951
+Zalimpur Maror	138	33	27.707	81.102
+Zamanabad Khas	96	11	32.124	76.269
+Zamima Itauria	154	33	28.485	79.947
+Zamin Bagherwa	198	33	25.732	82.992
+Zamin Bairawan	116	33	25.279	82.877
+Zamin Endathur	181	29	12.446	79.933
+Zamin Hathipur	124	33	25.898	83.546
+Zamin Isharpar	107	33	26.093	83.036
+Zamin Katanwar	199	4	26.896	84.024
+Zamin Lohrapur	24	33	26.366	83.457
+Zamin Mutalika	31	33	26.166	83.588
+Zamin Paiyanur	181	29	12.639	80.193
+Zamin Pharenda	107	33	26.144	83.164
+Zamin Rudhauli	55	33	25.936	82.659
+Zamin Saraunda	200	7	25.873	83.38
+Zamindar Purwa	23	33	27.191	81.786
+Zapti Nacharam	201	30	17.975	78.86
+Zaria na Danna	3	12	34.402	73.94
+Zainpur Chaubia	135	33	26.89	79.139
+Zakkepalligudur	156	1	14.751	79.886
+Zakkulanekkalam	202	1	16.539	80.746
+Zamin Elampalli	203	29	11.219	77.876
+Zamin Nischinta	204	35	25.3	88.632
+Zamin Sarangpur	31	33	26.208	83.637
+Zamin Sharullah	31	33	25.979	83.668
+Zamin Shivsagar	147	33	25.288	82.848
+Zamindevarkulam	205	29	9.112	77.705
+Zangareddigudem	206	1	17.123	81.295
+Zapthi Shivnoor	207	30	18.073	78.431
+Zarifpur Chatar	89	33	29.297	78.351
+Zarifpur Garhia	85	33	28.006	78.763
+Zafarpur Mahawan	208	33	25.453	81.817
+Zainpur Jhamandi	126	34	29.801	77.921
+Zamin Husainabad	55	33	26.629	81.537
+Zamin Shaikhupur	209	27	26.155	83.217
+Zamin Suthamalli	210	29	11.12	79.24
+Zamin Walidadpur	89	33	26.052	84.029
+Zampalavaripalem	184	1	15.07	79.721
+Zangalakhandrika	183	1	14.621	79.837
+Zangamreddipalem	184	1	15.096	79.713
+Zafarabad Ganauli	211	33	28.788	77.338
+Zafarpur Murghzar	79	33	26.261	82.665
+Zafarpur Sakrauli	79	33	26.195	82.859
+Zainpur Qadirabad	148	33	28.291	79.337
+Zalim Singh Purwa	140	33	26.298	81.289
+Zamin Bishun Pura	212	33	26.48	83.136
+Zamin Kottampatti	187	29	10.591	77.014
+Zamindar Pipariya	132	18	23.751	78.12
+Zaminkollangondan	213	29	9.4	77.52
+Zangamvani Doruvu	156	1	14.471	80.135
+Zarinpur Bhurraka	121	33	27.599	78.426
+Zarirpur Bhurraka	121	33	27.594	78.424
+Zainapur Maheshpur	7	18	27.476	79.691
+Zakkulavandlapalle	184	1	15.058	79.661
+Zarebambar Vasahat	214	19	15.802	74.06
+Zahidpur Tapp Kosli	129	10	28.369	76.476
+Zaftijagirpendekallu	215	1	15.639	77.399
+Zainuddinpur Chirchita	73	33	29.048	77.439
+Zangalapalle Agraharam	216	1	17.579	82.71
+Zapthi Lingareddypalli	201	30	18.012	78.69
+Z.Bhavaram	0	1	16.84	82.1
+Zer	217	9	15.593	73.298
+Zema	218	28	27.759	88.54
+Zera	68	33	25.453	81.827
+Zeluk	219	28	27.251	88.783
+Zenal	50	9	24.33	72.042
+Zerda	50	9	24.326	72.135
+Zerki	90	33	28.912	78.382
+Zewan	34	12	34.04	74.907
+Zezra	10	9	23.04	72.71
+Zeipur	20	12	33.676	74.918
+Zeloma	63	23	25.52	94.337
+Zempur	45	12	33.94	74.604
+Zenjal	220	12	33.457	75.184
+Zeorar	55	33	25.639	82.68
+Zethan	59	12	34.31	74.32
+Zekhada	41	9	15.593	72.329
+Zeradei	221	4	26.198	84.255
+Zeerapur	222	18	24.018	76.377
+Zemabawk	94	22	23.726	92.719
+Zenzanhu	7	18	33.261	75.276
+Zephenyu	223	23	25.943	94.22
+Zerakpur	107	33	25.768	82.922
+Zerakpur	132	18	25.886	82.533
+Zervavra	1	9	20.922	73.116
+Zeenabadu	224	1	18.006	82.958
+Zemithang	225	2	27.709	91.728
+Zeramahal	59	12	34.176	74.582
+Zelengphai	226	20	25.058	94.061
+Zerabandha	227	6	21.405	80.897
+Zeera Basti	124	33	25.79	84.14
+Zende Anjan	228	19	21.516	74.962
+Zerjitagadh	2	9	22.908	74.1
+Zeyadah Kot	229	35	22.445	88.335
+Zein-ul-Abdin	47	26	31.778	75.237
+Zenhang Lamka	230	20	24.346	93.702
+Zhor	7	18	33.362	75.351
+Zhadima	223	23	25.801	94.064
+Zhekiya	231	23	25.93	94.49
+Zhobumai	232	20	25.469	94.371
+Zhumkiri	100	23	25.881	94.863
+Zhaidabad Kherli	120	33	28.227	77.501
+Zirakpur	233	5	30.7333	76.7794
+Zik	176	11	30.918	77.48
+Zila	78	33	26.259	82.176
+Zila	117	33	26.068	81.499
+Zila	117	33	26.114	81.595
+Zion	234	3	24.456	92.843
+Zira	235	26	30.968	74.988
+Ziro	236	2	27.539	93.815
+Zidke	237	19	19.469	73.083
+Zilia	41	9	15.593	72.722
+Zilla	140	33	26.075	81.956
+Zilpa	92	19	21.341	78.685
+Zilpi	8	19	21.46	76.81
+Zirad	238	19	18.755	72.882
+Zirad	7	18	33.395	75.278
+Zirah	239	33	25.059	81.124
+Zirat	240	18	22.297	75.562
+Zirdo	241	2	27.536	94.514
+Zirga	242	19	18.592	77.339
+Ziarat	37	12	34.184	74.904
+Ziarat	3	12	34.075	74.706
+Zigadi	240	18	22.358	75.998
+Zikzak	243	21	25.388	89.906
+Zilant	7	18	33.339	75.395
+Zilasu	244	34	30.41	79.319
+Zimela	18	19	19.28	80.09
+Zinjri	141	9	21.607	70.188
+Zinkdi	19	9	23.336	69.805
+Zinpur	34	12	34.021	74.914
+Zinzar	10	9	22.74	72.34
+Zinzva	153	9	23.464	72.935
+Zinzwa	245	9	23.207	73.753
+Zirani	246	4	26.643	84.585
+Zirput	105	19	20.146	77.848
+Zisbal	34	12	34.036	75.111
+Zithan	3	12	34.307	74.261
+Ziyana	98	9	22.402	70.929
+Zikaria	52	33	26.937	81.308
+Zilapur	92	19	21.786	79.58
+Zilbodi	247	19	20.61	79.86
+Zilmiri	27	19	18.96	72.82
+Zilvana	41	9	15.593	71.868
+Zinchan	26	16	34.096	77.432
+Zindigi	106	4	24.36	87.994
+Zindpur	248	10	28.792	77.156
+Zindpur	249	33	27.653	78.319
+Zindpur	51	33	25.866	80.683
+Zindpur	250	33	27.166	80.938
+Zindpur	115	33	27.797	80.254
+Zingral	26	16	34.026	77.918
+Zinipur	251	12	34.264	74.637
+Zinipur	34	12	33.97	74.838
+Zinzari	161	9	22.526	73.672
+Zinzuda	252	9	22.91	70.55
+Zinzuda	29	9	22.386	71.103
+Zirakan	95	12	33.753	74.782
+Zirapur	222	18	24.022	76.377
+Zirepur	103	33	26.374	79.786
+Zirgund	34	12	33.832	74.865
+Zirpara	35	12	33.792	75.112
+Zitkiri	253	33	25.839	79.567
+Zianganj	254	4	25.777	87.475
+Zikarpur	127	33	28.011	77.601
+Zikhiani	255	11	31.749	76.769
+Zikripur	148	33	28.037	79.764
+Zilariya	98	9	22.457	70.609
+Zilkabad	256	4	25.958	85.005
+Zillopur	89	33	29.321	78.425
+Zimastal	20	12	33.543	74.914
+Zinavari	257	9	22.02	69.93
+Zindapur	143	4	24.687	84.944
+Zindapur	258	33	27.249	79.482
+Zindapur	212	33	26.86	83.297
+Zindapur	125	4	25.121	84.688
+Zindapur	56	4	25.522	86.07
+Zindpura	162	33	27.884	79.912
+Zindpura	148	33	28.199	79.845
+Zira Nau	235	26	30.994	74.976
+Zirakpur	259	26	30.654	76.821
+Zirakpur	55	33	25.779	82.445
+Zirakpur	147	33	25.541	82.604
+Zirakpur	107	33	26.015	83.165
+Zirimanz	59	12	34.368	74.529
+Zikriwala	89	33	29.389	78.709
+Zila Raja	140	33	26.064	81.844
+Zilapirha	170	4	24.564	84.937
+Zimi Chak	124	33	25.978	83.994
+Zimithang	225	2	27.71	91.728
+Zinatganj	140	33	26.523	81.443
+Zincnagar	260	24	22.035	83.923
+Zinda Pir	261	12	33.256	74.105
+Zinda Pir	262	12	33.218	74.299
+Zindahpur	103	33	26.839	79.867
+Zinkiyali	252	9	22.947	70.829
+Zinzuwada	29	9	22.725	71.627
+Zirabasti	124	33	25.788	84.146
+Ziriatola	263	18	22.067	80.109
+Zikrakheda	264	18	22.693	76.25
+Zindahwala	110	33	29.586	77.933
+Zingpuring	265	2	28.193	94.233
+Zira Bhari	27	19	26.96	82.362
+Ziauddinpur	266	33	27.805	78.622
+Ziauddinpur	85	33	29.01	78.799
+Ziauddinpur	267	4	24.866	84.36
+Zilaparisad	117	33	26.215	81.245
+Zinda Khera	91	33	26.337	80.944
+Zinda Khera	117	33	26.314	80.953
+Zimindarkhan	3	12	34.539	74.255
+Zimindarkhan	3	12	34.621	74.405
+Zinc Smelter	38	27	24.599	73.816
+Ziauddin Chak	167	4	25.416	85.176
+Ziladar Purwa	140	33	26.222	81.409
+Zirayathnagar	268	30	18.798	78.286
+Zila Dharampal	117	33	26.121	81.576
+Zilla Parishad	137	33	27.239	79.05
+Zinc Smelter P	269	1	17.69	83.225
+Zillah Parishad	270	30	16.807	78.824
+Zillah Parishad	271	30	17.285	79.091
+Zillla Parishad	66	19	20.394	78.129
+Zinzavadar Nana	93	9	22.005	71.693
+Ziletan-ka-Mazra	272	34	29.105	79.047
+Zinza Vadar Mota	93	9	22.055	71.742
+Ziraat Rameshwar	68	33	25.398	82.077
+Zlauddinpur	68	33	25.508	81.765
+ZMelur	210	29	11.25	79.4
+Z.Medapadu	273	1	16.908	81.902
+Zoi	6	12	33.115	76.1
+Zor	7	18	33.362	75.32
+Zoz	217	9	15.593	73.903
+Zolu	34	12	33.977	74.819
+Zong	26	16	32.685	78.863
+Zoom	218	28	27.14	88.26
+Zoor	274	34	29.598	79.662
+Zodar	35	12	33.703	75.118
+Zodga	275	19	20.56	77.55
+Zodga	9	19	20.554	74.512
+Zodga	276	19	20.47	77.18
+Zodga	105	19	20.933	76.189
+Zodin	277	22	22.914	92.475
+Zohra	278	4	25.088	87.002
+Zoupi	279	20	24.297	93.875
+Zowur	95	12	33.738	74.814
+Zozar	60	16	33.588	77.01
+Zobawk	94	22	22.858	92.822
+Zobawk	280	22	23.558	92.83
+Zogiar	59	12	33.99	74.524
+Zohmun	94	22	24.285	92.947
+Zongsa	26	16	35.011	77.359
+Zormen	281	9	15.573	74.104
+Zote S	280	22	23.217	92.795
+Zote e	282	22	23.488	93.337
+Zohnuai	277	22	22.902	92.761
+Zolambe	214	19	15.834	73.945
+Zombadi	62	19	17.487	73.327
+Zonadab	35	12	33.953	75.34
+Zorawar	283	33	27.228	78.002
+Zotinga	105	19	20.066	76.359
+Zotlang	277	22	22.867	92.767
+Zotlang	94	22	23.829	92.484
+Zoo Road	284	3	26.171	91.778
+Zoharganj	54	33	25.542	83.206
+Zonnavada	156	1	14.481	79.89
+Zohra Chak	167	4	25.41	85.139
+Zokhawthar	282	22	23.365	93.383
+Zonekareng	285	3	27.83	95.22
+Zorawardih	286	4	24.847	85.87
+Zorawarpur	51	33	25.553	81.01
+Zorawarpur	189	33	27.43	82.107
+Zorawarpur	55	33	26.863	82.783
+Zorawarpur	140	33	26.382	81.638
+Zorawarpur	287	4	25.09	84.311
+Zorawarpur	288	4	26.442	84.133
+Zorawarpur	287	4	24.974	84.173
+Zorawarpur	114	4	25.179	85.486
+Zouzangtek	226	20	24.663	93.632
+Zochachhuah	289	22	22.133	92.773
+Zorawarganj	91	33	26.532	80.823
+Zorawarganj	91	33	26.546	81.434
+Zorawarganj	117	33	26.455	81.178
+Zorawarganj	117	33	26.42	81.406
+Zorawarganj	140	33	26.452	81.539
+Zorawarganj	254	4	25.965	87.053
+Zorawarpura	290	27	29.758	73.45
+Zorawarpura	291	27	26.081	74.729
+Zorawarpura	291	27	26.008	74.549
+Zorawarpura	157	27	25.407	74.423
+Zonnalagadda	49	1	16.24	80.084
+Zorawarnagar	189	33	27.346	82.477
+Zorawar Khera	117	33	26.516	81.145
+Zorawar Khera	117	33	26.528	81.186
+Zorawar Nagar	127	33	27.85	78.13
+Zorawar Purwa	103	33	26.273	79.979
+Zorawar Chhapra	288	4	26.446	84.129
+Zorawarpur Mafi	189	33	27.416	82.203
+Zohrapur Jadopur	154	33	28.388	79.691
+Zonnatali Agraharam	190	1	15.947	80.102
+Zura	19	9	23.435	69.617
+Zuti	60	16	34.649	76.422
+Zubza	223	23	25.712	94.041
+Zudur	34	12	33.906	74.865
+Zulum	292	6	21.124	81.617
+Zulmat	69	10	30.053	76.548
+Zummad	293	19	21.737	74.299
+Zundal	10	9	23.14	72.58
+Zupudi	294	1	16.123	80.489
+Zurmur	263	18	22.173	80.061
+Zuastan	34	12	34.074	75.075
+Zuchhip	295	22	23.477	93.153
+Zudvali	296	9	20.889	70.991
+Zuketsa	63	23	25.536	94.237
+Zukurah	37	12	34.159	74.829
+Zulhami	63	23	25.825	94.391
+Zulidok	60	16	34.055	76.328
+Zundala	98	9	21.837	71.078
+Zurahom	3	12	34.552	74.159
+Zurhama	3	12	34.515	74.173
+Zuangtui	94	22	23.756	92.74
+Zulfgarh	297	26	30.954	76.19
+Zulfipur	52	33	26.778	81.296
+Zulfipur	298	4	25.237	85.144
+Zulmgarh	299	26	30.281	75.874
+Zumerpur	139	33	27.129	81.504
+Zunardan	46	26	31.257	74.895
+Zunipura	59	12	34.367	74.408
+Zunnamar	37	12	34.121	74.801
+Zurigund	45	12	34.003	74.736
+Zurkheda	300	19	21.06	75.395
+Zulakallu	49	1	16.444	79.787
+Zulapalli	270	30	16.857	78.358
+Zumredpur	178	7	28.556	77.243
+Zungalpur	20	12	33.646	75.062
+Zunheboto	231	23	26.013	94.526
+Zunthpura	301	27	25.289	73.999
+Zunzurwad	172	14	16.603	75.243
+Zutlibari	302	3	27.34	95.35
+Zuvvaleru	184	1	15.644	79.588
+Zuarinagar	303	8	15.382	73.878
+Zuvvigunta	184	1	15.44	79.724
+Zumaladinne	304	1	15.816	77.202
+Zunkariguda	269	1	18.268	82.96
+Zugu Kharyan	45	12	33.921	74.588
+Zunzurupenta	305	1	13.902	78.372
+Zuvvaladinne	156	1	14.788	80.07
+Zuvvalapalem	156	1	13.895	79.903
+Zuhom Kandipur	45	12	33.926	74.746
+Zunardar Patti	55	33	26.219	82.87
+Zurji ka Khera	38	27	24.636	74.022
+Zuvvaguntapalem	156	1	14.851	80.038
+Zuvvalaguntapalli	184	1	14.691	79.774

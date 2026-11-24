@@ -3,7 +3,7 @@ name: Deploy login server
 on:
   push:
     branches: [main]
-    paths: ['backend/**', 'source/palm-prompt.js', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'source/palm-prompt.js', 'source/compat-prompt.js', 'source/premium-prompts.js', '.github/workflows/backend.yml']
   workflow_dispatch:
 
 jobs:
@@ -39,6 +39,11 @@ jobs:
             WA_BUSINESS_NUMBER
             WA_VERIFY_TOKEN
             WA_APP_SECRET
+            GOOGLE_TTS_KEY
+            RAZORPAY_KEY_ID
+            RAZORPAY_KEY_SECRET
+            RAZORPAY_WEBHOOK_SECRET
+            PLAY_SA_JSON
         env:
           WA_TOKEN: ${{ secrets.WA_TOKEN || 'none' }}
           WA_PHONE_ID: ${{ secrets.WA_PHONE_ID || 'none' }}
@@ -48,3 +53,8 @@ jobs:
           WA_BUSINESS_NUMBER: ${{ secrets.WA_BUSINESS_NUMBER || 'none' }}
           WA_VERIFY_TOKEN: ${{ secrets.WA_VERIFY_TOKEN || 'none' }}
           WA_APP_SECRET: ${{ secrets.WA_APP_SECRET || 'none' }}
+          GOOGLE_TTS_KEY: ${{ secrets.GOOGLE_TTS_KEY || 'none' }}
+          RAZORPAY_KEY_ID: ${{ secrets.RAZORPAY_KEY_ID || 'none' }}
+          RAZORPAY_KEY_SECRET: ${{ secrets.RAZORPAY_KEY_SECRET || 'none' }}
+          RAZORPAY_WEBHOOK_SECRET: ${{ secrets.RAZORPAY_WEBHOOK_SECRET || 'none' }}
+          PLAY_SA_JSON: ${{ secrets.PLAY_SA_JSON || 'none' }}

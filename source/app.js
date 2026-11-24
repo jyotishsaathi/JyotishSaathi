@@ -9,13 +9,14 @@
   };
   let ANIM = true;
   const S = Object.assign({ lang: null, scale: 1, profiles: [], activeId: null, homeCity: null, notify: false, premium: false, user: null }, store.load() || {});
-  const V = { tab: 'today', sub: null, dayOffset: 0, chartMode: 'lagna', editId: null, palmStep: -1, palmAns: [], palmImg: null, pDate: null, matchRes: null, showAllDasha: false, speaking: false, onboard: !S.profiles.length };
-  const persist = () => store.save({ lang: S.lang, scale: S.scale, profiles: S.profiles, activeId: S.activeId, homeCity: S.homeCity, notify: S.notify, premium: S.premium, user: S.user, palmUsed: S.palmUsed || 0, palmReadings: S.palmReadings || {}, serverPremium: !!S.serverPremium, palmFreeLeft: S.palmFreeLeft, favM: S.favM || [], compatUse: S.compatUse || null, compatCache: S.compatCache || {}, vastuMap: S.vastuMap || {}, aiChats: S.aiChats || {}, reports: S.reports || {} });
+  const V = { tab: 'home', sub: null, dayOffset: 0, chartMode: 'lagna', editId: null, palmStep: -1, palmAns: [], palmImg: null, pDate: null, matchRes: null, showAllDasha: false, speaking: false, onboard: !S.profiles.length };
+  const persist = () => store.save({ lang: S.lang, scale: S.scale, profiles: S.profiles, activeId: S.activeId, homeCity: S.homeCity, notify: S.notify, premium: S.premium, user: S.user, palmUsed: S.palmUsed || 0, palmReadings: S.palmReadings || {}, serverPremium: !!S.serverPremium, palmFreeLeft: S.palmFreeLeft, favM: S.favM || [], compatUse: S.compatUse || null, compatCache: S.compatCache || {}, vastuMap: S.vastuMap || {}, aiChats: S.aiChats || {}, reports: S.reports || {}, voiceRate: S.voiceRate || 'normal', templePlace: S.templePlace || '', items: S.items || [], plan: S.plan || '', family: S.family || [], familyOwner: S.familyOwner || '', waDaily: !!S.waDaily, jaap: S.jaap || null, tdates: S.tdates || [], remind: S.remind || {}, vchk: S.vchk || {}, voiceGender: S.voiceGender || 'f', lastDaily: S.lastDaily || '' });
   try { if (location.hash === '#premium-demo') S.premium = true; } catch (e) { }
 
-  const L = () => S.lang === 'hi' ? 1 : 0;
-  const t = k => (T[k] || [k, k])[L()];
-  const pick = arr => arr[L()];
+  const L = () => S.lang && S.lang !== 'en' ? 1 : 0;   // Hindi text is also used for Marathi and Gujarati content
+  const RGW = a => (S.lang === 'mr' || S.lang === 'gu') && a && GX.rg[S.lang][a[0]];
+  const t = k => { const a = T[k] || [k, k]; return RGW(a) || a[L()]; };
+  const pick = arr => RGW(arr) || arr[L()];
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const $ = s => document.querySelector(s);
   const pad = n => String(n).padStart(2, '0');
@@ -67,7 +68,22 @@
     right: '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>',
     crown: '<svg viewBox="0 0 24 24"><path d="M3.5 8l4.5 4 4-6.5 4 6.5 4.5-4-2 10.5h-13z"/></svg>'
   };
-  const LOGO = `<svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="lg" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#FFD27A"/><stop offset="1" stop-color="#E5761E"/></radialGradient></defs><circle cx="32" cy="32" r="30" fill="#7B1E2B"/><g stroke="#F3C46B" stroke-width="2" stroke-linecap="round">${Array.from({ length: 12 }, (_, i) => { const a = i * 30 * Math.PI / 180; return `<line x1="${32 + Math.cos(a) * 17}" y1="${32 + Math.sin(a) * 17}" x2="${32 + Math.cos(a) * 25}" y2="${32 + Math.sin(a) * 25}"/>`; }).join('')}</g><circle cx="32" cy="32" r="12.5" fill="url(#lg)"/><path d="M36 26.5a7 7 0 1 0 0 11 8.5 8.5 0 1 1 0-11z" fill="#7B1E2B"/></svg>`;
+  function medallion(id) {
+    const rays = Array.from({ length: 12 }, (_, i) => { const a = (i * 30 - 90) * Math.PI / 180, b = a + 0.13, c = a - 0.13;
+      return `<path d="M${32 + Math.cos(c) * 15.5} ${32 + Math.sin(c) * 15.5}L${32 + Math.cos(a) * 24.5} ${32 + Math.sin(a) * 24.5}L${32 + Math.cos(b) * 15.5} ${32 + Math.sin(b) * 15.5}Z" fill="url(#${id}r)"/>`; }).join('');
+    return `<defs>
+      <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF0B3"/><stop offset=".35" stop-color="#E8B544"/><stop offset=".65" stop-color="#A86F12"/><stop offset="1" stop-color="#F5CF68"/></linearGradient>
+      <radialGradient id="${id}e" cx=".42" cy=".36" r=".75"><stop offset="0" stop-color="#B5303F"/><stop offset=".7" stop-color="#7B1E2B"/><stop offset="1" stop-color="#4A0E18"/></radialGradient>
+      <radialGradient id="${id}s" cx=".38" cy=".34" r=".7"><stop offset="0" stop-color="#FFF8D6"/><stop offset=".45" stop-color="#FFC94D"/><stop offset="1" stop-color="#E06A12"/></radialGradient>
+      <linearGradient id="${id}r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE38A"/><stop offset="1" stop-color="#D99A2B"/></linearGradient>
+      <linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+    <circle cx="32" cy="33.2" r="30" fill="#3A0A12" opacity=".35"/>
+    <circle cx="32" cy="32" r="30" fill="url(#${id}g)"/><circle cx="32" cy="32" r="26.6" fill="#8E5A0E"/><circle cx="32" cy="32" r="26" fill="url(#${id}e)"/>
+    ${rays}<circle cx="32" cy="32" r="12.6" fill="#9C5A0C"/><circle cx="32" cy="32" r="12" fill="url(#${id}s)"/>
+    <path d="M36.2 26.4a6.8 6.8 0 1 0 0 11.2 8.4 8.4 0 1 1 0-11.2z" fill="#7B1E2B" opacity=".92"/>
+    <ellipse cx="27" cy="17" rx="17" ry="9" fill="url(#${id}h)"/>`;
+  }
+  const LOGO = `<svg class="logo" viewBox="0 0 64 64" aria-hidden="true">${medallion('lg')}</svg>`;
 
   /* ---------- Daily prediction ---------- */
   function prediction(p, off) {
@@ -138,12 +154,16 @@
       <div class="score s${r.score}">${stars(r.score, 'big')}<div class="score-l">${pick(C.dayLabel[r.score])}</div></div>
       <p class="lead">${pick(C.houseMsg[r.dy.house - 1])}</p>
       <p class="tara"><b>${t('tara')}: ${pick(C.taraName[r.dy.tara])}</b> · ${pick(C.taraText[r.dy.tara])}</p>
+      ${basisLine(r)}
       ${r.why.length ? `<ul class="why">${r.why.map(w => `<li class="${w.v > 0 ? 'up' : 'down'}">${w.v > 0 ? '▲' : '▼'} ${pick(C.why[w.key]).replace('{n}', w.key.startsWith('dasha') ? pName(w.n) : w.n)}</li>`).join('')}</ul>` : ''}
+      <button class="btn primary block suno" data-a="speak">${ICON.speaker}<span>${V.speaking === 'day' ? t('stop') : V.dayOffset ? t('listen') : g('sunoBig')}</span></button>
       <div class="row2">
-        <button class="btn ghost" data-a="speak">${ICON.speaker}<span>${V.speaking ? t('stop') : t('listen')}</span></button>
         <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(shareTxt)}" target="_blank" rel="noopener">${ICON.wa}<span>${t('shareWA')}</span></a>
+        <button class="btn ghost" data-a="shareCard" data-v="day">🖼️<span>${g('shareCard')}</span></button>
       </div>
+      <button class="btn link block mic" data-a="voiceAsk">🎙️ ${g('askVoice')}</button>
     </section>
+    ${V.dayOffset === 0 ? nextFestCard() : ''}
     ${V.dayOffset === 0 ? quickTiles() : ''}
     ${V.dayOffset === 0 ? templeCard() : ''}
     <section class="grid4">
@@ -287,7 +307,7 @@
       else if (C.life.lordText[a.k]) { const lt = C.life.lordText[a.k]; extra = `<div class="fact"><span>${pick(lt.lbl)}</span><b>${pick(lt[a.lord])}</b></div>`; }
       const per = a.period ? `<div class="period">🗓️ <span>${pick(C.life.bestPeriod)}: <b>${fmtMonthYear(a.period.start)} – ${fmtMonthYear(a.period.end)}</b><br><small>${pick(C.life.dashaOf).replace('{p}', pName(a.period.md) + ' / ' + pName(a.period.lord))}${a.period.now ? ' · ' + pick(C.life.runningNow) : ''}</small></span></div>` : '';
       return `<section class="card life"><div class="lh"><span class="li">${a.icon}</span><h3>${pick(a.t)}</h3>${stars(a.stars)}</div>
-        <p>${pick(C.life.level[a.k][a.lvl])}</p>${extra}${a.occ.length ? `<p class="muted">${a.occ.join(' ')}</p>` : ''}${per}</section>`;
+        <p>${pick(C.life.level[a.k][a.lvl])}</p>${extra}${per}${areaDetail(ch, a, now)}</section>`;
     }).join('');
     const ll = R.lagnaLord, col = C.colour[ll];
     const lucky = `<section class="card"><h3>🍀 ${pick(C.life.luckyTitle)}</h3>
@@ -321,11 +341,13 @@
       </div>
       <div class="muted small">${t('born')}: ${fmtDate(p.y, p.m, p.d)} · ${p.timeUnknown ? '—' : fmtClock(p.h, p.min)} · ${esc(p.place)}</div>
       ${ch.timeUnknown ? `<div class="note">ℹ️ ${pick(C.acc.timeUnknown)}</div>` : ''}
+      <div class="trust-row">${trustBadge()}<button class="btn link sm" data-a="calc">🔢 ${g('calc')}</button><button class="btn link sm" data-a="tab" data-v="method">📄 ${pick(MT.compare)}</button></div>
       ${ch.lagnaEdge ? `<div class="note">⚠️ ${pick(C.acc.lagnaEdge)}</div>` : ''}
       ${Math.abs(ch.tzUsed - 5.5) > 0.01 && Math.abs(ch.tzUsed - 5.75) > 0.01 ? `<div class="note">🕰️ ${pick(C.acc.oldTz).replace('{tz}', fmtTz(ch.tzUsed))}</div>` : ''}
     </section>
     <section class="card"><div class="seg sm"><button data-a="cmode" data-v="lagna" class="${V.chartMode === 'lagna' ? 'on' : ''}">${t('lagnaChart')}</button><button data-a="cmode" data-v="moon" class="${V.chartMode === 'moon' ? 'on' : ''}">${t('moonChart')}</button><button data-a="cmode" data-v="d9" class="${V.chartMode === 'd9' ? 'on' : ''}">${pick(C.acc.d9)}</button></div>
-      ${chartSVG(ch, V.chartMode)}<div class="muted small center">${t('retro')}</div></section>
+      ${chart3D(ch, V.chartMode)}<div class="muted small center">${t('retro')}</div></section>
+    ${planetTable(ch)}
     ${lifeHTML(ch, now)}
     ${premiumKundliSection(p, ch)}
     <button class="btn primary block" data-a="openMatch">💞 ${t('matchBtn')}</button>
@@ -343,11 +365,7 @@
       <div class="area"><span>${t('mFromLagna')}</span><b>${ch.manglik.fromLagna ? t('yes') : t('no')}</b></div>
       <div class="area"><span>${t('mFromMoon')}</span><b>${ch.manglik.fromMoon ? t('yes') : t('no')}</b></div>
       <p class="muted small">${t('manglikNote')}</p></section>
-    <section class="card"><h3>${t('planets')}</h3>
-      <table class="tbl"><thead><tr><th>${t('planet')}</th><th>${t('rashi')}</th><th>${t('degree')}</th><th>${t('nakshatra')}</th><th>${t('house')}</th><th>D9</th></tr></thead><tbody>
-      ${ch.timeUnknown ? '' : `<tr><td><b>${t('lagna')}</b></td>`}<td>${pick(C.rashiShort[ch.lagnaSign])}</td><td>${fmtDeg(ch.lagna % 30)}</td><td>${pick(C.nak[ch.lagnaNak.n])}-${ch.lagnaNak.pada}</td><td>1</td><td>${pick(C.rashiShort[ch.lagnaD9])}</td></tr>
-      ${ch.planets.map(pl => `<tr><td><b>${pName(pl.name)}</b>${pl.retro && pl.name !== 'Rahu' && pl.name !== 'Ketu' ? ` <span class="r">${L() ? 'व' : 'R'}</span>` : ''}${pl.combust ? ` <span class="r" title="combust">${L() ? 'अ' : 'C'}</span>` : ''}${pl.dignity === 'ex' ? ' ↑' : pl.dignity === 'deb' ? ' ↓' : ''}</td><td>${pick(C.rashiShort[pl.sign])}</td><td>${fmtDeg(pl.deg)}</td><td>${pick(C.nak[pl.nak])}-${pl.pada}</td><td>${pl.house}</td><td>${pick(C.rashiShort[pl.d9])}${pl.vargottama ? ' ★' : ''}</td></tr>`).join('')}
-      </tbody></table><p class="muted small">${pick(C.acc.tableKey)}</p></section>`;
+`;
   }
 
   function screenMatch() {
@@ -356,7 +374,7 @@
     if (!boys.length || !girls.length) body = `<section class="card"><p>${t('needTwo')}</p><button class="btn primary block" data-a="addMember">${t('addMember')}</button></section>`;
     else {
       const opt = (arr, sel) => arr.map(p => `<option value="${p.id}" ${p.id === sel ? 'selected' : ''}>${esc(p.name)}</option>`).join('');
-      const bSel = V.matchBoy || boys[0].id, gSel = V.matchGirl || girls[0].id;
+      const ap = active(), bSel = V.matchBoy || (ap.gender === 'm' ? ap.id : boys[0].id), gSel = V.matchGirl || (ap.gender === 'f' ? ap.id : girls[0].id);
       body = `<section class="card"><label class="fl">${t('boy')}<select id="mBoy">${opt(boys, bSel)}</select></label>
         <label class="fl">${t('girl')}<select id="mGirl">${opt(girls, gSel)}</select></label>
         <button class="btn primary block" data-a="runMatch">${t('checkMatch')}</button></section>`;
@@ -367,6 +385,8 @@
         const C0 = 2 * Math.PI * 52, off = C0 * (1 - tot / 36);
         body += `<section class="card center"><div class="ring ${cls}"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="rt"/><circle cx="60" cy="60" r="52" class="rp" style="stroke-dasharray:${C0};stroke-dashoffset:${off};--c0:${C0}"/></svg><b data-count="${tot}">0</b><span>${t('outOf36')}</span></div>
           <div class="kv">${t('gunas')}</div><p class="lead">${t(v)}</p>
+          <p class="muted small">📜 ${pick(['Ashtakoot milan: 8 kootas, 36 gun, as in the classical texts', 'अष्टकूट मिलान: 8 कूट, 36 गुण, शास्त्रीय ग्रंथों के अनुसार'])}</p>
+          <button class="btn ghost sm" data-a="shareCard" data-v="milan">🖼️ ${g('shareCard')}</button>
           ${r.rows.find(x => x.k === 'nadi').s === 0 ? `<div class="pill ${r.nadiCancel ? 'good' : 'bad'}">${t('nadiDosh')}${r.nadiCancel ? ' · ' + pick(C.acc.cancelled) : ''}</div>` : ''}
           ${r.rows.find(x => x.k === 'bhakoot').s === 0 ? `<div class="pill ${r.bhakootCancel ? 'good' : 'bad'}">${t('bhakootDosh')}${r.bhakootCancel ? ' · ' + pick(C.acc.cancelled) : ''}</div>` : ''}
           ${r.nadiCancel || r.bhakootCancel ? `<p class="muted small">${pick(C.acc.doshCancelNote)}</p>` : ''}</section>
@@ -416,12 +436,12 @@
   function screenPanchang() {
     const pl = place(); const base = V.pDate || todayYMD();
     const pc = E.dayPanchang(base.y, base.m, base.d, pl.lat, pl.lon, pl.tz);
-    const tz = pl.tz, tIdx = pc.tithi, shukla = tIdx < 15;
+    const tz = pl.tz, tIdx = pc.tithi, shukla = tIdx < 15, BACK = backMore();
     const tName = tIdx === 14 ? C.tithi[14] : tIdx === 29 ? C.tithi[15] : C.tithi[tIdx % 15];
     const sp = E.specialDays(base.y, base.m, base.d, pl.lat, pl.lon, pl.tz, 45).slice(0, 8);
     const row = (k, v, sub) => `<div class="prow"><span>${k}</span><b>${v}${sub ? `<small>${sub}</small>` : ''}</b></div>`;
     const cityOpts = C.cities.map((c, i) => `<option value="${i}" ${S.homeCity === i ? 'selected' : ''}>${pick([c[0], c[1]])}</option>`).join('');
-    return `<h2 class="ptitle">📅 ${t('panchang')}</h2>
+    return `${BACK}<h2 class="ptitle">📅 ${t('panchang')}</h2>
       <label class="fl">${t('city')}<select id="homeCity"><option value="">${esc(active().place)}</option>${cityOpts}</select></label>
       <div class="datenav"><button class="icbtn" data-a="pday" data-v="-1" aria-label="${t('prev')}">${ICON.left}</button>
         <div class="center"><b>${fmtDate(base.y, base.m, base.d, true)}</b>${V.pDate ? `<br><button class="btn link sm" data-a="pday" data-v="0">${t('todayBtn')}</button>` : ''}</div>
@@ -449,7 +469,7 @@
   function screenFamily() {
     if (V.sub === 'form') return screenForm();
     const sizes = [[1, 'A'], [1.15, 'A+'], [1.3, 'A++']];
-    return `<h2 class="ptitle">👨‍👩‍👧 ${t('family')}</h2>
+    return `${backMore()}<h2 class="ptitle">👨‍👩‍👧 ${t('family')}</h2>
       ${S.profiles.map(p => { const ch = chartOf(p), on = p.id === active().id; return `<section class="card member ${on ? 'on' : ''}">
         <div class="av">${esc(p.name.trim()[0] || '?').toUpperCase()}</div>
         <div class="mi"><b>${esc(p.name)}</b><div class="muted small">${pick(C.relations[p.rel || 0])} · ${t('rashi')}: ${pick(C.rashiShort[ch.moonSign])}</div>
@@ -460,9 +480,16 @@
       ${accountCard()}
       ${premiumCard()}
       <section class="card"><h3>${t('settings')}</h3>
-        <div class="tl">${t('language')}</div><div class="seg"><button data-a="lang" data-v="hi" class="${L() ? 'on' : ''}">हिंदी</button><button data-a="lang" data-v="en" class="${!L() ? 'on' : ''}">English</button></div>
+        <div class="tl">${t('language')}</div><div class="seg lang4"><button data-a="lang" data-v="hi" class="${S.lang === 'hi' ? 'on' : ''}">हिंदी</button><button data-a="lang" data-v="en" class="${S.lang === 'en' ? 'on' : ''}">English</button><button data-a="lang" data-v="mr" class="${S.lang === 'mr' ? 'on' : ''}">मराठी</button><button data-a="lang" data-v="gu" class="${S.lang === 'gu' ? 'on' : ''}">ગુજરાતી</button></div>
+        ${S.lang === 'mr' || S.lang === 'gu' ? `<p class="muted small">${g('langBeta')}</p>` : ''}
         <div class="tl">${t('textSize')}</div><div class="seg">${sizes.map(([v, l]) => `<button data-a="scale" data-v="${v}" class="${S.scale === v ? 'on' : ''}" style="font-size:${v}em">${l}</button>`).join('')}</div>
       </section>
+      <section class="card"><h3>🔊 ${pick(Y.voice.title)}</h3><p class="muted small">${pick(Y.voice.sub)}</p>
+        <div class="fl">${pick(Y.voice.speed)}<div class="seg sm"><button data-a="vRate" data-v="normal" class="${S.voiceRate !== 'slow' ? 'on' : ''}">${pick(Y.voice.normal)}</button><button data-a="vRate" data-v="slow" class="${S.voiceRate === 'slow' ? 'on' : ''}">${pick(Y.voice.slow)}</button></div></div>
+        <div class="fl">${g('voiceG')}<div class="seg sm"><button data-a="voiceG" data-v="f" class="${S.voiceGender !== 'm' ? 'on' : ''}">👩 ${g('female')}</button><button data-a="voiceG" data-v="m" class="${S.voiceGender === 'm' ? 'on' : ''}">👨 ${g('male')}</button></div></div>
+        <button class="btn ghost block" data-a="vTest">${ICON.speaker}<span>${pick(Y.voice.test)}</span></button>
+        <p class="muted small">🎙️ ${pick(cloudVoiceOn() ? ['Saathi\'s own natural voice reads everything.', 'साथी की अपनी प्राकृतिक आवाज़ सब कुछ पढ़ती है।'] : ['In Hindi, the daily rashifal, kathas and this test use Saathi\'s own voice (male or female). Mantras and Jyotish Sahayak answers use your phone\'s voice, which may not change with this setting.', 'हिंदी में रोज़ का राशिफल, कथाएँ और यह जाँच साथी की अपनी आवाज़ (पुरुष या महिला) में हैं। मंत्र और ज्योतिष सहायक के जवाब फ़ोन की आवाज़ में होते हैं, जो इस सेटिंग से शायद न बदले।'])}</p>
+        ${hasHindiVoice() ? '' : `<p class="note small">ℹ️ ${pick(Y.voice.noHindi)}</p>`}</section>
       <section class="card"><h3 data-a="demoTap">${t('about')}</h3><p class="small">${t('aboutText')}</p><p class="muted small">${t('storageNote')}</p></section>`;
   }
 
@@ -472,13 +499,10 @@
       <button class="btn gold block" data-a="openPremium">👑 ${S.premium ? pick(C.prem.active) : pick(C.prem.unlock)}</button></section>`;
   }
 
-  function profilePicker() {
-    if (S.profiles.length < 2) return '';
-    return `<div class="chips">${S.profiles.map(p => `<button class="chip ${p.id === active().id ? 'on' : ''}" data-a="setActive" data-v="${p.id}">${esc(p.name.split(' ')[0])}</button>`).join('')}</div>`;
-  }
+  function profilePicker() { return ''; }
 
   function screenForm() {
-    const p = S.profiles.find(x => x.id === V.editId) || { name: S.profiles.length ? '' : ((S.user && S.user.name) || ''), gender: 'm', rel: S.profiles.length ? 1 : 0, y: '', m: '', d: '', h: 12, min: 0, cityIdx: '', timeUnknown: false };
+    const p = S.profiles.find(x => x.id === V.editId) || { name: S.profiles.length ? '' : ((S.user && S.user.name) || ''), gender: 'm', rel: V.formPreset ? V.formPreset.rel : S.profiles.length ? 1 : 0, y: '', m: '', d: '', h: 12, min: 0, cityIdx: '', timeUnknown: false };
     const dateVal = p.y ? `${p.y}-${pad(p.m)}-${pad(p.d)}` : '';
     const other = p.cityIdx === -1;
     if (V.formPlaceFor !== (V.editId || 'new')) { V.formPlaceFor = V.editId || 'new'; V.formPlace = (p.lat != null && !other && p.y) ? { label: p.place, lat: p.lat, lon: p.lon, tz: p.tz } : null; V.manualPlace = other; }
@@ -493,7 +517,7 @@
         <label class="cb"><input type="checkbox" id="fNoTime" ${p.timeUnknown ? 'checked' : ''}> ${t('noTime')}</label>
         <div class="muted small" id="noTimeNote" ${p.timeUnknown ? '' : 'hidden'}>${t('noTimeNote')}</div>
         <div class="fl" ${V.manualPlace ? 'hidden' : ''}>${t('pob')}<input id="fPlaceQ" autocomplete="off" placeholder="${pick(C.acc.placeSearch)}" value="${V.formPlace ? esc(V.formPlace.label) : ''}">
-          <div id="placeList" class="plist" hidden></div>
+          <div id="placeList" class="plist placelist" hidden></div>
           ${V.formPlace ? `<div class="placesel">✓ ${esc(V.formPlace.label)} <small>(${V.formPlace.lat.toFixed(2)}°, ${V.formPlace.lon.toFixed(2)}°)</small></div>` : ''}
           <button type="button" class="btn link" data-a="placeManual">${pick(C.acc.placeManual)}</button></div>
         <div id="otherBox" ${V.manualPlace ? '' : 'hidden'}>
@@ -510,7 +534,7 @@
     return `<div class="welcome">${LOGO}<h1>ज्योतिष साथी<br><span>Jyotish Saathi</span></h1>
       <p class="lead">सितारों से आपका रोज़ का मार्गदर्शन<br><span class="muted">Your daily guide from the stars</span></p>
       <div class="tl center">अपनी भाषा चुनें · Choose your language</div>
-      <div class="langbig"><button data-a="pickLang" data-v="hi">हिंदी</button><button data-a="pickLang" data-v="en">English</button></div></div>`;
+      <div class="langbig"><button data-a="pickLang" data-v="hi">हिंदी</button><button data-a="pickLang" data-v="en">English</button></div><div class="langsm"><button data-a="pickLang" data-v="mr">मराठी</button><button data-a="pickLang" data-v="gu">ગુજરાતી</button></div></div>`;
   }
 
   /* ======================= PREMIUM ======================= */
@@ -582,16 +606,16 @@
 
   function premiumKundliSection(p, ch) {
     const dlBtn = `<button class="btn gold block" data-a="${isPremium() ? 'pdf' : 'paywall'}">📄 ${pick(P_.dl)} ${isPremium() ? '' : '🔒'}</button>`;
-    if (isPremium()) { const h = premiumKundliHTML(p, ch); return `<h2 class="ptitle sec">👑 ${pick(P_.premiumSection)}</h2>${dlBtn}${h.spirit}${h.sade}${h.year}`; }
+    if (isPremium()) { const h = premiumKundliHTML(p, ch); return `<h2 class="ptitle sec" id="premSec">👑 ${pick(P_.premiumSection)}</h2>${dlBtn}${h.spirit}${h.sade}${h.year}`; }
     const teaser = (icon, title, lines) => `<section class="card prem-card locked" data-a="paywall"><h3>${icon} ${pick(title)} ${lockBadge()}</h3><div class="blur">${lines}</div><div class="unlock">🔒 ${pick(P_.unlock)}</div></section>`;
-    return `<h2 class="ptitle sec">👑 ${pick(P_.premiumSection)}</h2>${dlBtn}
+    return `<h2 class="ptitle sec" id="premSec">👑 ${pick(P_.premiumSection)}</h2>${dlBtn}
       ${teaser('🕉️', P_.spiritTitle, `<p>${pick(P_.atma)}: ●●●●●</p><p>${pick(P_.nakDeity)}: ●●●●●●●</p><p class="beej">ॐ ●●● ●●● ●●● सः ●●●● नमः</p>`)}
       ${teaser('🪐', P_.sadeTitle, `<p>●●●●● ●●●● ●●●●●●</p><p>●●● 20●● – ●●● 20●●</p>`)}
       ${teaser('📆', P_.yearTitle, `<p>●●●● ●● ●●●● ●●● ●●●●● ●● ●●●●</p><p>●●●●● ●● ●●●● ●●●●●</p>`)}`;
   }
 
   function screenPremium() {
-    const it = x => `<div class="pf"><span class="pi">${x[0]}</span><div><b>${pick(x[1])}</b><div class="muted small">${pick(x[2])}</div></div></div>`;
+    const it = x => `<button class="pf pfgo" data-a="premGo" data-v="${x[0]}"><span class="pi">${x[0]}</span><div><b>${pick(x[1])}</b><div class="muted small">${pick(x[2])}</div></div><i class="go">›</i></button>`;
     return `<button class="btn link" data-a="tab" data-v="more">${ICON.left}${t('back')}</button>
       <section class="card prem-hero center"><div class="crown3d">👑</div><h2>${pick(P_.title)}</h2><p>${pick(P_.sub)}</p>
         ${isPremium() ? `<div class="pill good">✓ ${pick(P_.active)} · ${pick(P_.demoBadge)}</div>` : ''}</section>
@@ -599,23 +623,31 @@
       ${P_.ai.length ? `<section class="card"><h3>✨ ${pick(P_.aiTitle)}</h3><p class="muted small">${pick(P_.aiSub)}</p>${P_.ai.map(x => it(x).replace('</b>', `</b> <span class="soonb">${pick(P_.soon)}</span>`)).join('')}</section>` : ''}
       ${CFG.apiBase === 'demo' || CFG.showPremiumTest ? `<section class="card test-card"><h3>🧪 ${pick(X.prem.testTitle)}</h3><button class="btn ${S.premium ? 'ghost' : 'gold'} block" data-a="premTest">${pick(S.premium ? X.prem.testOff : X.prem.testOn)}</button></section>` : ''}
       <section class="card"><h3>🎁 ${pick(P_.freeTitle)}</h3>${P_.free.map(x => it(x).replace('</b>', `</b> <span class="freeb">${pick(C.bh.free)}</span>`)).join('')}</section>
-      ${isPremium() ? '' : planCards()}`;
+      ${isPremium() && S.plan !== 'single' && S.plan !== '' ? '' : isPremium() ? '' : planCards()}
+      ${premiumExtras()}
+      ${serverOn() && S.user && S.user.token ? `<button class="btn link block" data-a="restore">${g('restore')}</button>` : ''}`;
   }
-  function plansHTML() {
-    const m = CFG.priceMonthly || 99, y = CFG.priceYearly || 799, save = Math.round((1 - y / (m * 12)) * 100);
-    return `<div class="plans"><div class="plan"><b>${pick(P_.monthly)}</b><div class="price">₹${m}<small>${pick(P_.perMonth)}</small></div></div><div class="plan best"><i>${pick(P_.save).replace('{p}', save)}</i><b>${pick(P_.yearly)}</b><div class="price">₹${y}<small>${pick(P_.perYear)}</small></div></div></div>`;
+  function plansHTML() { return plansHTML2(); }
+  function plansHTMLold() {
+    const m = CFG.priceMonthly || 99, y = CFG.priceYearly || 499, save = Math.round((1 - y / (m * 12)) * 100);
+    const card = (k, name, price, per, day, badge) => `<button class="plan ${V.plan === k ? 'sel' : ''}" data-a="plan" data-v="${k}" aria-pressed="${V.plan === k}">${badge ? `<i>${badge}</i>` : ''}<span class="rad"></span><b>${pick(name)}</b><div class="price">₹${price}<small>${pick(per)}</small></div><small class="pday">${pick(Y.plan.perDay).replace('{d}', day)}</small></button>`;
+    return `<h3 class="center">${pick(Y.plan.pick)}</h3><div class="plans">${card('m', P_.monthly, m, P_.perMonth, (m / 30).toFixed(1))}${card('y', P_.yearly, y, P_.perYear, (y / 365).toFixed(1), pick(P_.save).replace('{p}', save))}</div>`;
+  }
+  function planGo() {
+    document.querySelectorAll('.sheet-bg').forEach(x => x.remove());
+    buy(PLAN_PROD[V.plan] || 'prem_y');
   }
   function planCards() {
     return `<section class="card">${plansHTML()}
-      <p class="muted small center">${pick(P_.payNote)}</p><button class="btn gold block" data-a="notify">${S.notify ? '✓ ' + t('notified') : '👑 ' + pick(P_.unlock)}</button></section>`;
+      <button class="btn gold block" data-a="planGo">👑 ${pick(Y.plan.cont).replace('{p}', planName(V.plan))}</button><p class="muted small center">${pick(P_.payNote)}</p></section>`;
   }
   function paywall() {
     const d = document.createElement('div'); d.className = 'sheet-bg';
     d.innerHTML = `<div class="sheet"><div class="grab"></div><div class="center"><div class="crown3d sm">👑</div><h2>${pick(P_.title)}</h2><p class="muted">${pick(P_.sub)}</p></div>
       ${P_.now.map(x => `<div class="pf"><span class="pi">${x[0]}</span><div><b>${pick(x[1])}</b></div></div>`).join('')}
-      ${plansHTML()}
+      <div id="pwPlans">${plansHTML()}</div>
+      <button class="btn gold block" data-a="planGo" id="pwGo">👑 ${pick(Y.plan.cont).replace('{p}', planName(V.plan))}</button>
       <p class="muted small center">${pick(P_.payNote)}</p>
-      <button class="btn gold block" data-x="notify">${S.notify ? '✓ ' + t('notified') : t('notifyMe')}</button>
       <button class="btn link block" data-x="close">${t('cancel')}</button></div>`;
     d.onclick = e => {
       const x = e.target.closest('[data-x]');
@@ -903,7 +935,7 @@
   }
   const freeLeft = () => S.palmFreeLeft != null ? S.palmFreeLeft : Math.max(0, (CFG.freePalmReadings ?? 3) - (S.palmUsed || 0));
   const qualWarn = hand => { const q = PV.q[hand] || {}; return q.dark ? pick(PA.qDark) : q.bright ? pick(PA.qBright) : q.blurry ? pick(PA.qBlur) : ''; };
-  const palmAllowed = () => isPremium() || freeLeft() > 0;
+  const palmAllowed = () => isPremium() || (freeLeft() > 0 && !palmStore()[active().id]);
   function screenPalm() {
     if (PV.phase === 'quick') return screenPalmQuick();
     const p = active(), saved = palmStore()[p.id];
@@ -914,11 +946,12 @@
     return `<h2 class="ptitle">✋ ${pick(PA.title)}</h2><p class="muted secsub">${pick(PA.sub)}</p>
       ${saved ? `<button class="btn ghost block" data-a="palmShowSaved">📜 ${pick(PA.readOn)} ${new Date(saved.at).toLocaleDateString(L() ? 'hi-IN' : 'en-IN')}</button>` : ''}
       <div class="fl domrow">${pick(PA.domQ)}<div class="seg sm"><button data-a="palmDom" data-v="right" class="${PV.dom === 'right' ? 'on' : ''}">✍️ ${pick(PA.right)}</button><button data-a="palmDom" data-v="left" class="${PV.dom === 'left' ? 'on' : ''}">✍️ ${pick(PA.left)}</button></div></div>
+      <details class="more palmtips"><summary>💡 ${g('palmTips')}</summary><ul class="list">${GT.palmTipList.map(x => `<li>✔️ <span>${pick(x)}</span></li>`).join('')}</ul></details>
       <div class="handgrid">${handCard('left')}${handCard('right')}</div>
       ${PV.err ? `<div class="err">${pick(PA[PV.err] || PA.errFail)}</div>` : ''}
       <button class="btn gold block bigcta" data-a="palmAnalyse" ${PV.left && PV.right ? '' : 'disabled'}>🔮 ${pick(PA.analyse)}${palmAllowed() ? '' : ' 🔒'}</button>
       ${PV.left && PV.right ? '' : `<p class="muted small center">${pick(PA.needBoth)}</p>`}
-      ${!isPremium() && palmAllowed() ? `<p class="muted small center">🎁 ${pick(PA.freeLeft).replace('{n}', freeLeft())}</p>` : ''}
+      ${isPremium() ? '' : palmAllowed() ? `<p class="muted small center">🎁 ${pick(PA.freeLeft).replace('{n}', freeLeft())} · ${pick(Y.palm.rule)}</p>` : `<p class="note center">🔒 ${pick(Y.palm.usedFor).replace('{n}', esc(p.name.split(' ')[0]))}</p>`}
       <section class="card"><h3>💡 ${pick(PA.tipsTitle)}</h3><ul class="tips">${PA.tips.map(x => `<li>${pick(x)}</li>`).join('')}</ul></section>
       <button class="btn link block" data-a="palmQuick">✋ ${pick(PA.quick)}</button>`;
   }
@@ -1149,7 +1182,7 @@
     if (!(CFG.apiBase && CFG.apiBase !== 'demo' && S.user && S.user.token)) return;
     try {
       const r = await (await fetch(CFG.apiBase.replace(/\/$/, '') + '/api/me', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token: S.user.token }) })).json();
-      if (r.ok) { S.serverPremium = !!r.premium; S.palmFreeLeft = r.palmFree; persist(); render(); }
+      if (r.ok) { S.serverPremium = !!r.premium; S.palmFreeLeft = r.palmFree; applyEnt(r); persist(); render(); }
     } catch (e) { }
   }
   function accountCard() {
@@ -1196,16 +1229,26 @@
     if (G && isNative()) { G.getCurrentPosition({ enableHighAccuracy: false, timeout: 10000 }).then(p => done(true, p.coords)).catch(() => done(false)); return; }
     try { if (!navigator.geolocation) return done(false); navigator.geolocation.getCurrentPosition(p => done(true, p.coords), () => done(false), { timeout: 10000, maximumAge: 600000 }); } catch (e) { done(false); }
   }
-  const mapsSearch = q => V.loc ? `https://www.google.com/maps/search/${encodeURIComponent(q)}/@${V.loc.lat},${V.loc.lon},14z` : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q + ' near me')}`;
-  const mapsRoute = (q, near = true) => `https://www.google.com/maps/dir/?api=1${V.loc ? `&origin=${V.loc.lat},${V.loc.lon}` : ''}&destination=${encodeURIComponent(q + (near && !V.loc ? ' near me' : ''))}&travelmode=driving`;
+  const otherPlace = () => V.tMode === 'other' && S.templePlace ? S.templePlace : '';
+  const mapsSearch = q => otherPlace() ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q + ' near ' + otherPlace())}` : V.loc ? `https://www.google.com/maps/search/${encodeURIComponent(q)}/@${V.loc.lat},${V.loc.lon},14z` : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q + ' near me')}`;
+  const mapsRoute = (q, near = true) => near && otherPlace() ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q + ' near ' + otherPlace())}&travelmode=driving`
+    : `https://www.google.com/maps/dir/?api=1${V.loc ? `&origin=${V.loc.lat},${V.loc.lon}` : ''}&destination=${encodeURIComponent(q + (near && !V.loc ? ' near me' : ''))}&travelmode=driving`;
+  V.tMode = V.tMode || (S.templePlace ? 'other' : 'near');
+  function tLocBox() {
+    const TL = Y.tl, other = V.tMode === 'other';
+    return `<div class="tloc"><div class="seg sm"><button data-a="tMode" data-v="near" class="${!other ? 'on' : ''}">${pick(TL.near)}</button><button data-a="tMode" data-v="other" class="${other ? 'on' : ''}">${pick(TL.other)}</button></div>
+      ${other ? (S.templePlace && !V.tEdit ? `<div class="tplace">📍 ${pick(TL.showing).replace('{p}', `<b>${esc(S.templePlace)}</b>`)} <button class="btn link sm" data-a="tEdit">${pick(TL.change)}</button></div>`
+        : `<div class="tsearch"><input id="tPlace" type="search" placeholder="${pick(TL.ph)}" value="${esc(V.tDraft || S.templePlace || '')}" autocomplete="off"><div id="tSug" class="plist placelist" hidden></div><button class="btn primary block" data-a="tSet">🛕 ${pick(TL.set)}</button></div>`)
+      : locLine()}</div>`;
+  }
   const ext = (href, cls, inner) => `<a class="${cls}" href="${href}" target="_blank" rel="noopener">${inner}</a>`;
   const locLine = () => `<div class="locline ${V.locState}">${V.locState === 'busy' ? pick(BH.locWait) : V.locState === 'on' ? pick(BH.locOn) : `${pick(BH.locOff)} <button class="btn link sm" data-a="bhLoc">${pick(BH.locAsk)}</button>`}</div>`;
 
   function templeCard() {   // shown on the Today screen when the app opens
     const quick = ['shiv', 'hanuman', 'devi', 'gurdwara', 'jain'].map(id => BHAKTI.temples.find(x => x.id === id));
-    return `<section class="card temple-card"><div class="tc-head"><span class="tc-ic">🛕</span><div><h3>${pick(BH.todayCard)}</h3><p class="muted small">${pick(BH.todaySub)}</p></div></div>
-      <div class="chips">${quick.map(x => ext(mapsSearch(x.q), 'chip', `${x.icon} ${pick(x.t)}`)).join('')}<button class="chip more" data-a="tab" data-v="bhakti">${pick(BH.more)} ›</button></div>
-      <div class="row2">${ext(mapsSearch('Hindu temple'), 'btn ghost', `🗺️ ${pick(BH.seeMap)}`)}${ext(mapsRoute('Hindu temple'), 'btn primary', `🧭 ${pick(BH.route)}`)}</div>${locLine()}</section>`;
+    return `<section class="card temple-card"><div class="tc-head"><span class="tc-ic">${TEMPLE_ICONS('all-hindu')}</span><div><h3>${pick(BH.todayCard)}</h3><p class="muted small">${pick(BH.todaySub)}</p></div></div>
+      <div class="chips grid2">${quick.map(x => ext(mapsSearch(x.q), 'chip tchip', `${TEMPLE_ICONS(x.id)} ${pick(x.t)}`)).join('')}<button class="chip more" data-a="tab" data-v="bhakti">${pick(BH.more)} ›</button></div>
+      <div class="row2">${ext(mapsSearch('Hindu temple'), 'btn ghost', `🗺️ ${pick(BH.seeMap)}`)}${ext(mapsRoute('Hindu temple'), 'btn primary', `🧭 ${pick(BH.route)}`)}</div>${tLocBox()}</section>`;
   }
 
   function screenBhakti() {
@@ -1215,10 +1258,10 @@
   }
   function templesView() {
     const g = V.bh.g, list = BHAKTI.temples.filter(x => x.g === g);
-    return `${locLine()}<div class="seg sm3">${Object.entries(BHAKTI.groups).map(([k, n]) => `<button data-a="bhGroup" data-v="${k}" class="${g === k ? 'on' : ''}">${pick(n)}</button>`).join('')}</div>
+    return `${tLocBox()}<div class="seg sm3">${Object.entries(BHAKTI.groups).map(([k, n]) => `<button data-a="bhGroup" data-v="${k}" class="${g === k ? 'on' : ''}">${pick(n)}</button>`).join('')}</div>
       <p class="muted small">${pick(BH.pick)}</p>
-      <div class="tlist">${list.map(x => `<section class="card trow-t"><div class="tt"><span class="tc-ic sm">${x.icon}</span><b>${pick(x.t)}</b></div>
-        <div class="row2">${ext(mapsSearch(x.q), 'btn ghost sm', `🗺️ ${pick(BH.seeMap)}`)}${ext(mapsRoute(x.q), 'btn primary sm', `🧭 ${pick(BH.route)}`)}</div></section>`).join('')}</div>
+      <section class="card tlist">${list.map(x => `<div class="trow-t"><span class="tc-ic sm">${TEMPLE_ICONS(x.id)}</span><b>${pick(x.t)}</b>
+        ${ext(mapsSearch(x.q), 'ticon', `<span>🗺️</span><small>${pick(Y.tl.map)}</small>`)}${ext(mapsRoute(x.q), 'ticon go', `<span>🧭</span><small>${pick(Y.tl.route)}</small>`)}</div>`).join('')}</section>
       <h2 class="ptitle sec">🛕 ${pick(BH.famous)}</h2><p class="muted small">${pick(BH.famousSub)}</p>
       <section class="card famous">${C.famous.filter(f => g === 'sikh' ? f[2] === '🪯' : g === 'jain' ? f[2] === '🤲' : g === 'buddh' ? f[2] === '☸️' : !['🪯', '🤲', '☸️'].includes(f[2])).map(f => ext(mapsRoute(f[0], false), 'frow', `<span>${f[2]}</span><b>${L() ? f[1] : f[0]}</b><i>🧭</i>`)).join('')}</section>
       <p class="muted small center">${pick(BH.locNote)}</p>`;
@@ -1252,15 +1295,32 @@
       <section class="card"><h3>📖 ${pick(BH.meaning)}</h3><p>${esc(pick(m.m))}</p><h3>⏰ ${pick(BH.when)}</h3><p>${esc(pick(m.w))}</p></section>
       ${ext('https://wa.me/?text=' + encodeURIComponent(share), 'btn wa block', `${ICON.wa}<span>${pick(BH.share)}</span>`)}`;
   }
-  function speakText(id, txt, lang) {
-    const N = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.TextToSpeech;
-    const stop = () => { V.speaking = false; render(); };
-    if (V.speaking) { try { N ? N.stop() : speechSynthesis.cancel(); } catch (e) { } V.speaking = false; render(); return; }
-    txt = txt.replace(/॥|।|\n+/g, ', ');
-    V.speaking = 'm:' + id; render();
-    if (N) { N.speak({ text: txt, lang, rate: 0.8 }).catch(() => { }).finally(stop); return; }
-    try { const ss = speechSynthesis, u = new SpeechSynthesisUtterance(txt); u.lang = lang; u.rate = 0.8; const vc = ss.getVoices().find(v => v.lang && v.lang.toLowerCase().startsWith(lang.slice(0, 2))); if (vc) u.voice = vc; u.onend = u.onerror = stop; ss.cancel(); ss.speak(u); } catch (e) { stop(); }
+  function speakText(id, txt, lang) { if (id == null) { stopSpeech(); render(); return; } say('m:' + id, txt, lang); }
+  /* area search shared by the temple place box and the birth place box */
+  let locT = 0, locSeq = 0;
+  function areaResults(q) {
+    const hi = /[\u0900-\u097F]/.test(q), cities = searchPlaces(q).map(r => ({ n: r.n, h: r.h, sub: pick(PLACES_STATES[r.s] || [r.s, r.s]), la: r.la, lo: r.lo, tz: r.s === 'NP' ? 5.75 : 5.5, city: true }));
+    if (hi) return Promise.resolve(cities);
+    const ap = active(); return LOC.search(q, V.loc ? { lat: V.loc.lat, lon: V.loc.lon } : ap && ap.lat != null ? { lat: ap.lat, lon: ap.lon } : null).then(loc => {
+      const seen = new Set(cities.map(c => LOC.norm(c.n)));
+      const more = loc.filter(r => !(seen.has(LOC.norm(r.n)) && !r.d)).map(r => ({ n: r.n, sub: LOC.label(r, L()), la: r.la, lo: r.lo, tz: 5.5, osm: r.osm }));
+      return cities.slice(0, 3).concat(more).slice(0, 12);
+    }).catch(() => cities);
   }
+  function areaSuggest(input, box, onShow) {
+    clearTimeout(locT); const q = input.value.trim();
+    if (q.length < 2) { box.hidden = true; return; }
+    const my = ++locSeq; box.hidden = false; box.innerHTML = `<div class="muted small pad">${pick(Y.tl.searching)}</div>`;
+    locT = setTimeout(() => areaResults(q).then(res => { if (my !== locSeq || !document.body.contains(box)) return; onShow(res, q); }), 220);
+  }
+  function bindTPlace() {
+    const tp = $('#tPlace'); if (!tp) return;
+    tp.oninput = () => { V.tDraft = tp.value; areaSuggest(tp, $('#tSug'), (res, q) => {
+      V.tRes = res;
+      const sg = $('#tSug'); if (!sg) return; sg.innerHTML = `<button type="button" data-a="tPick" data-v="${esc(q)}" class="typed">🔎 ${pick(Y.tl.useTyped).replace('{q}', esc(q))}</button>` + res.map((r, i) => `<button type="button" data-a="tPickI" data-v="${i}"><b>${esc(r.n)}</b>${r.h ? ` · ${r.h}` : ''}<small>${esc(r.sub)}${r.osm ? ' · 🌐' : ''}</small></button>`).join('') + `<div class="attrib">${pick(Y.tl.attrib)}</div>`; }); };
+    tp.onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); setTPlace(tp.value); } };
+  }
+  function setTPlace(v) { v = (v || '').trim(); if (v.length < 2) { toast(pick(Y.tl.need)); return; } S.templePlace = v; V.tEdit = false; V.tDraft = ''; persist(); render(); }
   function bindBhakti() {
     const q = $('#bhQ'); if (!q) return;
     q.oninput = () => { V.bh.q = q.value; $('#mList').innerHTML = mantraList(); };
@@ -1304,7 +1364,7 @@
   function compatHTML() {
     const r = V.matchRes; if (!r) return '';
     const key = r.boy.id + '|' + r.girl.id + '|' + S.lang, res = (S.compatCache || {})[key];
-    if (res) { const x = res; return `<section class="card hero" id="compatRes"><div class="freepill">${pick(BH.free)}</div><h3>🤖 ${pick(BH.aiTitle)}</h3><div class="score">${st5(x.stars)}<div class="score-l">${esc(x.verdict || '')}</div></div><p class="lead">${esc(x.summary || '')}</p></section>
+    if (res) { const x = res; return `<section class="card hero" id="compatRes"><div class="freepill">${pick(BH.free)}</div><h3>📜 ${pick(BH.aiTitle)}</h3><div class="score">${st5(x.stars)}<div class="score-l">${esc(x.verdict || '')}</div></div><p class="lead">${esc(x.summary || '')}</p></section>
       ${(x.areas || []).map(a => `<section class="card life"><div class="lh"><h3>${esc(a.title || '')}</h3>${st5(a.stars)}</div><p>${esc(a.text || '')}</p></section>`).join('')}
       ${(x.strengths || []).length ? `<section class="card"><h3>💪 ${pick(BH.strengths)}</h3><ul class="list good">${x.strengths.map(s => `<li>${ICON.check}<span>${esc(s)}</span></li>`).join('')}</ul></section>` : ''}
       ${(x.care || []).length ? `<section class="card"><h3>⚠️ ${pick(BH.care)}</h3><ul class="tips">${x.care.map(s => `<li>${esc(s)}</li>`).join('')}</ul></section>` : ''}
@@ -1347,28 +1407,45 @@
     const az = Math.atan2(-Math.sin(H), Math.tan(dec) * Math.cos(la) - Math.sin(la) * Math.cos(H));
     return { az: (az / rad + 360) % 360, alt: alt / rad };
   }
-  function stopCompass() { if (VS.listen) { window.removeEventListener('deviceorientationabsolute', VS.listen); window.removeEventListener('deviceorientation', VS.listen); VS.listen = null; } VS.live = false; }
+  function stopCompass() { clearInterval(VS.tick); if (VS.listen) { window.removeEventListener('deviceorientationabsolute', VS.listen); window.removeEventListener('deviceorientation', VS.listen); VS.listen = null; } VS.live = false; }
+  const circStd = arr => { if (!arr.length) return 99; let sx = 0, cx = 0; arr.forEach(a => { sx += Math.sin(a * Math.PI / 180); cx += Math.cos(a * Math.PI / 180); }); const R = Math.sqrt(sx * sx + cx * cx) / arr.length; return Math.sqrt(-2 * Math.log(Math.max(1e-9, R))) * 180 / Math.PI; };
   async function startCompass() {
-    stopCompass(); VS.samples = []; VS.err = ''; VS.phase = 'scan'; VS.src = null; render();
+    stopCompass(); clearInterval(VS.tick); VS.samples = []; VS.calSamples = []; VS.err = ''; VS.phase = 'calib'; VS.src = null; VS.tilt = 0; VS.t0 = Date.now(); VS.acc = null; VS.spread = null; VS.devAcc = null; render();
     try { if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') { const r = await DeviceOrientationEvent.requestPermission(); if (r !== 'granted') { VS.phase = 'nosensor'; VS.err = 'denied'; render(); return; } } } catch (e) { }
     if (!V.loc) getLocation(true);
     VS.listen = e => {
       let h = null;
-      if (typeof e.webkitCompassHeading === 'number') h = e.webkitCompassHeading;
+      if (typeof e.webkitCompassHeading === 'number') { h = e.webkitCompassHeading; if (typeof e.webkitCompassAccuracy === 'number' && e.webkitCompassAccuracy >= 0) VS.devAcc = e.webkitCompassAccuracy; }
       else if (e.absolute && typeof e.alpha === 'number') h = (360 - e.alpha) % 360;
       if (h == null) return;
       h = (h + ((screen.orientation && screen.orientation.angle) || 0)) % 360;
+      const flat = Math.abs(e.beta || 0) < 25 && Math.abs(e.gamma || 0) < 25; VS.flat = flat;
       VS.src = 'sensor'; VS.live = true; VS.heading = h;
-      if (VS.phase === 'scan') VS.samples.push(h);
+      if (VS.phase === 'calib') { VS.calSamples.push(h); VS.tilt = Math.max(VS.tilt, Math.abs(e.beta || 0), Math.abs(e.gamma || 0)); }
+      else if (VS.phase === 'steady' && flat) VS.samples.push(h);
       const now = performance.now(); if (now - VS.lastDraw > 80) { VS.lastDraw = now; drawCompass(); }
     };
     if ('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', VS.listen);
     else window.addEventListener('deviceorientation', VS.listen);
-    setTimeout(() => {
-      if (VS.phase !== 'scan') return;
-      if (VS.samples.length < 3) { stopCompass(); VS.phase = 'nosensor'; render(); return; }
-      VS.heading = VS.scanned = circMean(VS.samples.slice(-25)); VS.phase = 'done'; render();
-    }, 2600);
+    const CAL = 4000, STD = 3000;
+    VS.tick = setInterval(() => {
+      const el = Date.now() - VS.t0, bar = $('#vprog'), msg = $('#vmsg'), cnt = $('#vcnt');
+      if (VS.phase === 'calib') {
+        if (el > 2500 && VS.calSamples.length < 3) { clearInterval(VS.tick); stopCompass(); VS.phase = 'nosensor'; render(); return; }
+        if (bar) bar.style.width = Math.min(100, el / CAL * 100) + '%'; if (cnt) cnt.textContent = VS.calSamples.length;
+        if (el >= CAL) { VS.phase = 'steady'; VS.t0 = Date.now(); render(); }
+      } else if (VS.phase === 'steady') {
+        if (bar) bar.style.width = Math.min(100, el / STD * 100) + '%'; if (cnt) cnt.textContent = VS.samples.length;
+        if (msg) msg.classList.toggle('warn', VS.flat === false);
+        if (el >= STD) {
+          clearInterval(VS.tick);
+          const use = VS.samples.length >= 5 ? VS.samples : VS.calSamples.slice(-15);
+          VS.spread = circStd(use.slice(-40)); VS.heading = VS.scanned = circMean(use.slice(-40));
+          VS.acc = Math.max(2, Math.round(Math.max(VS.spread * 1.5, VS.devAcc || 0)));
+          VS.phase = 'done'; render();
+        }
+      } else clearInterval(VS.tick);
+    }, 120);
   }
   function drawCompass() {   // live update without a full re-render
     const dial = $('#vdial'); if (dial && VS.heading != null) dial.style.transform = `rotate(${-VS.heading}deg)`;
@@ -1381,7 +1458,7 @@
     const zones = X.dirs.map((d, i) => { const a0 = (i * 45 - 22.5) * Math.PI / 180, a1 = (i * 45 + 22.5) * Math.PI / 180;
       return `<path d="M130 130 L${130 + 86 * Math.sin(a0)} ${130 - 86 * Math.cos(a0)} A86 86 0 0 1 ${130 + 86 * Math.sin(a1)} ${130 - 86 * Math.cos(a1)}Z" class="vz z${i}"/>`; }).join('');
     return `<div class="vwrap"><div class="vpointer">▲</div><svg viewBox="0 0 260 260" class="vsvg"><g id="vdial" style="transform:rotate(${-(VS.heading || 0)}deg)">
-      <circle cx="130" cy="130" r="126" class="vring"/>${ticks}${zones}<circle cx="130" cy="130" r="40" class="vcore"/><text x="130" y="138" class="vom">ॐ</text>${labels}</g></svg>${VS.phase === 'scan' ? '<div class="vradar"></div>' : ''}</div>`;
+      <circle cx="130" cy="130" r="126" class="vring"/>${ticks}${zones}<circle cx="130" cy="130" r="40" class="vcore"/><text x="130" y="138" class="vom">ॐ</text>${labels}</g></svg>${VS.phase === 'steady' ? '<div class="vradar"></div>' : ''}</div>`;
   }
   function screenVastu() {
     const V_ = X.v, p = active(), ch = chartOf(p), pl = place();
@@ -1398,6 +1475,7 @@
     if (VS.phase === 'done' || VS.phase === 'manual') {
       const i = dirIdx(VS.scanned), d = X.dirs[i];
       res = `<section class="card hero vres"><div class="muted small">${pick(V_.facing)}</div><h2 class="vdir">${pick(d.n)} <small>(${pick(d.s)}) · ${Math.round(VS.scanned)}°</small></h2>
+        ${VS.acc != null && VS.phase === 'done' ? (() => { const qi = VS.acc <= 6 ? 0 : VS.acc <= 15 ? 1 : 2; return `<div class="vacc q${qi}"><span>🎯 ${pick(Y.vc.acc)}: <b>±${VS.acc}°</b> · ${pick(Y.vc.q[qi])}</span><span>🧲 ${pick(Y.vc.field)}: <b>${pick(qi < 2 ? Y.vc.stable : Y.vc.unstable)}</b></span></div>`; })() : ''}
         ${VS.live ? `<div class="pill">${pick(V_.live)}: <b id="vlive">${pick(d.n)} · ${Math.round(VS.heading)}°</b></div>` : ''}</section>`;
       if (room) {
         const rt = room.r[i], best = room.r.map((x, j) => x === 3 ? pick(X.dirs[j].n) : null).filter(Boolean).join(', ');
@@ -1411,7 +1489,12 @@
         <div class="vfacts"><div><small>${pick(V_.deity)}</small><b>${pick(d.god)}</b></div><div><small>${pick(V_.planet)}</small><b>${pName(d.pl)}</b></div><div><small>${pick(V_.element)}</small><b>${pick(d.el)}</b></div><div><small>${pick(V_.colours)}</small><b>${pick(d.col)}</b></div></div>
         ${goodRooms.length ? `<p class="small">✅ <b>${pick(V_.bestFor)}:</b> ${goodRooms.join(', ')}</p>` : ''}${badRooms.length ? `<p class="small">⛔ <b>${pick(V_.avoidFor)}:</b> ${badRooms.join(', ')}</p>` : ''}</section>`;
     }
-    const scanBtn = `<button class="btn primary block bigcta" data-a="vScan" ${VS.phase === 'scan' ? 'disabled' : ''}>🧭 ${VS.phase === 'scan' ? pick(V_.scanning) : VS.phase === 'done' || VS.phase === 'manual' ? pick(V_.rescan) : pick(V_.scan)}</button>`;
+    const busy = VS.phase === 'calib' || VS.phase === 'steady', VC = Y.vc, stepI = VS.phase === 'calib' ? 0 : VS.phase === 'steady' ? 1 : VS.phase === 'done' ? 2 : -1;
+    const steps = `<div class="vsteps">${VC.steps.map((x, k) => `<span class="${k < stepI || (VS.phase === 'done') ? 'ok' : k === stepI ? 'on' : ''}"><i>${k < stepI || VS.phase === 'done' ? '✓' : k + 1}</i>${pick(x)}</span>`).join('<b></b>')}</div>`;
+    const prog = busy ? `<div class="vbusy">${VS.phase === 'calib' ? `<div class="inf"><svg viewBox="0 0 120 50"><path d="M60 25c-12-16-40-16-40 0s28 16 40 0 40-16 40 0-28 16-40 0" class="infp"/></svg><span class="infd">📱</span></div>` : ''}
+      <p id="vmsg" class="vmsg">${pick(VS.phase === 'calib' ? VC.calib : VC.steady)}${VS.phase === 'steady' ? `<span class="flatw"> · ${pick(VC.flat)}</span>` : ''}</p>
+      <div class="vbar"><i id="vprog"></i></div><p class="muted small"><b id="vcnt">0</b> ${pick(VC.samples)}</p></div>` : '';
+    const scanBtn = busy ? '' : `<button class="btn primary block bigcta" data-a="vScan">🧭 ${VS.phase === 'done' || VS.phase === 'manual' ? pick(V_.rescan) : pick(V_.scan)}</button>`;
     const manual = (VS.phase === 'nosensor' || VS.phase === 'manual') ? `<section class="card"><p class="small">${pick(V_.noSensor)}</p><h3>${pick(V_.pickDir)}</h3>
       <div class="vgrid">${[7, 0, 1, 6, -1, 2, 5, 4, 3].map(j => j < 0 ? '<span class="vgc">🧭</span>' : `<button class="vgb ${VS.phase === 'manual' && dirIdx(VS.scanned) === j ? 'on' : ''}" data-a="vPick" data-v="${j}">${pick(X.dirs[j].n)}</button>`).join('')}</div></section>` : '';
     const mine = X.dirs[X.rashiDir[ch.moonSign]], wd = new Date().getDay(), shool = X.dirs[X.dishaShool[wd]];
@@ -1422,8 +1505,8 @@
     const map = `<section class="card"><h3>🗺️ ${pick(V_.homeMap)}</h3>${keys.length ? (() => { const sc = Math.round(keys.reduce((a, k) => a + X.rooms.find(r => r.k === k).r[hm[k]], 0) / (keys.length * 3) * 100);
       return `<div class="vscore"><b>${sc}%</b><span>${pick(V_.score)}</span></div>${keys.map(k => { const r = X.rooms.find(x => x.k === k), rt = r.r[hm[k]]; return `<div class="area"><span>${r.icon} ${pick(r.n)}</span><b class="vrate r${rt}">${pick(X.dirs[hm[k]].n)} · ${pick(X.rate[rt])}</b></div>`; }).join('')}
       <button class="btn link" data-a="vClear">${pick(V_.clear)}</button>`; })() : `<p class="muted small">${pick(V_.homeEmpty)}</p>`}</section>`;
-    return `${head}${roomPick}<section class="card center vcard">${dialSVG()}${scanBtn}${VS.err ? `<p class="err">${pick(V_[VS.err])}</p>` : ''}<p class="muted small">${pick(V_.calib)}</p></section>
-      ${manual}${res}${sunCard}${forYou}${map}<p class="muted small center">${pick(V_.disclaimer)}</p>`;
+    return `${head}${roomPick}<section class="card center vcard">${steps}${dialSVG()}${prog}${scanBtn}${VS.err ? `<p class="err">${pick(V_[VS.err])}</p>` : ''}${busy ? '' : `<p class="muted small">${pick(V_.calib)}</p>`}</section>
+      ${manual}${res}${sunCard}${forYou}${map}${vastuChecklist()}<p class="muted small center">${pick(V_.disclaimer)}</p>`;
   }
 
   /* ======================= MUHURAT finder ======================= */
@@ -1449,8 +1532,8 @@
   }
   function screenMuhurat() {
     const p = active(), M_ = X.m;
-    if (!isPremium()) return `${backMore()}<h2 class="ptitle">🗓️ ${pick(M_.title)}</h2>${premLock('🗓️', M_.title, pick(M_.sub))}`;
-    const { list, notes, ev } = muhuratList(MU.ev, p), tz = place().tz;
+    const { list: all, notes, ev } = muhuratList(MU.ev, p), tz = place().tz;
+    const full = hasItem('muhurat', MU.ev), list = full ? all : all.slice(0, 1);
     const fd = o => fmtDate(o.y, o.m, o.d, false);
     return `${backMore()}<h2 class="ptitle">🗓️ ${pick(M_.title)}</h2><p class="muted small">${pick(M_.sub)}</p>
       <section class="card"><h3>${pick(M_.pick)}</h3><div class="chips grid2">${X.events.map(e => `<button class="chip ${MU.ev === e.k ? 'on' : ''}" data-a="muEv" data-v="${e.k}">${e.icon} ${pick(e.n)}</button>`).join('')}</div>
@@ -1462,6 +1545,7 @@
         <div class="mu-b"><div class="lh"><b>${pick(C.wd[x.wd])}</b>${stars(x.sc)}</div><p class="small">${x.why.join(' · ')}</p>
         <p class="small">⏰ ${pick(M_.abhijit)}: <b>${fmtTime(x.pc.abhijit.start, tz)} – ${fmtTime(x.pc.abhijit.end, tz)}</b><br>🚫 ${pick(M_.avoid)}: ${fmtTime(x.pc.rahu.start, tz)} – ${fmtTime(x.pc.rahu.end, tz)}</p></div></section>`).join('')
         : `<section class="card"><p>${pick(M_.none)}</p></section>`}
+      ${!full && all.length > 1 ? `<p class="muted small center">${g('muFree')}</p>` + unlockBox('muhurat', MU.ev, `${ev.icon} ${pick(GT.muMore).replace('{n}', all.length - 1)}`) : ''}
       <p class="muted small center">${pick(M_.note)}</p>`;
   }
 
@@ -1480,9 +1564,9 @@
   }
   function screenAiAsk() {
     const p = active(), A = X.ai;
-    if (!isPremium()) return `${backMore()}<h2 class="ptitle">🤖 ${pick(A.title)}</h2>${premLock('🤖', A.title, pick(A.sub).replace('{n}', esc(p.name)))}`;
+    if (!isPremium()) return `${backMore()}<h2 class="ptitle">📜 ${pick(A.title)}</h2>${premLock('📜', A.title, pick(A.sub).replace('{n}', esc(p.name)))}`;
     const msgs = aiStore()[p.id] || [];
-    return `${backMore()}<h2 class="ptitle">🤖 ${pick(A.title)}</h2>${profilePicker()}<p class="muted small">${pick(A.sub).replace('{n}', esc(p.name))}</p>
+    return `${backMore()}<h2 class="ptitle">📜 ${pick(A.title)}</h2>${profilePicker()}<p class="muted small">${pick(A.sub).replace('{n}', esc(p.name))}</p>
       <div class="aichat">${msgs.map(m => `<div class="msg ${m.me ? 'me' : 'bot'}">${m.me ? esc(m.t) : esc(m.t).replace(/\n/g, '<br>')}${m.f && m.f.length ? `<div class="mchips">${m.f.map(f => `<button data-a="aiQ" data-v="${esc(f)}">${esc(f)}</button>`).join('')}</div>` : ''}</div>`).join('')}
         ${AQ.busy ? `<div class="msg bot typing"><i></i><i></i><i></i> <small>${pick(A.thinking)}</small></div>` : ''}</div>
       ${AQ.err ? `<p class="err">${pick(A[AQ.err] || A.fail)}</p>` : ''}
@@ -1570,10 +1654,218 @@
       <section class="card"><p class="voice-txt">${esc(txt)}</p></section>`;
   }
 
+  /* ======================= ROUND 5: family switcher, details, chart, TTS, plans ======================= */
+  /* ---- family switcher (header) ---- */
+  const initials = n => (n || '?').trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+  function whoChip() {
+    const p = active(); if (!p) return '';
+    return `<button class="whobtn" data-a="whoOpen" aria-label="${pick(Y.who.title)}"><span class="av av-${S.profiles.indexOf(p) % 6}">${esc(initials(p.name))}</span><span class="wn">${esc(p.name.split(' ')[0])}</span><span class="wc">▾</span></button>`;
+  }
+  function whoSheet() {
+    const d = document.createElement('div'); d.className = 'sheet-bg';
+    const cur = active(), lim = famLimit();
+    d.innerHTML = `<div class="sheet"><div class="grab"></div><h2>${pick(Y.who.title)}</h2><p class="muted small">${pick(Y.who.sub)}</p>
+      <div class="wholist">${S.profiles.map((p, i) => { const ch = chartOf(p); return `<button class="whorow ${p.id === cur.id ? 'on' : ''}" data-x="pick" data-v="${p.id}"><span class="av av-${i % 6}">${esc(initials(p.name))}</span>
+        <span class="wt"><b>${esc(p.name)}</b><small>${pick(C.relations[+p.rel] || C.relations[0])} · ${t('rashi')} ${pick(C.rashiShort[ch.moonSign])}</small></span>${p.id === cur.id ? '<i>✓</i>' : ''}</button>`; }).join('')}</div>
+      ${isPremium() ? '' : `<p class="muted small center">${pick(Y.who.left).replace('{n}', S.profiles.length).replace('{m}', lim)}</p>`}
+      <div class="row2"><button class="btn primary" data-x="add">➕ ${pick(Y.who.add)}${familyFull() ? ' 🔒' : ''}</button><button class="btn ghost" data-x="manage">${pick(Y.who.manage)}</button></div>
+      <button class="btn link block" data-x="close">${pick(Y.who.close)}</button></div>`;
+    const close = () => { d.classList.add('out'); setTimeout(() => d.remove(), 250); };
+    d.onclick = e => {
+      const x = e.target.closest('[data-x]'); if (e.target === d) return close(); if (!x) return;
+      if (x.dataset.x === 'close') close();
+      if (x.dataset.x === 'pick') { close(); switchTo(x.dataset.v); }
+      if (x.dataset.x === 'add') { close(); if (familyFull()) { toast(pick(Y.fam.full).replace('{n}', famLimit())); paywall(); } else { V.tab = 'family'; V.sub = 'form'; V.editId = null; V.formPlaceFor = null; ANIM = true; render(); window.scrollTo(0, 0); } }
+      if (x.dataset.x === 'manage') { close(); V.tab = 'family'; V.sub = null; ANIM = true; render(); window.scrollTo(0, 0); }
+    };
+    document.body.appendChild(d);
+  }
+  function switchTo(id) {
+    if (id === S.activeId) return;
+    S.activeId = id; persist();
+    V.matchRes = null; V.matchBoy = V.matchGirl = null; PV.left = PV.right = null; PV.bad = {}; PV.q = {}; PV.err = ''; PV.phase = 'capture'; AQ.err = ''; RP.err = ''; VS.phase = ['calib', 'steady'].includes(VS.phase) ? VS.phase : 'idle';
+    if (V.speaking) stopSpeech();
+    ANIM = true; render(); toast('✓ ' + pick(Y.who.switched).replace('{n}', active().name.split(' ')[0]));
+  }
+
+  /* ---- detailed life-area reading ---- */
+  function areaDetail(ch, a, now) {
+    const P = n => ch.planets.find(x => x.name === n), lordOf = h => E.SIGN_LORD[(ch.lagnaSign + h - 1) % 12], D = Y.d, hi = L();
+    const ord = h => D.ord(h, hi), digTxt = x => pick(Y.dig[x.dignity || 'neutral']) + (hi ? '।' : '.') + (x.combust ? ' ' + pick(Y.dig.combust) : '') + (x.retro && !['Rahu', 'Ketu'].includes(x.name) ? ' ' + pick(Y.dig.retro) : '');
+    const chart = [];
+    a.h.forEach(h => {
+      const lord = lordOf(h), lp = P(lord);
+      chart.push(pick(D.lordIs).replace(/\{h\}/, ord(h)).replace('{m}', pick(Y.house[h - 1])).replace('{p}', pName(lord)).replace('{h2}', ord(lp.house)).replace('{m2}', pick(Y.house[lp.house - 1])));
+      chart.push(pick(Y.placeTxt[Y.placeKind(lp.house)]));
+      chart.push(pick(D.isNow).replace('{p}', pName(lord)).replace('{d}', digTxt(lp)));
+    });
+    const inside = ch.planets.filter(x => a.h.includes(x.house));
+    chart.push(inside.length ? pick(D.inside).replace('{l}', inside.map(x => pName(x.name)).join(', ')) : pick(D.none));
+    const mh = a.h[a.h.length - 1], asp = n => { const x = P(n); return x.house !== mh && x.aspects.includes(mh); };
+    if (asp('Jupiter')) chart.push(pick(D.jupAsp)); if (asp('Saturn')) chart.push(pick(D.satAsp)); if (asp('Mars')) chart.push(pick(D.marsAsp));
+    if (a.kar && !a.h.map(lordOf).includes(a.kar)) chart.push(pick(D.karaka).replace('{p}', pName(a.kar)).replace('{d}', digTxt(P(a.kar))));
+    const md = ch.dasha.find(x => x.start <= now && x.end > now) || ch.dasha[0], ad = md.sub.find(x => x.start <= now && x.end > now) || md.sub[0];
+    const lords = a.h.map(lordOf).concat(a.kar ? [a.kar] : []);
+    const when = [pick(D.nowDasha).replace('{md}', pName(md.lord)).replace('{ad}', pName(ad.lord)).replace('{e}', fmtMonthYear(ad.end)), pick(lords.includes(md.lord) || lords.includes(ad.lord) ? D.dashaGood : D.dashaOther)];
+    if (a.period) when.push(pick(D.nextGood).replace('{s}', fmtMonthYear(a.period.start)).replace('{e}', fmtMonthYear(a.period.end)).replace('{p}', pName(a.period.md) + ' / ' + pName(a.period.lord)));
+    const tips = ((Y.tips[a.k] || {})[a.lvl] || Y.tipsGeneric[a.lvl]).map(pick);
+    const weakest = [...new Set(lords)].map(P).sort((x, y) => planetStrength(x) - planetStrength(y))[0];
+    return `<details class="more"><summary><span data-less="${pick(Y.less)}">${pick(Y.more)}</span><i>⌄</i></summary><div class="more-b">
+      <h4>🔭 ${pick(D.chart)}</h4>${chart.map(x => `<p>${x}</p>`).join('')}
+      <h4>🗓️ ${pick(D.when)}</h4>${when.map(x => `<p>${x}</p>`).join('')}
+      <h4>✅ ${pick(D.todo)}</h4><ul class="list good">${tips.map(x => `<li>${ICON.check}<span>${x}</span></li>`).join('')}</ul>
+      <h4>🪔 ${pick(D.rem)} (${pName(weakest.name)})</h4><p>${pick(C.life.remedies[weakest.name])}</p></div></details>`;
+  }
+
+  /* ---- planet table (more data) ---- */
+  function planetTable(ch) {
+    const T_ = Y.ptable;
+    const st = x => [x.dignity && ['ex', 'own', 'deb'].includes(x.dignity) ? `<b class="tg ${x.dignity}">${pick(T_[x.dignity])}</b>` : x.dignity ? `<span class="tg">${pick(T_[x.dignity])}</span>` : '',
+      x.retro && !['Rahu', 'Ketu'].includes(x.name) ? `<span class="tg r">${pick(T_.retro)}</span>` : '', x.combust ? `<span class="tg c">${pick(T_.combust)}</span>` : '', x.vargottama ? `<span class="tg v">${pick(T_.varg)}</span>` : ''].join('');
+    const dms = d => `${Math.floor(d)}°${pad(Math.floor((d % 1) * 60))}′`;
+    const lag = ch.timeUnknown ? '' : `<div class="ptr"><span class="pdot" style="background:#7B1E2B">${L() ? 'ल' : 'As'}</span><div class="ptm"><b>${t('lagna')}</b><span class="pts">${pick(C.rashiShort[ch.lagnaSign])} ${dms(ch.lagna % 30)}</span><small>${pick(C.nak[ch.lagnaNak.n])} ${t('pada')} ${ch.lagnaNak.pada} · D9 ${pick(C.rashiShort[ch.lagnaD9])}</small></div></div>`;
+    return `<section class="card ptab"><h3>🪐 ${pick(T_.title)}</h3><div class="ptrows">${lag}${ch.planets.map(x => `<div class="ptr">
+      <span class="pdot" style="background:${Y.pColor[x.name]}">${pick(C.pAbbr[x.name])}</span>
+      <div class="ptm"><b>${pName(x.name)}</b><span class="pts">${pick(C.rashiShort[x.sign])} ${dms(x.deg)}</span><small>${pick(T_.h)} ${x.house} · ${pick(C.nak[x.nak])} ${t('pada')} ${x.pada} · D9 ${pick(C.rashiShort[x.d9])}</small><div>${st(x)}</div></div></div>`).join('')}</div></section>`;
+  }
+
+  /* ---- 3D North-Indian chart ---- */
+  const HOUSE_POLY = ['200,8 296,104 200,200 104,104', '8,8 200,8 104,104', '8,8 104,104 8,200', '8,200 104,104 200,200 104,296', '8,200 104,296 8,392', '8,392 104,296 200,392', '200,392 104,296 200,200 296,296', '200,392 296,296 392,392', '392,392 296,296 392,200', '392,200 296,296 200,200 296,104', '392,200 296,104 392,8', '392,8 296,104 200,8'];
+  function chart3D(ch, mode) {
+    const d9 = mode === 'd9', psign = pl => d9 ? pl.d9 : pl.sign;
+    const asc = mode === 'lagna' ? ch.lagnaSign : d9 ? (ch.timeUnknown ? ch.planets[1].d9 : ch.lagnaD9) : ch.moonSign;
+    const centers = [[200, 100], [104, 44], [44, 104], [104, 200], [44, 296], [104, 356], [200, 300], [296, 356], [356, 296], [296, 200], [356, 104], [296, 44]];
+    const signPos = [[200, 182], [104, 90], [90, 104], [182, 200], [90, 296], [104, 310], [200, 218], [296, 310], [310, 296], [218, 200], [310, 104], [296, 90]];
+    const byH = Array.from({ length: 12 }, () => []);
+    ch.planets.forEach(pl => byH[(psign(pl) - asc + 12) % 12].push(pl));
+    let polys = '', txt = '';
+    HOUSE_POLY.forEach((pts, h) => { polys += `<polygon points="${pts}" class="hp ${h === 0 ? 'h1' : [3, 6, 9].includes(h) ? 'hk' : 'ho'}"/>`; });
+    byH.forEach((items, h) => {
+      const kite = [0, 3, 6, 9].includes(h), per = kite ? 3 : 2, [cx, cy] = centers[h], lh = 30;
+      const rows = []; for (let i = 0; i < items.length; i += per) rows.push(items.slice(i, i + per));
+      const y0 = cy - (rows.length - 1) * lh / 2 + (kite ? -6 : 0);
+      rows.forEach((row, ri) => { const w = 47, x0 = cx - (row.length - 1) * w / 2;
+        row.forEach((pl, j) => { const x = x0 + j * w, y = y0 + ri * lh, ab = pick(C.pAbbr[pl.name]) + (pl.retro && !['Rahu', 'Ketu'].includes(pl.name) ? (L() ? '॰' : 'ᴿ') : '');
+          txt += `<g class="pg"><rect x="${x - 22}" y="${y - 14}" width="44" height="27" rx="13.5" fill="${Y.pColor[pl.name]}"/><text x="${x}" y="${y + 2}" class="pl3">${ab}</text></g>`; }); });
+      const [sx, sy] = signPos[h]; txt += `<text x="${sx}" y="${sy}" class="sn3">${((asc + h) % 12) + 1}</text>`;
+    });
+    if ((mode === 'lagna' || d9) && !ch.timeUnknown) txt += `<text x="200" y="38" class="asc3">${L() ? 'लग्न' : 'Lagna'}</text>`;
+    return `<div class="chart3d"><div class="c3-inner"><svg class="chart draw" viewBox="0 0 400 400" role="img" aria-label="${t('birthChart')}">
+      <defs><linearGradient id="c3bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#FBE7C6"/></linearGradient>
+        <linearGradient id="c3gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7D774"/><stop offset=".5" stop-color="#B9831F"/><stop offset="1" stop-color="#F3C95A"/></linearGradient>
+        <radialGradient id="c3h1" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#FFE7B0"/><stop offset="1" stop-color="#F6C976"/></radialGradient></defs>
+      <rect x="2" y="2" width="396" height="396" rx="14" fill="url(#c3gold)"/><rect x="8" y="8" width="384" height="384" rx="6" fill="url(#c3bg)"/>
+      ${polys}<path d="M8 8L392 392M392 8L8 392M200 8L392 200L200 392L8 200Z" class="cl3"/>${txt}</svg><div class="c3-shine"></div></div></div>`;
+  }
+
+  /* ---- Speech: best Indian voice, natural pauses ---- */
+  const TTS = { voices: [], native: null, nVoices: null, q: [], onend: null, hasHindi: null };
+  const NT = () => window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.TextToSpeech && isNative() ? window.Capacitor.Plugins.TextToSpeech : null;
+  function loadVoices() { try { TTS.voices = speechSynthesis.getVoices() || []; } catch (e) { TTS.voices = []; } }
+  try { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; } catch (e) { }
+  const VRANK = v => (/(google|natural|neural|online|wavenet|network|premium|enhanced)/i.test(v.name || '') ? 2 : 0) + (v.localService === false ? 1 : 0);
+  function pickVoice(lang, list) {
+    const pref = S.voicePref && S.voicePref[lang.slice(0, 2)];
+    if (pref) { const f = list.find(v => (v.name || v.voiceURI) === pref); if (f) return f; }
+    const want = lang.toLowerCase(), ok = list.filter(v => (v.lang || '').toLowerCase().replace('_', '-') === want);
+    let loose = ok.length ? ok : list.filter(v => (v.lang || '').toLowerCase().startsWith(want.slice(0, 2)) && (want.startsWith('en') ? /in/i.test(v.lang) : true));
+    // no Indian-English voice on this phone: a Hindi voice reads English with a natural Indian accent (better than an American voice)
+    if (!loose.length && want.startsWith('en')) loose = list.filter(v => /^hi/i.test(v.lang || ''));
+    const male = S.voiceGender === 'm', gm = v => { const n = (v.name || v.voiceURI || '').toLowerCase(); return /female|woman|swara|kalpana|lekha|heera|neerja|-hia-|-hic-|-ena-|-enc-/.test(n) ? 'f' : /\bmale\b|man\b|madhur|prabhat|hemant|ravi|-hid-|-hie-|-end-|-ene-/.test(n) ? 'm' : ''; };
+    return loose.sort((a, b) => (VRANK(b) + (gm(b) === (male ? 'm' : 'f') ? 3 : 0)) - (VRANK(a) + (gm(a) === (male ? 'm' : 'f') ? 3 : 0)))[0] || null;
+  }
+  function chunks(text) {   // speak sentence by sentence – sounds calmer and more human
+    const dev = /[\u0900-\u097F]/.test(text);
+    return String(text).replace(/[·•]/g, ',').replace(/\s*\n+\s*/g, dev ? ' । ' : '. ').split(/(?<=[.!?।॥])\s+/).map(s => s.replace(/[॥]/g, '।').trim()).filter(s => s.length > 1);
+  }
+  function stopSpeech() { TTS.q = []; try { if (TTS.audio) { TTS.audio.pause(); TTS.audio = null; } } catch (e) { } try { const n = NT(); if (n) n.stop(); else speechSynthesis.cancel(); } catch (e) { } V.speaking = false; }
+  /* natural Indian cloud voice from our server (Google WaveNet en-IN / hi-IN); falls back to the phone's voice */
+  const cloudVoiceOn = () => CFG.apiBase && CFG.apiBase !== 'demo' && S.cloudVoice !== false && TTS.cloudOk !== false;
+  function cloudParts(text) {
+    const out = []; let cur = '';
+    chunks(text).forEach(s => { if ((cur + ' ' + s).length > 900 && cur) { out.push(cur); cur = s; } else cur = cur ? cur + ' ' + s : s; });
+    if (cur) out.push(cur); return out;
+  }
+  async function cloudSay(id, text, lang, rate) {
+    const parts = cloudParts(text), base = CFG.apiBase.replace(/\/$/, '');
+    const get = t => fetch(base + '/api/tts', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ text: t, lang: lang.slice(0, 2), rate, gender: S.voiceGender === 'm' ? 'm' : 'f' }) })
+      .then(r => { if (!r.ok) throw new Error('tts ' + r.status); return r.blob(); });
+    let next = get(parts[0]);
+    for (let i = 0; i < parts.length; i++) {
+      const blob = await next; if (V.speaking !== id) return true;
+      if (i + 1 < parts.length) next = get(parts[i + 1]);
+      await new Promise((res, rej) => { const a = new Audio(URL.createObjectURL(blob)); TTS.audio = a; a.onended = res; a.onerror = rej; a.play().catch(rej); });
+      if (V.speaking !== id) return true;
+    }
+    return true;
+  }
+  async function say(id, text, lang, opt = {}) {
+    if (V.speaking) { const same = V.speaking === id; stopSpeech(); render(); if (same) return; }
+    if (cloudVoiceOn()) {
+      V.speaking = id; render();
+      try { await cloudSay(id, text, lang, opt.rate || (S.voiceRate === 'slow' ? 0.75 : 0.95)); if (V.speaking === id) { V.speaking = false; render(); } return; }
+      catch (e) { console.warn('cloud voice failed, using phone voice', e); if (/501/.test(String(e))) TTS.cloudOk = false; if (V.speaking !== id) return; V.speaking = false; }
+    }
+    const rate = (opt.rate ? opt.rate * (S.voiceRate === 'slow' ? 0.85 : 1) : (S.voiceRate === 'slow' ? 0.68 : 0.95)) * (lang.startsWith('hi') ? 0.97 : 1);
+    const pitch = S.voiceGender === 'm' ? 0.72 : 1.08;   // a male / female sound even when the phone has only one voice
+    TTS.q = chunks(text); V.speaking = id; render();
+    const finish = () => { if (V.speaking === id) { V.speaking = false; render(); } };
+    const n = NT();
+    if (n) {
+      try { if (!TTS.nVoices) TTS.nVoices = ((await n.getSupportedVoices()) || {}).voices || []; } catch (e) { TTS.nVoices = []; }
+      const v = pickVoice(lang, TTS.nVoices.map((x, i) => ({ ...x, idx: i, name: x.name || x.voiceURI })));
+      while (TTS.q.length && V.speaking === id) { const s = TTS.q.shift(); try { await n.speak({ text: s, lang, rate, pitch, ...(v ? { voice: v.idx } : {}) }); } catch (e) { break; } await new Promise(r => setTimeout(r, 180)); }
+      return finish();
+    }
+    let ss; try { ss = window.speechSynthesis; } catch (e) { } if (!ss) return finish();
+    if (!TTS.voices.length) loadVoices();
+    const v = pickVoice(lang, TTS.voices);
+    const next = () => {
+      if (V.speaking !== id || !TTS.q.length) return finish();
+      const u = new SpeechSynthesisUtterance(TTS.q.shift()); u.lang = v ? v.lang : lang; if (v) u.voice = v; u.rate = rate; u.pitch = pitch;
+      u.onend = () => setTimeout(next, 220); u.onerror = () => finish(); ss.speak(u);
+    };
+    ss.cancel(); next();
+  }
+  const hasHindiVoice = () => { if (NT() || cloudVoiceOn()) return true; if (!TTS.voices.length) loadVoices(); return !!pickVoice('hi-IN', TTS.voices); };
+  function speakMantra(m) {   // Devanagari with a Hindi voice; English letters with an Indian-English voice if no Hindi voice exists
+    const tx = mText(m).split('\n').filter(l => !/[਀-੿]/.test(l)).join('\n');
+    if (hasHindiVoice() || !m.roman) return say('m:' + m.id, tx, 'hi-IN', { rate: 0.8 });
+    say('m:' + m.id, m.roman.replace(/-/g, ' '), 'en-IN', { rate: 0.82 });
+  }
+
+  /* ---- Premium: plans and clickable features ---- */
+  const PREM_GO = { '📄': 'pdf', '✋': 'palm', '🕉️': 'kundli', '🪐': 'kundli', '📆': 'kundli', '📜': 'aiask', '📜': 'report', '🗓️': 'muhurat', '🎙️': 'voice', '👨‍👩‍👧': 'family', '💑': 'match', '🛕': 'bhakti', '🧭': 'vastu' };
+  function premGo(icon) {
+    const to = PREM_GO[icon]; if (!to) return;
+    if (to === 'pdf') { if (isPremium()) { makePDF(); } else paywall(); return; }
+    V.tab = to; V.sub = null; if (to === 'bhakti') V.bh.mode = icon === '🛕' ? 'temples' : V.bh.mode;
+    ANIM = true; render();
+    if (to === 'kundli') setTimeout(() => { const el = $('#premSec'); if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 80); }, 200); else window.scrollTo(0, 0);
+  }
+  V.plan = V.plan || 'y';
+  function planName(k) { const pr = PRICE[PLAN_PROD[k] || 'prem_y']; return `₹${pr}${pick(/y$/.test(k) ? P_.perYear : P_.perMonth)}`; }
+
+  /* ---- creative bottom navigation: duotone 3D icons ---- */
+  const NAV_DEFS = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <linearGradient id="nvG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF0B8"/><stop offset=".55" stop-color="#F2C35A"/><stop offset="1" stop-color="#C98A22"/></linearGradient>
+    <linearGradient id="nvG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB46B"/><stop offset="1" stop-color="#E06A1E"/></linearGradient>
+    <linearGradient id="nvM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A3283A"/><stop offset="1" stop-color="#5A1520"/></linearGradient>
+    <linearGradient id="nvM2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0603A"/><stop offset="1" stop-color="#9B2335"/></linearGradient></defs></svg>`;
+  const heart = (cx, cy, s) => `M${cx} ${cy + 9 * s}s-${8.5 * s}-${5.2 * s}-${8.5 * s}-${11 * s}a${4.6 * s} ${4.6 * s} 0 0 1 ${8.5 * s}-${2.6 * s}a${4.6 * s} ${4.6 * s} 0 0 1 ${8.5 * s} ${2.6 * s}c0 ${5.8 * s}-${8.5 * s} ${11 * s}-${8.5 * s} ${11 * s}z`;
+  const NAVI = {
+    today: `<svg viewBox="0 0 32 32">${Array.from({ length: 8 }, (_, i) => `<rect class="f1" x="14.9" y="1.8" width="2.2" height="6" rx="1.1" transform="rotate(${i * 45} 16 16)"/>`).join('')}<circle class="f2" cx="16" cy="16" r="7.4"/><circle cx="13.6" cy="13.6" r="2.4" fill="#fff" opacity=".55"/></svg>`,
+    kundli: `<svg viewBox="0 0 32 32"><rect class="f1" x="3" y="3" width="26" height="26" rx="5"/><path class="f2" d="M16 7L25 16L16 25L7 16Z"/><path class="s1" d="M5.5 5.5l21 21M26.5 5.5l-21 21"/><circle cx="16" cy="16" r="2.2" fill="#fff" opacity=".85"/><rect x="5" y="4.6" width="22" height="3" rx="1.5" fill="#fff" opacity=".35"/></svg>`,
+    match: `<svg viewBox="0 0 32 32"><path class="f1" d="${heart(12, 9.5, 1.05)}"/><path class="f2" d="${heart(20.5, 12, .95)}" opacity=".95"/><circle cx="9" cy="10.5" r="1.8" fill="#fff" opacity=".6"/></svg>`,
+    palm: `<svg viewBox="0 0 32 32"><path class="f1" d="M12.2 29.5c-3.3-.9-6-4.3-6.7-7.6l-1.6-5.1c-.4-1.4 1-2.5 2.3-1.8l2.3 1.4V7a1.8 1.8 0 0 1 3.6 0v7.3h.5V4.6a1.8 1.8 0 0 1 3.6 0v9.7h.5V5.8a1.8 1.8 0 0 1 3.6 0v8.9h.5V8.8a1.8 1.8 0 0 1 3.6 0v11.4c0 5.4-4 9.6-9.4 9.6z"/><path class="s2" d="M11 21.5c2.5 1.6 6 1.6 8.2-.6M12 18.4c1.8.6 3.8.4 5.4-.6"/><circle class="f2" cx="20.5" cy="24.5" r="3.4"/><path d="M20.5 22.6l.6 1.3 1.4.2-1 1 .2 1.4-1.2-.7-1.2.7.2-1.4-1-1 1.4-.2z" fill="#fff"/></svg>`,
+    bhakti: `<svg viewBox="0 0 32 32"><path class="s1" d="M16 2.2v4.6"/><path class="f2" d="M16.2 2.4l4.4 1.5-4.4 1.5z"/><path class="f1" d="M10.5 13.5L13 7.5h6l2.5 6z"/><rect class="f1" x="7" y="13.5" width="18" height="3.4" rx="1"/><rect class="f1" x="8.6" y="16.9" width="14.8" height="10.6"/><rect class="f2" x="5.5" y="27" width="21" height="3" rx="1.2"/><path class="f2" d="M13.6 27.5v-4.6a2.4 2.4 0 0 1 4.8 0v4.6z"/><rect x="11" y="8.4" width="10" height="1.6" rx=".8" fill="#fff" opacity=".45"/></svg>`,
+    more: `<svg viewBox="0 0 32 32"><rect class="f1" x="3.5" y="3.5" width="11" height="11" rx="3.2"/><rect class="f1" x="17.5" y="17.5" width="11" height="11" rx="3.2"/><rect class="f2" x="3.5" y="17.5" width="11" height="11" rx="3.2"/><path class="f2" d="M23 3l1.7 4.3L29 9l-4.3 1.7L23 15l-1.7-4.3L17 9l4.3-1.7z"/></svg>`
+  };
+  /*@@GROWTH@@*/
   /* ---------- Render ---------- */
   function render() {
     document.documentElement.style.fontSize = (18 * S.scale) + 'px';
-    document.documentElement.lang = L() ? 'hi' : 'en';
+    document.documentElement.lang = S.lang === 'mr' || S.lang === 'gu' ? S.lang : L() ? 'hi' : 'en';
     const app = $('#app');
     app.classList.toggle('anim', ANIM); ANIM = false;
     const cosmic = !S.lang || needLogin() || LV.step === 'hi';
@@ -1581,17 +1873,19 @@
     if (!S.lang) { app.innerHTML = `${COSMOS}<main class="main">${screenWelcome()}</main>`; chatRender(); return; }
     if (needLogin() || LV.step === 'hi') { app.innerHTML = `${COSMOS}<main class="main">${screenLogin()}</main>`; chatRender(); return; }
     if (!S.profiles.length) { V.sub = 'form'; app.innerHTML = `<header class="top">${LOGO}<b>${t('appName')}</b></header><main class="main">${screenForm()}</main>`; bindForm(); restoreForm(); return; }
-    const scr = { today: screenToday, kundli: screenKundli, palm: screenPalm, panchang: screenPanchang, family: screenFamily, premium: screenPremium, bhakti: screenBhakti, match: screenMatch, more: screenMore, vastu: screenVastu, muhurat: screenMuhurat, aiask: screenAiAsk, report: screenReport, voice: screenVoice }[V.tab]();
+    const scr = { today: screenToday, kundli: screenKundli, palm: screenPalm, panchang: screenPanchang, family: screenFamily, premium: screenPremium, bhakti: screenBhakti, match: screenMatch, more: screenMore, vastu: screenVastu, muhurat: screenMuhurat, aiask: screenAiAsk, report: screenReport, voice: screenVoice, ...G.screens }[V.tab]();
     const tabs = [['today', 'tabToday'], ['kundli', 'tabKundli'], ['match', 'tabMatch'], ['palm', 'tabPalm'], ['bhakti', 'tabBhakti'], ['more', 'tabMore']];
-    const navOn = ['panchang', 'family', 'vastu', 'muhurat', 'aiask', 'report', 'voice', 'premium'].includes(V.tab) ? 'more' : V.tab;
-    app.innerHTML = `<header class="top">${LOGO}<b>${t('appName')}</b><button class="crownbtn ${S.premium ? 'on' : ''}" data-a="openPremium" aria-label="${pick(C.prem.title)}">👑</button><button class="langbtn" data-a="lang" data-v="${L() ? 'en' : 'hi'}">${L() ? 'English' : 'हिंदी'}</button></header>
+    const navOn = ['panchang', 'family', 'vastu', 'muhurat', 'aiask', 'report', 'voice', 'premium', ...G.tabs].includes(V.tab) ? 'more' : V.tab;
+    app.innerHTML = `<header class="top"><button class="homebtn" data-a="tab" data-v="home" aria-label="${g('home')}">${LOGO}</button>${whoChip()}<button class="crownbtn ${S.premium ? 'on' : ''}" data-a="openPremium" aria-label="${pick(C.prem.title)}">👑</button><button class="langbtn" data-a="lang" data-v="${L() ? 'en' : 'hi'}">${L() ? 'English' : 'हिंदी'}</button></header>
       <main class="main">${scr}<p class="disc">${t('disclaimer')}</p></main>
-      <nav class="tabs">${tabs.map(([k, l]) => `<button data-a="tab" data-v="${k}" class="${navOn === k ? 'on' : ''}">${ICON[k]}<span>${t(l)}</span></button>`).join('')}</nav>`;
+      <nav class="tabs nav2">${NAV_DEFS}${tabs.map(([k, l]) => `<button data-a="tab" data-v="${k}" class="${navOn === k ? 'on' : ''}"><i class="nvi">${NAVI[k]}</i><span>${t(l)}</span></button>`).join('')}</nav>`;
     if (V.sub === 'form') { bindForm(); restoreForm(); }
     if (V.tab === 'bhakti') bindBhakti();
+    bindTPlace();
     if (V.tab !== 'vastu') stopCompass();
     const af = $('#aiForm'); if (af) af.onsubmit = e => { e.preventDefault(); const i = $('#aiInput'); aiAsk(i.value); };
     if (V.tab === 'today' && V.locState === 'idle') setTimeout(() => getLocation(), 600);
+    G.afterRender();
     chatRender();
   }
 
@@ -1599,12 +1893,10 @@
     const nt = $('#fNoTime'); if (!nt) return;
     nt.onchange = () => { $('#fTob').disabled = nt.checked; $('#noTimeNote').hidden = !nt.checked; };
     const q = $('#fPlaceQ'); if (!q) return;
-    q.oninput = () => {
-      const res = searchPlaces(q.value), box = $('#placeList'); V.placeRes = res;
-      if (!q.value.trim()) { box.hidden = true; return; }
-      box.hidden = false;
-      box.innerHTML = res.length ? res.map((r, i) => `<button type="button" data-a="pickPlace" data-v="${i}"><b>${esc(r.n)}</b>${r.h ? ` · ${r.h}` : ''}<small>${esc(pick(PLACES_STATES[r.s] || [r.s, r.s]))}</small></button>`).join('') : `<div class="muted small">${pick(C.acc.placeNone)}</div>`;
-    };
+    q.oninput = () => areaSuggest(q, $('#placeList'), res => {
+      V.placeRes = res;
+      $('#placeList').innerHTML = res.length ? res.map((r, i) => `<button type="button" data-a="pickPlace" data-v="${i}"><b>${esc(r.n)}</b>${r.h ? ` · ${r.h}` : ''}<small>${esc(r.sub)}${r.osm ? ' · 🌐' : ''}</small></button>`).join('') + `<div class="attrib">${pick(Y.tl.attrib)}</div>` : `<div class="muted small pad">${pick(C.acc.placeNone)}</div>`;
+    });
   }
   let PLACES = null;
   function searchPlaces(qs) {
@@ -1642,7 +1934,7 @@
     if (!V.editId && familyFull()) { toast(pick(C.fam.full).replace('{n}', famLimit())); paywall(); return; }
     if (V.editId) Object.assign(S.profiles.find(p => p.id === V.editId), data);
     else { const id = 'p' + Date.now().toString(36); S.profiles.push({ id, ...data }); S.activeId = id; }
-    persist(); V.sub = null; V.editId = null; V.tab = 'kundli'; V.matchRes = null; render(); toast(t('saved')); window.scrollTo(0, 0);
+    persist(); V.sub = null; V.editId = null; V.tab = V.afterSave || 'kundli'; V.afterSave = null; V.formPreset = null; V.matchRes = null; render(); toast(t('saved')); window.scrollTo(0, 0);
   }
 
   function countUp() {
@@ -1656,7 +1948,7 @@
   let toastT;
   function toast(msg) {
     let el = $('#toast'); if (!el) { el = document.createElement('div'); el.id = 'toast'; document.body.appendChild(el); }
-    el.textContent = msg; el.className = 'show'; clearTimeout(toastT); toastT = setTimeout(() => el.className = '', 1800);
+    el.textContent = msg; el.className = "show"; clearTimeout(toastT); toastT = setTimeout(() => el.className = "", msg.length > 50 ? 3200 : 1800);
   }
   function confirmBox(msg, onYes, yesLabel) {
     const d = document.createElement('div'); d.className = 'modal';
@@ -1665,26 +1957,7 @@
     document.body.appendChild(d);
   }
 
-  function speak() {
-    const nativeTTS = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.TextToSpeech;
-    if (nativeTTS) {
-      if (V.speaking) { nativeTTS.stop(); V.speaking = false; render(); return; }
-      const p = active(); const txt = predictionText(p, prediction(p, V.dayOffset)).replace(/·/g, ',');
-      V.speaking = true; render();
-      nativeTTS.speak({ text: txt, lang: L() ? 'hi-IN' : 'en-IN', rate: 0.9 }).catch(() => { }).finally(() => { V.speaking = false; render(); });
-      return;
-    }
-    try {
-      const ss = window.speechSynthesis; if (!ss) return;
-      if (V.speaking) { ss.cancel(); V.speaking = false; render(); return; }
-      const p = active(); const txt = predictionText(p, prediction(p, V.dayOffset)).replace(/·/g, ',');
-      const u = new SpeechSynthesisUtterance(txt); u.lang = L() ? 'hi-IN' : 'en-IN'; u.rate = 0.9;
-      const voice = ss.getVoices().find(v => v.lang && v.lang.toLowerCase().startsWith(L() ? 'hi' : 'en-in'));
-      if (voice) u.voice = voice;
-      u.onend = u.onerror = () => { V.speaking = false; render(); };
-      ss.cancel(); ss.speak(u); V.speaking = true; render();
-    } catch (e) { V.speaking = false; }
-  }
+  function speak() { speakDay(active(), V.dayOffset); }
 
   document.addEventListener('click', e => {
     const el = e.target.closest('[data-a]'); if (!el) return;
@@ -1694,7 +1967,7 @@
       case 'pickLang': S.lang = v; persist(); go(); break;
       case 'lang': S.lang = v; persist(); ANIM = true; render(); break;
       case 'scale': S.scale = +v; persist(); render(); break;
-      case 'tab': V.tab = v; V.sub = null; if (V.speaking) speak(); go(); break;
+      case 'tab': V.tab = v; V.sub = null; if (V.speaking) stopSpeech(); go(); break;
       case 'day': V.dayOffset = +v; ANIM = true; render(); break;
       case 'speak': speak(); break;
       case 'cmode': V.chartMode = v; render(); { const c = document.querySelector('.chart'); if (c) { c.classList.remove('draw'); void c.offsetWidth; c.classList.add('draw'); } } break;
@@ -1703,11 +1976,18 @@
       case 'bhGroup': V.bh.g = v; render(); break;
       case 'bhCat': V.bh.cat = v; render(); break;
       case 'bhLoc': getLocation(true); render(); break;
+      case 'tMode': V.tMode = v; if (v === 'near') getLocation(true); render(); break;
+      case 'tEdit': V.tEdit = true; render(); setTimeout(() => { const i = $('#tPlace'); if (i) i.focus(); }, 50); break;
+      case 'tPick': setTPlace(v); break;
+      case 'tPickI': { const r = V.tRes && V.tRes[+v]; if (r) setTPlace(`${r.n}, ${r.sub}`); break; }
+      case 'tSet': setTPlace(($('#tPlace') || {}).value); break;
       case 'bhOpen': V.bh.open = v; go(); break;
-      case 'bhClose': if (V.speaking) speakText(); V.bh.open = null; go(); break;
+      case 'bhClose': if (V.speaking) stopSpeech(); V.bh.open = null; go(); break;
       case 'bhFav': { const f = favs(), i = f.indexOf(v); if (i < 0) f.push(v); else f.splice(i, 1); persist(); render(); break; }
       case 'bhSize': V.bh.size = Math.max(0.8, Math.min(1.8, V.bh.size + 0.15 * +v)); render(); break;
-      case 'bhSpeak': { const m = BHAKTI.mantras.find(x => x.id === v), tx = mText(m); speakText(v, tx.split('\n').filter(l => !/[\u0A00-\u0A7F]/.test(l)).join('\n'), 'hi-IN'); break; }
+      case 'bhSpeak': speakMantra(BHAKTI.mantras.find(x => x.id === v)); break;
+      case 'vTest': sayOwn('test', 'test', pick(Y.voice.testTxt), L() ? 'hi-IN' : 'en-IN'); break;
+      case 'vRate': S.voiceRate = v; persist(); render(); setTimeout(() => sayOwn('test', 'test', pick(Y.voice.testTxt), L() ? 'hi-IN' : 'en-IN', true), 150); break;
       case 'compatAI': compatRun(); break;
       case 'vScan': startCompass(); break;
       case 'vRoom': VS.room = VS.room === v ? null : v; render(); break;
@@ -1718,7 +1998,7 @@
       case 'aiQ': aiAsk(v); break;
       case 'aiClear': delete aiStore()[active().id]; persist(); render(); break;
       case 'repMake': makeReport(); break;
-      case 'voicePlay': speakText('voice', voiceScript(active()), L() ? 'hi-IN' : 'en-IN'); break;
+      case 'voicePlay': say('m:voice', voiceScript(active()), L() ? 'hi-IN' : 'en-IN'); break;
       case 'premTest': S.premium = !S.premium; persist(); render(); toast(pick(S.premium ? P_.demoOn : P_.demoOff)); break;
       case 'openMatch': V.tab = 'match'; V.sub = null; V.matchRes = null; go(); break;
       case 'closeMatch': V.sub = null; go(); break;
@@ -1740,10 +2020,14 @@
         }
         render(); break;
       }
-      case 'setActive': S.activeId = v; persist(); V.matchRes = null; render(); toast('✓ ' + S.profiles.find(p => p.id === v).name); break;
-      case 'addMember': if (familyFull()) { toast(pick(C.fam.full).replace('{n}', famLimit())); paywall(); break; } V.tab = 'family'; V.sub = 'form'; V.editId = null; V.formPlaceFor = null; go(); break;
+      case 'setActive': switchTo(v); break;
+      case 'whoOpen': whoSheet(); break;
+      case 'premGo': premGo(v); break;
+      case 'plan': V.plan = v; render(); { const pp = $('#pwPlans'); if (pp) { pp.innerHTML = plansHTML(); $('#pwGo').innerHTML = '👑 ' + pick(Y.plan.cont).replace('{p}', planName(V.plan)); } } break;
+      case 'planGo': planGo(); break;
+      case 'addMember': if (familyFull()) { toast(pick(Y.fam.full).replace('{n}', famLimit())); paywall(); break; } V.tab = 'family'; V.sub = 'form'; V.editId = null; V.formPlaceFor = null; go(); break;
       case 'edit': V.sub = 'form'; V.editId = v; V.formPlaceFor = null; go(); break;
-      case 'pickPlace': { const r = V.placeRes && V.placeRes[+v]; if (r) { const st = PLACES_STATES[r.s]; V.formPlace = { label: `${r.n}, ${st ? st[0] : r.s}`, lat: r.la, lon: r.lo, tz: r.s === 'NP' ? 5.75 : 5.5 }; keepForm(); render(); } break; }
+      case 'pickPlace': { const r = V.placeRes && V.placeRes[+v]; if (r) { V.formPlace = { label: `${r.n}, ${r.sub}`, lat: r.la, lon: r.lo, tz: r.tz || 5.5 }; keepForm(); render(); } break; }
       case 'placeManual': V.manualPlace = true; keepForm(); render(); break;
       case 'closeForm': V.sub = null; V.editId = null; go(); break;
       case 'del': confirmBox(t('confirmDel'), () => { S.profiles = S.profiles.filter(p => p.id !== v); if (S.activeId === v) S.activeId = S.profiles[0].id; persist(); render(); }); break;
@@ -1761,7 +2045,7 @@
       case 'palmQuick': PV.phase = 'quick'; V.palmStep = -1; go(); break;
       case 'palmAI': PV.phase = 'capture'; go(); break;
       case 'palmShowSaved': PV.phase = 'result'; go(); break;
-      case 'palmNew': PV.phase = 'capture'; PV.left = PV.right = null; PV.bad = {}; go(); break;
+      case 'palmNew': if (!palmAllowed()) { paywall(); break; } PV.phase = 'capture'; PV.left = PV.right = null; PV.bad = {}; go(); break;
       case 'pickGallery': pickGallery(); break;
       case 'demoTap': demoTap(); break;
       case 'lgChange': LV.step = 'phone'; LV.err = ''; clearInterval(LV.poll); render(); break;
@@ -1771,6 +2055,7 @@
       case 'lgHiSent': setTimeout(() => { LV.step = 'phone'; render(); }, 1500); break;
       case 'lgDone': LV.step = 'phone'; ANIM = true; render(); break;
       case 'consent': setConsent(v === '1'); break;
+      default: G.act(a, v, el, e); break;
       case 'logout': confirmBox(pick(LG.logout) + '?', () => { S.user = null; LV.step = 'phone'; LV.num = ''; persist(); ANIM = true; render(); }, t('ok')); break;
     }
   });

@@ -17,19 +17,24 @@
  *   POST /api/consent       { token, consent }                  -> { ok }
  *   POST /api/admin/premium { key, phone, days }                -> grant Premium by hand (testing, offers)
  *   GET  /api/admin/users.csv?key=ADMIN_KEY                     -> contacts list
+ *   POST /api/admin/delete-user { key, phone }                  -> delete an account (Play account-deletion requests)
  *
  * AI palm reading:
  *   POST /api/compat        { data, lang, token } -> { ok, result, left }   free AI marriage match, COMPAT_PER_DAY (3) a day
  *   POST /api/ask           { kundli, history, question, lang, token } -> Premium AI Jyotishi (ASK_PER_DAY a day)
  *   POST /api/report        { kundli, lang, token }                     -> Premium AI Life Report (REPORTS_PER_MONTH)
+ *   POST /api/tts           { text, lang }  -> audio/mpeg   natural Indian voice (Google WaveNet en-IN / hi-IN), cached, TTS_PER_IP_DAY a day
  *   POST /api/palm          { left, right (base64 JPEG), kundli, lang, token } -> { ok, result } | premium_required
  *
  *   GET  /api/health
+ *
+ * Payments, Parivaar plan, gifts, WhatsApp daily rashifal and usage stats: see commerce.js
  */
 import { DurableObject } from 'cloudflare:workers';
 import palmPrompt from '../../source/palm-prompt.js';
 import compatPrompt from '../../source/compat-prompt.js';
 import premiumPrompts from '../../source/premium-prompts.js';
+import { StoreCommerce, commerceRoutes, waKeyword, dailyWhatsApp } from './commerce.js';
 
 const OTP_TTL_MS = 10 * 60 * 1000, RESEND_SEC = 30, MAX_SENDS_PER_HOUR = 5, MAX_IP_SENDS_PER_HOUR = 30, MAX_ATTEMPTS = 5;
 const LOGIN_TTL_MS = 20 * 60 * 1000;
@@ -56,6 +61,7 @@ export class Store extends DurableObject {
     for (const col of ['premium_until INTEGER DEFAULT 0', 'palm_count INTEGER DEFAULT 0']) {
       try { this.sql.exec(`ALTER TABLE users ADD COLUMN ${col}`); } catch (e) { /* already there */ }
     }
+    this.initCommerce();
   }
   one(q, ...a) { const r = this.sql.exec(q, ...a).toArray(); return r[0] || null; }
   ipAllowed(ip, now, max) {
@@ -136,8 +142,8 @@ export class Store extends DurableObject {
   me(token, free) {
     const phone = this.phoneForToken(token); if (!phone) return { ok: false, error: 'bad_token' };
     const u = this.one('SELECT * FROM users WHERE phone = ?', phone) || {};
-    const prem = (u.premium_until || 0) > Date.now();
-    return { ok: true, phone: '+' + phone, premium: prem, premiumUntil: u.premium_until || 0, palmUsed: u.palm_count || 0, palmFree: Math.max(0, free - (u.palm_count || 0)) };
+    const ent = this.entitlements(phone);
+    return { ok: true, phone: '+' + phone, ...ent, palmUsed: u.palm_count || 0, palmFree: Math.max(0, free - (u.palm_count || 0)) };
   }
   setProfile(token, name, consent, lang) {
     const phone = this.phoneForToken(token); if (!phone) return { ok: false, error: 'bad_token' };
@@ -162,8 +168,8 @@ export class Store extends DurableObject {
     const day = new Date().toISOString().slice(0, 10);
     const over = (k, max) => { const r = this.one('SELECT * FROM palm_limits WHERE k = ?', k); return r && r.day === day && r.n >= max; };
     if (phone) {
-      const u = this.one('SELECT premium_until, palm_count FROM users WHERE phone = ?', phone) || {};
-      const prem = (u.premium_until || 0) > Date.now();
+      const u = this.one('SELECT palm_count FROM users WHERE phone = ?', phone) || {};
+      const prem = this.premOf(phone).prem;
       if (!prem && (u.palm_count || 0) >= free) return { ok: false, error: 'premium_required' };
       if (over('ph:' + phone, perUser)) return { ok: false, error: 'rate_limited' };
       if (over('ip:' + ip, perIp)) return { ok: false, error: 'rate_limited' };
@@ -198,7 +204,7 @@ export class Store extends DurableObject {
     bump('cip:' + ip); if (phone) bump('cph:' + phone);
   }
   /* ----- Premium AI quotas ----- */
-  isPremium(phone) { const u = phone ? this.one('SELECT premium_until FROM users WHERE phone = ?', phone) : null; return !!u && (u.premium_until || 0) > Date.now(); }
+  isPremium(phone) { return this.premOf(phone).prem; }
   quotaLeft(k, period, max) {
     const key = period === 'month' ? new Date().toISOString().slice(0, 7) : new Date().toISOString().slice(0, 10);
     const r = this.one('SELECT * FROM palm_limits WHERE k = ?', k); return max - (r && r.day === key ? r.n : 0);
@@ -210,8 +216,18 @@ export class Store extends DurableObject {
   palmCacheGet(h) { const r = this.one('SELECT * FROM palm_cache WHERE h = ? AND at > ?', h, Date.now() - PALM_CACHE_DAYS * 86400e3); return r ? JSON.parse(r.result) : null; }
   palmCachePut(h, result) { this.sql.exec('DELETE FROM palm_cache WHERE at < ?', Date.now() - PALM_CACHE_DAYS * 86400e3); this.sql.exec('INSERT OR REPLACE INTO palm_cache (h, result, at) VALUES (?, ?, ?)', h, JSON.stringify(result), Date.now()); }
 
+  /** Delete an account (keeps purchase records, which tax law requires) */
+  deleteUser(phone) {
+    for (const q of ['DELETE FROM users WHERE phone = ?', 'DELETE FROM sessions WHERE phone = ?', 'DELETE FROM otps WHERE phone = ?',
+      'DELETE FROM items WHERE phone = ?', 'DELETE FROM family_links WHERE member = ? OR owner = ?', 'DELETE FROM wa_queue WHERE phone = ?',
+      'DELETE FROM pending_logins WHERE phone = ?']) {
+      try { this.sql.exec(q, ...(q.includes(' OR ') ? [phone, phone] : [phone])); } catch (e) { /* table may not exist yet */ }
+    }
+    return { ok: true, deleted: phone };
+  }
   users() { return this.sql.exec('SELECT phone, name, lang, consent, created_at, verified_at, logins, welcomed, premium_until, palm_count FROM users ORDER BY created_at DESC').toArray(); }
 }
+Object.assign(Store.prototype, StoreCommerce);
 
 /* ---------------- helpers ---------------- */
 const cors = env => ({ 'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN || '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS', 'Access-Control-Allow-Headers': 'content-type,authorization' });
@@ -266,7 +282,7 @@ export default {
     const dev = env.DEV_MODE === 'true', now = Date.now(), ip = req.headers.get('cf-connecting-ip') || 'local';
     const FREE = Number(env.FREE_PALM_READINGS ?? 3);
     try {
-      if (path === '/api/health') return json(env, { ok: true, whatsapp: waReady(env), whatsappLogin: waReady(env) && has(env.WA_BUSINESS_NUMBER), otpLogin: waReady(env) && has(env.OTP_TEMPLATE), palmAI: has(env.ANTHROPIC_API_KEY), palmModel: env.PALM_MODEL });
+      if (path === '/api/health') return json(env, { ok: true, whatsapp: waReady(env), whatsappLogin: waReady(env) && has(env.WA_BUSINESS_NUMBER), otpLogin: waReady(env) && has(env.OTP_TEMPLATE), indianVoice: has(env.GOOGLE_TTS_KEY), razorpay: has(env.RAZORPAY_KEY_ID), playBilling: has(env.PLAY_SA_JSON), dailyWhatsApp: has(env.DAILY_TEMPLATE), palmAI: has(env.ANTHROPIC_API_KEY), palmModel: env.PALM_MODEL });
 
       /* ---- WhatsApp login (free) ---- */
       if (path === '/api/login/start' && req.method === 'POST') {
@@ -296,6 +312,7 @@ export default {
         for (const entry of data.entry || []) for (const ch of entry.changes || []) for (const m of (ch.value && ch.value.messages) || []) {
           const from = normPhone(m.from), text = (m.text && m.text.body) || (m.button && m.button.text) || '';
           const code = (text.toUpperCase().match(/JS\s?(\d{6})/) || [])[1];
+          if (from && !code) { ctx.waitUntil(waKeyword(text, from, { store, env, sendText, waReady })); continue; }
           if (!from || !code) continue;
           const done = await store.completeLogin('JS' + code, from, now);
           if (done && waReady(env)) {   // reply inside the customer-service window: free
@@ -358,6 +375,7 @@ export default {
         const perDay = Number(env.COMPAT_PER_DAY || 3);
         const acc = await store.compatAccess(phone, ip, perDay, Number(env.COMPAT_PER_IP_DAY || 10));
         if (!acc.ok) return json(env, acc, 429);
+        const cmk = 'compm:' + (phone || ip); if ((await store.quotaLeft(cmk, 'month', Number(env.COMPAT_PER_MONTH || 10))) <= 0) return json(env, { ok: false, error: 'daily_limit' }, 429);
         let r;
         try { r = await fetch((env.ANTHROPIC_BASE_URL || 'https://api.anthropic.com') + '/v1/messages', { method: 'POST', headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' }, body: JSON.stringify({ model: env.COMPAT_MODEL || env.PALM_MODEL || 'claude-haiku-5-5', max_tokens: 2500, messages: [{ role: 'user', content: compatPrompt.buildCompatPrompt(b.data, lang) }] }) }); }
         catch (e) { return json(env, { ok: false, error: 'ai_failed' }, 502); }
@@ -366,9 +384,37 @@ export default {
         const text = (out.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
         let result = null; try { result = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)); } catch (e) { }
         if (!result || !result.summary) return json(env, { ok: false, error: 'ai_failed' }, 502);
-        await store.compatUsed(phone, ip); await store.palmCachePut(h, result);
+        await store.compatUsed(phone, ip); await store.palmCachePut(h, result); await store.quotaUse(cmk, 'month');
         if (out.usage) console.log('compat tokens', JSON.stringify(out.usage));
         return json(env, { ok: true, result, left: Math.max(0, acc.left - 1) });
+      }
+
+      /* ---- Natural Indian voice (Google Cloud Text-to-Speech, WaveNet) ---- */
+      if (path === '/api/tts' && req.method === 'POST') {
+        if (!has(env.GOOGLE_TTS_KEY)) return json(env, { ok: false, error: 'not_configured' }, 501);
+        const b = await req.json().catch(() => ({}));
+        const text = String(b.text || '').slice(0, 1500).trim(), hi = b.lang === 'hi';
+        if (!text) return json(env, { ok: false, error: 'bad_request' }, 400);
+        const male = b.gender === 'm';
+        const voice = hi ? (male ? env.TTS_VOICE_HI_M || 'hi-IN-Wavenet-B' : env.TTS_VOICE_HI || 'hi-IN-Wavenet-A') : (male ? env.TTS_VOICE_EN_M || 'en-IN-Wavenet-B' : env.TTS_VOICE_EN || 'en-IN-Wavenet-A');
+        const rate = Math.min(1.1, Math.max(0.7, Number(b.rate) || 0.92));
+        const key = await sha256(voice + '|' + rate + '|' + text);
+        const cacheReq = new Request('https://tts-cache.jyotishsaathi/' + key), cache = caches.default;
+        let hit = await cache.match(cacheReq);
+        if (hit) { const h = new Headers(hit.headers); Object.entries(cors(env)).forEach(([k, v]) => h.set(k, v)); return new Response(hit.body, { headers: h }); }
+        if ((await store.quotaLeft('tts:' + ip, 'day', Number(env.TTS_PER_IP_DAY || 80))) <= 0) return json(env, { ok: false, error: 'daily_limit' }, 429);
+        let r;
+        try { r = await fetch((env.TTS_BASE_URL || 'https://texttospeech.googleapis.com') + '/v1/text:synthesize?key=' + env.GOOGLE_TTS_KEY, { method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ input: { text }, voice: { languageCode: hi ? 'hi-IN' : 'en-IN', name: voice }, audioConfig: { audioEncoding: 'MP3', speakingRate: rate, pitch: 0 } }) }); }
+        catch (e) { return json(env, { ok: false, error: 'tts_failed' }, 502); }
+        const out = await r.json().catch(() => ({}));
+        if (!r.ok || !out.audioContent) { console.log('TTS error', r.status, JSON.stringify(out).slice(0, 300)); return json(env, { ok: false, error: 'tts_failed' }, 502); }
+        await store.quotaUse('tts:' + ip, 'day');
+        const bin = Uint8Array.from(atob(out.audioContent), c => c.charCodeAt(0));
+        const res = new Response(bin, { headers: { 'content-type': 'audio/mpeg', 'cache-control': 'public, max-age=31536000' } });
+        ctx.waitUntil(cache.put(cacheReq, res.clone()));
+        const h = new Headers(res.headers); Object.entries(cors(env)).forEach(([k, v]) => h.set(k, v));
+        return new Response(res.body, { headers: h });
       }
 
       /* ---- Premium: AI Jyotishi and AI Life Report ---- */
@@ -380,8 +426,9 @@ export default {
         if (!(await store.isPremium(phone))) return json(env, { ok: false, error: 'premium_required' }, 402);
         const ask = path === '/api/ask', lang = b.lang === 'hi' ? 'hi' : 'en', kundli = typeof b.kundli === 'object' && b.kundli ? b.kundli : {};
         if (JSON.stringify(kundli).length > 12000) return json(env, { ok: false, error: 'bad_request' }, 400);
-        const qk = (ask ? 'ask:' : 'rep:') + phone, period = ask ? 'day' : 'month', max = Number(ask ? (env.ASK_PER_DAY || 20) : (env.REPORTS_PER_MONTH || 6));
+        const qk = (ask ? 'ask:' : 'rep:') + phone, period = ask ? 'day' : 'month', max = Number(ask ? (env.ASK_PER_DAY || 10) : (env.REPORTS_PER_MONTH || 3));
         if ((await store.quotaLeft(qk, period, max)) <= 0) return json(env, { ok: false, error: 'daily_limit' }, 429);
+        if (ask && (await store.quotaLeft('askm:' + phone, 'month', Number(env.ASK_PER_MONTH || 100))) <= 0) return json(env, { ok: false, error: 'daily_limit' }, 429);
         const prompt = ask ? premiumPrompts.buildAskPrompt(kundli, Array.isArray(b.history) ? b.history.slice(-6).map(x => String(x).slice(0, 400)) : [], String(b.question || '').slice(0, 400), lang)
           : premiumPrompts.buildReportPrompt(kundli, lang);
         if (ask && !String(b.question || '').trim()) return json(env, { ok: false, error: 'bad_request' }, 400);
@@ -395,6 +442,7 @@ export default {
         let result = null; try { result = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)); } catch (e) { }
         if (!result || (ask ? !result.answer : !result.chapters)) return json(env, { ok: false, error: 'ai_failed' }, 502);
         await store.quotaUse(qk, period);
+        if (ask) await store.quotaUse('askm:' + phone, 'month');
         if (out.usage) console.log(ask ? 'ask' : 'report', 'tokens', model, JSON.stringify(out.usage));
         return json(env, { ok: true, result });
       }
@@ -414,9 +462,10 @@ export default {
         if (cached) return json(env, { ok: true, result: cached, cached: true });   // same photos again: no AI cost
         const acc = await store.palmAccess(phone, ip, FREE, Number(env.PALM_PER_USER_DAY || 5), Number(env.PALM_PER_IP_DAY || 8));
         if (!acc.ok) return json(env, acc, acc.error === 'premium_required' ? 402 : 429);
+        if (acc.premium && phone && (await store.quotaLeft('palmm:' + phone, 'month', Number(env.PALM_PER_MONTH || 15))) <= 0) return json(env, { ok: false, error: 'rate_limited' }, 429);
         const prompt = palmPrompt.buildPalmPrompt(typeof b.kundli === 'object' && b.kundli ? b.kundli : {}, lang, b.dominant === 'left' ? 'left' : 'right');
         // Premium members get the most accurate model for a few readings each month; everyone else gets the low-cost model
-        const useBest = acc.premium && has(env.PALM_MODEL_PREMIUM) && acc.bestUsed < Number(env.PREMIUM_BEST_PER_MONTH || 4);
+        const useBest = acc.premium && has(env.PALM_MODEL_PREMIUM) && acc.bestUsed < Number(env.PREMIUM_BEST_PER_MONTH ?? 0);
         const model = useBest ? env.PALM_MODEL_PREMIUM : (env.PALM_MODEL || 'claude-haiku-5-5');
         const body = {
           model, max_tokens: Number(env.PALM_MAX_TOKENS || 4000),
@@ -435,10 +484,17 @@ export default {
         if (!result || !result.valid) { console.log('AI bad JSON', text.slice(0, 300)); return json(env, { ok: false, error: 'ai_failed' }, 502); }
         if (result.valid.left !== false && result.valid.right !== false) {   // only count + cache real readings, not "please retake"
           await store.palmUsed(phone, ip); await store.palmCachePut(h, result);
+          if (acc.premium && phone) await store.quotaUse('palmm:' + phone, 'month');
           if (useBest && phone) await store.bestModelUsed(phone);
         }
         if (out.usage) console.log('palm tokens', model, JSON.stringify(out.usage));
         return json(env, { ok: true, result, model });
+      }
+
+      /* ---- payments, plans, gifts, family, WhatsApp daily, stats ---- */
+      if (/^\/api\/(pay|play|gift|family|wa|ev|err|admin\/stats)/.test(path)) {
+        const r = await commerceRoutes(path, req, env, ctx, { store, json, has, normPhone, hmacHex, sha256, now, ip, sendTemplate, sendText, waReady });
+        if (r) return r;
       }
 
       /* ---- admin ---- */
@@ -449,6 +505,12 @@ export default {
         if (!(has(env.ADMIN_KEY) && (b.key === env.ADMIN_KEY || isAdmin))) return new Response('Unauthorised', { status: 401 });
         const phone = normPhone(b.phone); if (!phone) return json(env, { ok: false, error: 'bad_phone' }, 400);
         return json(env, await store.grantPremium(phone, Math.min(3660, Math.max(1, Number(b.days) || 30))));
+      }
+      if (path === '/api/admin/delete-user' && req.method === 'POST') {
+        const b = await req.json().catch(() => ({}));
+        if (!(has(env.ADMIN_KEY) && (b.key === env.ADMIN_KEY || isAdmin))) return new Response('Unauthorised', { status: 401 });
+        const phone = normPhone(b.phone); if (!phone) return json(env, { ok: false, error: 'bad_phone' }, 400);
+        return json(env, await store.deleteUser(phone));
       }
       if (path === '/api/admin/users.csv') {
         if (!isAdmin) return new Response('Unauthorised', { status: 401 });
@@ -462,5 +524,10 @@ export default {
       console.log('error', e && e.stack);
       return json(env, { ok: false, error: 'server_error' }, 500);
     }
+  },
+  /** 7:00 am IST every day (cron in wrangler.toml): Premium members' WhatsApp rashifal */
+  async scheduled(event, env, ctx) {
+    const store = env.STORE.get(env.STORE.idFromName('main'));
+    ctx.waitUntil(dailyWhatsApp(env, { store, sendTemplate, waReady, has }));
   }
 };

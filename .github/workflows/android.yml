@@ -67,8 +67,8 @@ jobs:
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug bundleRelease --no-daemon
           mkdir -p ../../out
+          ./gradlew assembleDebug bundleRelease --no-daemon
           cp app/build/outputs/apk/debug/app-debug.apk ../../out/JyotishSaathi-test-v${VERSION_CODE}.apk
           cp app/build/outputs/bundle/release/app-release.aab ../../out/JyotishSaathi-v${VERSION_CODE}.aab
 

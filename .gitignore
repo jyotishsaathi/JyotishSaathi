@@ -7,3 +7,5 @@ app/android/local.properties
 *.keystore
 SIGNING-KEY*/
 .DS_Store
+.wrangler/
+.dev.vars

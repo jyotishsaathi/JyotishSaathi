@@ -2,4 +2,7 @@
 <resources>
     <string name="app_name">ज्योतिष साथी</string>
     <string name="title_activity_main">ज्योतिष साथी</string>
+    <string name="widget_title">ज्योतिष साथी</string>
+    <string name="widget_open">आज का राशिफल यहाँ देखने के लिए एक बार ऐप खोलें।</string>
+    <string name="widget_desc">आज की तिथि, राहु काल और राशिफल</string>
 </resources>

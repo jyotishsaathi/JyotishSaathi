@@ -4,4 +4,7 @@
     <string name="title_activity_main">Jyotish Saathi</string>
     <string name="package_name">com.jyotishsaathi.app</string>
     <string name="custom_url_scheme">com.jyotishsaathi.app</string>
+    <string name="widget_title">Jyotish Saathi</string>
+    <string name="widget_open">Open the app once to see today\'s rashifal here.</string>
+    <string name="widget_desc">Today\'s tithi, Rahu Kaal and rashifal</string>
 </resources>

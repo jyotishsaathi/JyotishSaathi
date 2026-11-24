@@ -1,0 +1,7 @@
+Ganganagar|Bikaner|Hanumangarh|Kalimpong
+71Rb	0	27	29.601	73.451
+79.200 Rdl	0	27	29.03	73.921
+7 Lc	0	27	29.31	73.704
+7 Arm	1	27	28.763	73.093
+7 Mod	2	27	29.591	74.144
+7th Mile Kalimpong	3	35	27.068	88.451

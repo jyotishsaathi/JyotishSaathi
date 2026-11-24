@@ -11,22 +11,45 @@ class_name = "Store"
 tag = "v1"
 new_sqlite_classes = ["Store"]
 
+# 7:00 am India time = 01:30 UTC: daily WhatsApp rashifal for Premium members who turned it on
+[triggers]
+crons = ["30 1 * * *"]
+
 [vars]
+# ---- Prices in paise (₹99 = 9900). Keep the same prices in source/config.js and in Google Play Console ----
+PRICE_PREM_M = "9900"
+PRICE_PREM_Y = "49900"
+PRICE_FAM_M = "14900"             # Parivaar plan: owner + up to FAMILY_MAX numbers get Premium
+PRICE_FAM_Y = "79900"
+PRICE_REPORT = "9900"             # one-time: yearly report for one person
+PRICE_MUHURAT = "5100"            # one-time: full muhurat list for one event, 60 days
+PRICE_NAAM = "4900"               # one-time: full naamkaran list
+FAMILY_MAX = "5"
+PLAY_PACKAGE = "com.jyotishsaathi.app"
+DAILY_TEMPLATE = ""               # approved WhatsApp template name for the 7 am rashifal, e.g. "daily_rashifal" (empty = off)
 # ---- AI palm reading (cost control) ----
 PALM_MODEL = "claude-haiku-5-5"            # free readings: lowest cost
 PALM_MODEL_PREMIUM = "claude-sonnet-5-5"   # Premium readings: most accurate (about 20x the cost of Haiku)
-PREMIUM_BEST_PER_MONTH = "4"               # Premium readings per month on the accurate model; after that Haiku
+PREMIUM_BEST_PER_MONTH = "0"               # Premium palm readings per month on the costlier model (0 = always Haiku, cheapest)
 PALM_MAX_TOKENS = "5000"          # longest answer allowed
 FREE_PALM_READINGS = "3"          # free AI readings per verified number, then Premium
-PALM_PER_USER_DAY = "5"           # max readings per number per day (even for Premium)
+PALM_PER_USER_DAY = "3"           # max readings per number per day (even for Premium)
+PALM_PER_MONTH = "15"             # max Premium palm readings per number per month (cost cap)
 PALM_PER_IP_DAY = "8"             # max per device/network per day
 COMPAT_MODEL = "claude-haiku-5-5"        # free AI marriage match (about ₹0.15 each)
 COMPAT_PER_DAY = "3"              # free AI marriage matches per person per day
+COMPAT_PER_MONTH = "10"           # and per month (cost cap)
 COMPAT_PER_IP_DAY = "10"          # per network per day
+TTS_VOICE_EN = "en-IN-Wavenet-A"         # natural Indian-English voice (female). en-IN-Wavenet-B / C are male
+TTS_VOICE_HI = "hi-IN-Wavenet-A"         # natural Hindi voice (female). hi-IN-Wavenet-B / C are male
+TTS_VOICE_EN_M = "en-IN-Wavenet-B"       # used when the user picks a male voice
+TTS_VOICE_HI_M = "hi-IN-Wavenet-B"
+TTS_PER_IP_DAY = "80"             # voice clips per phone/network per day (repeats are cached and free)
 ASK_MODEL = "claude-haiku-5-5"           # Premium AI Jyotishi (about ₹0.10 per answer)
-ASK_PER_DAY = "20"                # AI Jyotishi questions per Premium member per day
+ASK_PER_DAY = "10"                # AI Jyotishi questions per Premium member per day
+ASK_PER_MONTH = "100"             # and per month (cost cap: about ₹10 a member at most)
 REPORT_MODEL = "claude-haiku-5-5"        # Premium AI Life Report (about ₹0.50 each); "claude-sonnet-5-5" writes richer reports at a higher cost
-REPORTS_PER_MONTH = "6"           # Life Reports per Premium member per month (covers family members)
+REPORTS_PER_MONTH = "3"           # Life Reports per Premium member per month
 PALM_REQUIRE_LOGIN = "false"      # "true" = only logged-in users can use AI palm reading
 # ---- WhatsApp ----
 GRAPH_VERSION = "v23.0"
@@ -40,4 +63,5 @@ DEV_MODE = "false"                # "true" only for local testing
 
 # Secrets (set by the GitHub workflow, never written here):
 # WA_TOKEN, WA_PHONE_ID, WA_BUSINESS_NUMBER, WA_VERIFY_TOKEN, WA_APP_SECRET,
-# OTP_SECRET, ADMIN_KEY, ANTHROPIC_API_KEY
+# OTP_SECRET, ADMIN_KEY, ANTHROPIC_API_KEY, GOOGLE_TTS_KEY,
+# RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET, PLAY_SA_JSON

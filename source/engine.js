@@ -251,6 +251,11 @@ const AstroEngine = (function () {
       abhijit: { start: mid - half, end: mid + half }
     };
   }
+  /** tithi (0-29), signs and nakshatra at sunrise, light enough to run for a whole year */
+  function sunriseInfo(y, m, d, lat, lon, tz) {
+    const st = sunTimes(y, m, d, lat, lon, tz), pc = panchangAt(st.rise);
+    return { tithi: pc.tithi, nak: pc.nak, sunSign: pc.sunSign, moonSign: pc.moonSign, rise: st.rise, set: st.set, wd: weekday(y, m, d) };
+  }
   function specialDays(y, m, d, lat, lon, tz, days) {
     const out = [];
     const base = Date.UTC(y, m - 1, d);
@@ -335,6 +340,6 @@ const AstroEngine = (function () {
     return { house, tara: t, wd: weekday(y, m, d), todayNak: pc.nak, todayMoonSign: pc.moonSign, tithi: pc.tithi, seed: hashStr(natal.key + y + '-' + m + '-' + d) };
   }
 
-  return { tzFor, navamsa, dignityIn, aspectHouses, FRIENDS, jdFromLocal, jdToLocal, chart, sidereal, tropical, ascendant, ayanamsa, dayPanchang, specialDays, match, daily, sunTimes, weekday, PLANETS, DASHA_ORDER, SIGN_LORD, rel, NADI, GANA, YONI };
+  return { sunriseInfo, panchangAt, tzFor, navamsa, dignityIn, aspectHouses, FRIENDS, jdFromLocal, jdToLocal, chart, sidereal, tropical, ascendant, ayanamsa, dayPanchang, specialDays, match, daily, sunTimes, weekday, PLANETS, DASHA_ORDER, SIGN_LORD, rel, NADI, GANA, YONI };
 })();
 if (typeof module !== 'undefined') module.exports = AstroEngine;

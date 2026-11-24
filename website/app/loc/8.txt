@@ -1,0 +1,5 @@
+Namakkal|Ganganagar|Tawang
+85 R.Komarapalayam	0	29	11.425	78.132
+8 Shpd	1	27	29.29	74.259
+8 K.M. Labour Camp	2	2	27.363	91.478
+8Nn	1	27	29.758	73.588

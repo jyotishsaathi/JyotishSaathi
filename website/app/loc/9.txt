@@ -1,0 +1,9 @@
+Dhanbad|Ganganagar|Hanumangarh|Mulugu|Bhadradri Kothagudem
+99 Koylanchal City	0	13	23.811	86.453
+9 Ml	1	27	29.766	73.874
+9 Jrk	2	27	29.614	74.19
+9 Sdr	2	27	29.215	75.155
+9 Ssw	3	30	29.524	74.379
+9 Nrd - A	1	27	29.469	73.715
+9Ps	1	27	29.562	73.502
+9thMile Thanda	4	30	17.546	80.428

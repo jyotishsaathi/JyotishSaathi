@@ -1,0 +1,451 @@
+Karnal|Ghazipur|Shimla|Jalaun|Kangra|Begusarai|Banka|Bhagalpur|Munger|Darbhanga|Godda|Firozabad|Amritsar|Gurdaspur|Malerkotla|Kulgam|Jaipur|Etah|Kasganj|Kaushambi|Bahraich|Patna|Hardoi|Sikar|Rae Bareli|Yamunanagar|East Nimar|Kannauj|Tarn Taran|Baramulla|Shamli|Bandipora|Muzaffarnagar|Meerut|Bulandshahr|Prayagraj|Jaunpur|Bhadohi|Rohtak|Kheri|Mandla|Pulwama|Farrukhabad|Dewas|Raisen|Kushi Nagar|Barnala|Budaun|Nalanda|Pratapgarh|Murshidabad|Agra|Hathras|Auraiya|Sultanpur|Jammu|Saharanpur|Gautam Buddha Nagar|Palwal|Bijnor|Sambhal|Etawah|Mau|Bharatpur|Ganderbal|Alwar|Haridwar|Ghaziabad|Aligarh|Banda|Fatehpur|Sitapur|Pilibhit|Moradabad|Maharajganj|Khagaria|Saharsa|Ludhiana|Sonipat|Lucknow|Purnia|Anantnag|Pauri Garhwal|Mirzapur|Ajmer|Ballia|Giridih|Firozepur|Bareilly|Moga|Chandauli|Jalandhar|Mahoba|Nawada|Jehanabad|Hanumangarh|Bhojpur|Barabanki|Garhwa|Koderma|Lohardaga|Amroha|Vidisha|Sri Muktsar Sahib|Siwan|Samba|Amethi|Rajouri|Budgam|Azamgarh|Araria|Unnao|Kanpur Nagar|Siddipet|Ambedkar Nagar|Varanasi|Baghpat|Betul|Hapur|Barmer|Sheikhpura|Sehore|Chitrakoot|Shajapur|Vaishali|Sangrur|Uttara Kannada|South Goa|Sindhudurg|Kannur|Kathua|Anjaw|Satna|Pithoragarh|Buxar|Mansa|Hamirpur|South West|Almora|Bageshwar|Howrah|Hisar|Chamoli|Kaithal|Balrampur|Mainpuri|Hoshiarpur|Muzaffarpur|Katihar|Dehradun|Faridkot|Gonda|Kapurthala|Siddharth Nagar|Rudra Prayag|Gwalior|Jamui|North West|Jangoan|Ranga Reddy|Kozhikode|Rajsamand|Tonk|Chikkaballapura
+Qawi	0	10	29.435	76.781
+Qazi	1	33	25.677	83.503
+Qagna	2	11	30.998	77.504
+Qasba	3	33	26.327	79.175
+Qasba	4	11	32.184	76.398
+Qasba	4	11	32.001	76.476
+Qasba	4	11	32.047	76.645
+Qasba	4	11	32.052	76.632
+Qasba	4	11	32.051	76.523
+Qasba	5	4	25.429	86.294
+Qasba	6	4	25.346	86.267
+Qasba	7	4	25.219	86.686
+Qasba	8	4	25.12	86.664
+Qasba	9	4	25.053	87.109
+Qasba	10	13	25.064	87.285
+Qasba	10	13	25.179	87.394
+Qasha	4	11	32.059	76.472
+Qasim	11	33	27.652	79.464
+Qatla	12	26	31.97	74.871
+Qadian	13	26	31.82	75.38
+Qadian	14	26	30.972	75.821
+Qaimoh	15	12	33.74	75.135
+Qaimpur	16	27	27.0	76.782
+Qaimpur	17	33	27.594	78.921
+Qaimpur	18	33	27.697	79.125
+Qaimpur	17	33	27.323	78.649
+Qaimpur	19	33	25.389	81.43
+Qaimpur	20	33	27.316	80.96
+Qaimpur	21	4	25.48	85.398
+Qaimpur	22	33	27.499	80.167
+Qaimsar	23	27	28.101	74.996
+Qaziana	24	33	25.981	81.222
+Qazibas	25	10	30.165	77.143
+Qazihad	26	18	25.47	82.696
+Qazihar	27	33	27.138	79.625
+Qazikot	28	26	31.465	74.904
+Qazipum	29	12	34.148	74.112
+Qazipur	30	33	29.559	77.334
+Qazipur	31	12	34.424	74.612
+Qazipur	32	33	29.486	77.861
+Qazipur	33	33	28.939	77.737
+Qazipur	34	33	28.433	77.857
+Qazipur	17	33	27.426	78.306
+Qazipur	35	33	25.238	83.36
+Qazipur	36	33	25.725	81.301
+Qazipur	37	33	25.402	82.564
+Qazipur	35	33	25.477	82.218
+Qazipur	36	33	25.442	82.172
+Qazipur	36	33	25.326	82.204
+Qazipur	35	33	25.419	82.043
+Qazipur	38	10	28.578	76.882
+Qazipur	39	33	27.906	81.185
+Qazipur	40	18	25.798	81.499
+Qazipur	40	18	25.779	81.43
+Qazipur	41	12	33.905	74.843
+Qazipur	24	33	25.899	81.736
+Qazipur	42	33	25.631	83.746
+Qazipur	19	33	25.498	81.637
+Qazipur	35	33	25.389	81.871
+Qazipur	43	18	27.038	81.131
+Qazipur	44	18	25.75	84.842
+Qazipur	45	33	26.681	84.074
+Qazipur	46	26	26.473	84.242
+Qazipur	47	33	28.196	79.201
+Qazipur	36	33	26.563	84.918
+Qazipur	48	4	25.211	85.199
+Qazipur	22	33	27.043	80.081
+Qazipur	49	33	25.753	81.572
+Qazipur	40	18	25.745	81.505
+Qabilpur	50	35	25.428	87.748
+Qabulpur	51	33	27.064	78.0
+Qabulpur	36	33	25.68	82.765
+Qadampur	17	33	27.606	78.668
+Qadampur	52	33	27.793	78.454
+Qadampur	17	33	27.44	78.716
+Qadampur	36	33	25.693	81.478
+Qadampur	53	33	26.794	79.404
+Qadanpur	54	33	25.662	82.405
+Qadilpur	19	33	25.419	81.684
+Qadirpur	55	12	32.551	74.779
+Qadirpur	56	33	29.649	77.403
+Qadirpur	21	4	25.727	85.429
+Qadirpur	34	33	28.281	77.525
+Qadirpur	57	33	28.289	77.758
+Qadirpur	58	10	30.751	76.997
+Qadirpur	56	33	30.163	77.595
+Qadrabad	59	33	19.29	78.439
+Qadrabad	60	33	28.069	78.76
+Qaimpura	61	33	26.864	79.318
+Qalampor	41	12	33.795	74.832
+Qalijpur	62	33	25.84	83.34
+Qamariya	21	4	25.191	84.809
+Qasampur	60	33	28.59	78.649
+Qasba Ao	63	27	27.431	77.346
+Qasbalar	64	12	33.89	74.24
+Qasbiyar	41	12	33.809	74.81
+Qasimpur	60	33	29.044	78.751
+Qasimpur	27	33	27.045	79.982
+Qasimpur	65	27	28.031	76.695
+Qasimpur	56	33	30.292	77.624
+Qasimpur	30	33	29.444	77.426
+Qasimpur	56	33	29.71	77.666
+Qasimpur	33	33	29.009	77.681
+Qasimpur	66	34	29.847	77.994
+Qasimpur	32	33	29.551	77.803
+Qasimpur	32	33	29.47	77.84
+Qasimpur	67	33	28.76	77.612
+Qasimpur	33	33	28.89	77.894
+Qasimpur	52	33	27.6	77.885
+Qasimpur	17	33	27.542	78.615
+Qasimpur	68	33	27.995	78.146
+Qasimpur	52	33	27.665	78.132
+Qasimpur	68	33	27.99	78.46
+Qasimpur	52	33	27.845	78.35
+Qasimpur	52	33	27.851	78.356
+Qasimpur	17	33	27.588	78.492
+Qasimpur	18	33	27.938	78.51
+Qasimpur	18	33	27.81	78.7
+Qasimpur	17	33	27.75	78.551
+Qasimpur	69	33	25.021	80.417
+Qasimpur	1	33	25.738	83.454
+Qasimpur	30	33	29.312	77.175
+Qasimpur	70	33	26.003	80.77
+Qasimpur	71	33	27.336	81.181
+Qasimpur	70	33	25.903	81.034
+Qasimpur	70	33	25.863	81.17
+Qasimpur	72	33	28.861	78.428
+Qasimpur	71	33	27.183	80.808
+Qasimpur	73	33	28.607	78.356
+Qasimpur	47	33	28.582	78.914
+Qasimpur	36	33	25.413	81.43
+Qasimpur	74	33	27.12	83.531
+Qasimpur	62	33	26.006	83.503
+Qasimpur	56	33	30.173	77.507
+Qasimpur	47	33	28.11	79.132
+Qasimpur	6	4	25.356	86.247
+Qasimpur	75	4	25.499	86.417
+Qasimpur	76	4	25.701	86.635
+Qasimpur	50	35	25.434	87.888
+Qasimpur	77	26	25.276	87.956
+Qasimpur	48	4	25.157	85.21
+Qatlupur	78	10	28.842	77.032
+Qawalpur	21	4	25.292	85.126
+Qayampur	57	33	28.456	77.556
+Qayampur	34	33	28.573	77.767
+Qayampur	1	33	25.726	83.506
+Qayampur	1	33	25.727	83.699
+Qazi Har	79	33	27.095	80.909
+Qazibari	80	4	25.652	87.601
+Qazigund	81	12	33.589	75.171
+Qazigund	41	12	33.957	74.906
+Qazipura	73	33	28.83	78.77
+Qazipura	73	33	28.889	78.721
+Qazipura	82	34	28.984	78.746
+Qazipura	73	33	28.731	78.987
+Qazipura	83	33	25.643	83.706
+Qazipura	84	27	26.44	74.589
+Qazipura	85	33	25.763	84.156
+Qazipura	86	13	24.803	85.421
+Qaziwala	59	33	29.419	78.104
+Qaziwala	59	33	29.487	78.089
+Qaziwala	47	33	28.526	78.873
+Qabilpura	3	33	25.906	79.371
+Qabulpura	47	33	28.037	79.116
+Qada Bora	87	26	30.931	74.788
+Qadampura	3	33	26.374	79.117
+Qadampura	84	27	26.379	74.888
+Qadarganj	88	33	28.965	79.699
+Qadarwala	89	26	30.952	75.137
+Qadirabad	67	33	28.866	77.599
+Qadirabad	90	33	25.376	83.34
+Qadirabad	19	33	25.513	81.424
+Qadirabad	91	26	31.293	75.421
+Qadirabad	66	34	28.925	78.165
+Qadirabad	92	33	28.321	78.068
+Qadirabad	47	33	28.097	79.299
+Qadirbari	47	33	27.849	79.068
+Qadirganj	18	33	27.789	79.061
+Qadirganj	93	4	24.914	85.593
+Qadirganj	83	33	25.056	83.194
+Qadirganj	94	4	25.289	85.089
+Qadirgarh	95	27	29.579	77.483
+Qadirwala	91	26	30.999	75.129
+Qadirwali	88	33	28.359	79.177
+Qadraganj	17	33	27.418	79.19
+Qaimnagar	96	4	25.587	84.725
+Qaisarmul	41	12	33.939	74.824
+Qasba Lar	64	12	34.257	74.754
+Qasimabad	24	33	28.761	78.169
+Qasimganj	40	18	27.753	79.893
+Qasimganj	97	33	27.062	81.179
+Qazi Chak	85	33	25.209	82.886
+Qazi Chak	98	13	24.388	84.525
+Qazi Chak	21	4	25.395	85.761
+Qazi Chak	48	4	25.3	85.789
+Qazi Chak	21	4	25.233	85.813
+Qazi Chak	99	13	24.862	85.627
+Qazi Chak	99	13	24.834	85.666
+Qazi Chak	8	4	25.081	86.663
+Qazi Chak	9	4	25.405	85.04
+Qazi Chak	48	4	25.135	85.196
+Qazi Chak	93	4	25.289	85.289
+Qazi Chak	48	4	25.422	85.419
+Qazi Chak	48	4	25.289	85.582
+Qazi Chak	21	4	25.479	85.716
+Qazi Chak	8	4	25.3	86.547
+Qazi Kola	71	33	27.247	80.806
+Qaziapura	88	33	28.686	79.264
+Qazibigha	100	13	24.573	84.03
+Qazikhera	47	33	27.968	79.314
+Qazikhera	101	33	28.975	78.532
+Qazikhera	32	33	29.464	77.608
+Qazikheri	102	18	24.143	77.663
+Qazipatti	21	4	25.659	85.355
+Qabar Wala	103	26	30.296	74.369
+Qabulnagar	71	33	27.298	81.032
+Qadarchawk	47	33	28.043	79.116
+Qadir Chak	104	4	26.357	84.185
+Qadirnagar	47	33	28.202	79.073
+Qadre Chak	105	12	32.572	74.933
+Qanungoyan	106	33	25.956	83.565
+Qasba Bala	107	12	33.161	74.246
+Qasba Biru	108	12	34.015	74.593
+Qasba Gaur	1	33	25.742	83.546
+Qasim Chak	62	33	25.953	83.544
+Qasim Chak	21	4	25.6	85.658
+Qazi Behar	79	33	27.764	81.183
+Qazi Bhiti	109	33	25.954	83.149
+Qazi Bigha	93	4	24.824	85.33
+Qazi Bigha	48	4	24.941	85.474
+Qazi Bigha	21	4	25.404	85.189
+Qazi Bigha	21	4	25.43	85.275
+Qazi Bigha	48	4	25.174	85.273
+Qazi Dumra	110	4	25.878	86.031
+Qazi Khera	17	33	27.663	78.593
+Qazi Khera	111	33	26.388	80.812
+Qazi Khera	24	33	26.185	80.793
+Qazi Khera	112	33	26.258	80.306
+Qazi Purwa	27	33	27.144	79.722
+Qazi Sarai	94	4	25.169	85.071
+Qazi Sarai	101	33	28.871	78.504
+Qazichaura	83	33	25.171	82.328
+Qadian Wali	91	26	31.241	75.627
+Qadir Chauk	47	33	27.873	79.083
+Qalandarpur	16	27	27.06	78.887
+Qalondarpur	36	33	25.71	82.737
+Qaneshgudam	113	30	17.803	78.751
+Qasba Jahan	53	33	26.517	79.37
+Qasba Keori	1	33	25.68	83.375
+Qasba Nagum	108	12	33.926	74.793
+Qasba Sohan	114	33	25.709	81.127
+Qasim Bazar	8	4	25.358	86.468
+Qasim Khera	79	33	26.709	80.87
+Qasim Nagla	73	33	28.653	78.925
+Qasim Nagla	73	33	28.611	78.98
+Qaziyakupur	109	33	25.991	83.007
+Qabar Bachha	87	26	30.78	74.821
+Qadirshahpur	1	33	25.791	83.42
+Qamruddinpur	115	33	25.439	82.713
+Qanoongopura	20	33	27.573	81.6
+Qasba Naubug	81	12	33.646	75.376
+Qasimpur Jat	73	33	28.865	78.608
+Qasimpur Meo	101	33	28.963	78.481
+Qazi Mohalla	47	33	28.038	79.129
+Qalandargarhi	34	33	28.205	77.808
+Qamariya Chak	21	4	25.186	84.815
+Qasba Khanpur	53	33	26.443	79.496
+Qasba Pachhim	111	33	26.46	80.765
+Qasimpurkheri	116	33	29.183	77.294
+Qayamuddinpur	19	33	25.51	81.64
+Qazi Rasulpur	5	4	25.514	85.949
+Qazi ka Purwa	49	33	25.907	81.935
+Qazipur Dohji	117	18	25.799	85.331
+Qalandar Khera	24	33	26.149	80.812
+Qamar Ali Chak	36	33	25.64	83.644
+Qamruddinnagar	118	33	28.593	77.681
+Qasba Babarpur	53	33	26.574	79.31
+Qasba Latifpur	49	33	25.872	81.477
+Qasim ji Dhani	119	27	25.162	70.886
+Qasimpur Katra	70	33	25.861	81.177
+Qasimpur Khola	32	33	29.354	77.983
+Qasimpur Nagri	68	33	28.055	78.399
+Qasimpur Tarai	11	33	27.563	79.454
+Qazi Daulatpur	94	4	25.189	85.043
+Qazi Fatu Chak	120	4	25.249	85.75
+Qazipur Gosain	24	33	25.97	81.576
+Qazipur Utraon	36	33	25.448	82.168
+Qazipura Sadat	68	33	28.96	78.422
+Qadirpur Newada	121	18	25.37	81.603
+Qamat Daulatpur	110	4	26.173	87.549
+Qasimpur Nawada	56	33	29.746	77.769
+Qasimpur Nawada	66	34	29.792	77.985
+Qazipur Nawawan	19	33	25.697	81.327
+Qazipur Thathan	48	4	25.753	85.256
+Qaimpur Jokhawas	65	27	28.08	76.765
+Qasba Shinganpur	53	33	26.504	79.322
+Qazipur Makhupur	1	33	25.624	83.586
+Qadirdadpur Sarai	11	33	27.568	79.289
+Qasba Pahalwanpur	109	33	25.828	83.291
+Qasimpur Gadaipur	68	33	28.051	78.263
+Qazipur Basantlal	83	33	25.593	82.623
+Qazipur Farnatnagar	22	33	27.073	80.156
+Qazipur Gulam Jafar	49	33	25.75	81.567
+Qadir Mahajan ka Purwa	122	33	25.378	81.385
+Qamruddinnagar Mandyai	33	33	29.113	77.621
+Qazi Sarai Urf Kankar Sarai	101	33	28.904	78.467
+Qeyampur	85	33	25.945	83.953
+Qila	111	33	26.542	80.489
+Qila	18	33	27.76	79.109
+Qila	17	33	27.572	78.503
+Qila	28	26	31.163	74.759
+Qiampur	116	33	29.019	77.278
+Qiampur	12	26	31.809	74.825
+Qila Mewi	30	33	28.237	77.856
+Qila Jobat	123	18	22.438	74.567
+Qila Larui	124	4	25.698	85.285
+Qilla Bahu	55	12	32.726	74.88
+Qila Hakima	125	26	30.318	75.725
+Qila Lal Singh	13	26	31.88	75.17
+Qila Jiwan Singh	12	26	31.618	74.974
+Qilla Kavi Santokh	28	26	31.47	74.87
+Qobardhan	18	33	27.722	79.093
+Queri	126	14	14.985	74.252
+Quini	45	33	26.695	84.2
+Qumir	108	12	33.956	74.586
+Qutba	46	26	31.034	74.358
+Qutba	46	26	30.579	75.627
+Quarsi	68	33	27.906	78.109
+Quepem	127	8	15.214	74.071
+Querim	128	19	15.717	73.667
+Querim	128	19	15.604	74.073
+Querim	127	8	15.45	74
+Quilur	129	15	11.982	75.602
+Quinal	2	11	31.215	77.407
+Qunain	130	12	32.739	75.333
+Quatpur	9	4	25.617	85.433
+Quibang	131	2	27.58	96.404
+Quisara	132	18	24.681	80.835
+Quitarh	133	34	29.5	80.28
+Qutabou	134	4	25.59	83.971
+Qutbpur	66	34	30.027	77.851
+Qutbpur	66	34	30.007	77.839
+Qutbpur	32	33	29.233	77.52
+Qutbpur	32	33	29.272	77.903
+Qutbpur	135	26	29.122	75.908
+Qutbpur	17	33	27.383	78.351
+Qutbpur	17	33	27.642	78.605
+Qutbpur	16	27	27.016	78.954
+Qutbpur	18	33	27.601	78.791
+Qutbpur	17	33	27.517	78.827
+Qutbpur	68	33	27.86	78.364
+Qutbpur	17	33	27.787	78.492
+Qutbpur	136	33	26.02	79.969
+Qutbpur	69	33	25.064	80.356
+Qutbpur	1	33	25.704	83.349
+Qutbpur	134	4	25.508	83.873
+Qutbpur	62	33	26.105	83.712
+Qutbpur	71	33	27.433	80.971
+Qutbpur	92	33	28.321	78.056
+Qutbpur	75	4	25.507	86.449
+Quazipur	137	7	25.265	80.696
+Qubulpur	38	10	28.76	76.576
+Queralla	138	34	29.643	79.432
+Queralli	139	34	29.839	79.776
+Qumaresh	140	35	22.608	88.349
+Qumaspur	78	10	28.96	77.08
+Qutabpur	141	10	29.129	75.784
+Qutabpur	3	33	26.302	79.333
+Qutabpur	142	34	28.059	76.767
+Qutabpur	56	33	30.029	77.328
+Qutabpur	66	34	29.943	77.995
+Qutabpur	32	33	29.616	77.776
+Qutabpur	143	10	29.765	76.344
+Qutabpur	34	33	28.401	77.959
+Qutabpur	53	33	26.627	79.502
+Qutabpur	111	33	26.284	80.867
+Qutabpur	144	33	27.093	82.421
+Qutabpur	109	33	25.924	83.22
+Qutabpur	61	33	26.729	79.195
+Qutabpur	53	33	26.97	79.351
+Qutabpur	27	33	26.964	79.452
+Qutbapur	22	33	27.195	80.081
+Qutbewal	91	26	31.361	75.201
+Qutbpura	145	33	27.038	78.538
+Qutbpura	87	26	31.092	74.989
+Quthewal	146	26	31.152	75.113
+Qutlupur	36	33	25.685	82.721
+Qutlupur	97	33	27.095	81.192
+Qutlupur	48	4	25.181	85.309
+Qutlupur	48	4	25.115	85.365
+Qutlupur	22	33	27.189	80.042
+Qutubpur	56	33	30.028	77.327
+Qutubpur	35	33	25.602	82.092
+Qutubpur	36	33	25.773	82.316
+Qutubpur	36	33	25.665	82.588
+Qutubpur	74	33	25.867	83.43
+Qutubpur	88	33	28.728	79.348
+Qutubpur	9	4	25.438	85.024
+Qutubpur	124	4	25.79	85.372
+Qutubpur	147	4	25.951	85.482
+Qutubpur	86	13	25.876	85.486
+Qutubpur	48	4	25.749	85.26
+Qutubpur	21	4	25.61	85.369
+Qutubpur	124	4	25.623	85.505
+Qutubpur	148	4	25.401	87.619
+Quasampur	149	34	30.481	77.78
+Quazigund	81	12	33.624	75.146
+Qubadganj	17	33	27.745	78.579
+Quelaudem	128	19	15.627	74.094
+Quelossim	127	8	15.392	73.941
+Quila Nau	150	26	30.645	74.737
+Quilmuqam	31	12	34.444	74.572
+Quiti GDS	133	34	29.991	80.143
+Qurbanpur	60	33	28.003	78.786
+Qurbanpur	22	33	27.028	80.062
+Qutab Jot	151	33	27.076	82.496
+Qutabgarh	32	33	29.56	77.441
+Qutbewala	87	26	30.982	74.628
+Qutbewala	152	26	31.349	75.182
+Qutbnagar	71	33	27.49	80.449
+Qutbpatti	35	33	25.563	82.071
+Qutubpura	21	4	25.293	85.55
+Qutubsher	56	33	29.965	77.54
+Quadirabad	153	33	27.196	82.648
+Queelakhal	154	34	30.408	78.932
+Quraishpur	47	33	28.27	78.672
+Qureshipur	155	18	28.343	77.251
+Qutab Chak	156	4	24.924	85.844
+Qutabagarh	157	7	28.8	77.038
+Qutb Nizam	55	12	32.582	74.785
+Qutubnagar	71	33	27.429	80.53
+Quilashapur	158	30	14.896	76.589
+Qusba Kotla	4	11	31.881	76.999
+Qutab Kheri	56	33	29.733	77.262
+Qutub Vihar	137	7	28.575	77.628
+Qutb Alampur	19	33	25.468	81.434
+Qutbuddinpur	42	33	27.468	79.389
+Qutbullahpur	159	30	17.378	78.641
+Quilandibazar	160	15	11.438	75.695
+Quini Goshain	45	33	26.696	84.195
+Qusba Ichauli	97	33	26.979	81.59
+Qutabpur Garhi	59	33	29.272	78.182
+Qutabpur Maula	65	27	28.197	76.605
+Qutbpur Kisani	56	33	30.017	77.648
+Quini Bariarpur	45	33	26.683	84.207
+Qutubpur Bangri	21	4	25.968	85.096
+Quila Kumbhalgarh	161	27	25.135	73.574
+Quafala Bazar Tonk	162	27	26.176	75.788
+Quarry Honnenhalli	163	14	13.457	77.737
+Qyampur	97	33	26.87	81.677

@@ -8,8 +8,8 @@ X.more = {
     ['vastu', '🧭', ['Vastu Disha (compass)', 'वास्तु दिशा (कम्पास)'], ['Find directions in your home and get Vastu advice', 'घर की दिशा जानें और वास्तु सलाह पाएँ'], false],
     ['panchang', '📅', ['Panchang', 'पंचांग'], ['Tithi, nakshatra, Rahu Kaal and vrat days', 'तिथि, नक्षत्र, राहु काल और व्रत'], false],
     ['family', '👨‍👩‍👧', ['Family & account', 'परिवार और खाता'], ['Add family members, text size, login', 'परिवार जोड़ें, अक्षर का आकार, लॉगिन'], false],
-    ['aiask', '🤖', ['AI Jyotishi', 'AI ज्योतिषी'], ['Ask anything, answered from your Kundli', 'कुछ भी पूछें, कुंडली से जवाब'], true],
-    ['report', '📜', ['AI Life Report', 'AI जीवन रिपोर्ट'], ['Your complete personal life report', 'आपकी पूरी निजी जीवन रिपोर्ट'], true],
+    ['aiask', '📜', ['Jyotish Sahayak', 'ज्योतिष सहायक'], ['Ask anything, answered from your Kundli', 'कुछ भी पूछें, कुंडली से जवाब'], true],
+    ['report', '📜', ['Life Report', 'जीवन रिपोर्ट'], ['Your complete personal life report', 'आपकी पूरी निजी जीवन रिपोर्ट'], true],
     ['muhurat', '🗓️', ['Shubh Muhurat Finder', 'शुभ मुहूर्त खोजक'], ['Best dates for marriage, griha pravesh, vehicle…', 'विवाह, गृह प्रवेश, वाहन आदि की शुभ तिथियाँ'], true],
     ['voice', '🎙️', ['Daily voice guidance', 'रोज़ का आवाज़ संदेश'], ['Your personal morning message, read aloud', 'आपका निजी सुबह का संदेश, बोलकर'], true],
     ['premium', '👑', ['Premium', 'प्रीमियम'], ['See all Premium features', 'सभी प्रीमियम सुविधाएँ देखें'], false]
@@ -121,15 +121,15 @@ X.m = {
 
 /* ---------- AI Jyotishi, Life Report, Voice ---------- */
 X.ai = {
-  title: ['AI Jyotishi', 'AI ज्योतिषी'], sub: ['Ask any question. The answer is written from {n}\'s Kundli and current dasha.', 'कोई भी सवाल पूछें। जवाब {n} की कुंडली और वर्तमान दशा से लिखा जाएगा।'],
+  title: ['Jyotish Sahayak', 'ज्योतिष सहायक'], sub: ['Ask any question. The answer is written from {n}\'s Kundli and current dasha.', 'कोई भी सवाल पूछें। जवाब {n} की कुंडली और वर्तमान दशा से लिखा जाएगा।'],
   ph: ['Type your question…', 'अपना सवाल लिखें…'], ask: ['Ask', 'पूछें'], thinking: ['Studying the Kundli…', 'कुंडली देख रहे हैं…'],
   sugg: [['When will my career improve?', 'मेरा करियर कब सुधरेगा?'], ['Is this a good year for buying a house?', 'क्या यह साल घर ख़रीदने के लिए अच्छा है?'], ['How will my health be this year?', 'इस साल मेरा स्वास्थ्य कैसा रहेगा?'], ['When is a good time for my child\'s marriage?', 'मेरे बच्चे की शादी का अच्छा समय कब है?'], ['Which remedy should I do for Shani?', 'शनि के लिए कौन सा उपाय करूँ?']],
-  limit: ['You have used today\'s AI questions. Please ask again tomorrow.', 'आज के AI सवाल पूरे हो गए। कृपया कल फिर पूछें।'],
+  limit: ['You have used today\'s questions. Please ask again tomorrow.', 'आज के सवाल पूरे हो गए। कृपया कल फिर पूछें।'],
   fail: ['Could not get an answer right now. Please try again.', 'अभी जवाब नहीं मिल सका। कृपया फिर कोशिश करें।'],
-  clear: ['Clear chat', 'बातचीत मिटाएँ'], note: ['AI guidance from your Kundli. For health, legal or money decisions, consult an expert.', 'कुंडली पर आधारित AI मार्गदर्शन। स्वास्थ्य, क़ानूनी या पैसे के फ़ैसलों के लिए विशेषज्ञ से सलाह लें।']
+  clear: ['Clear chat', 'बातचीत मिटाएँ'], note: ['Guidance from your Kundli\'s calculations, explained in simple words with the help of a computer program. For health, legal or money decisions, consult an expert.', 'आपकी कुंडली की गणना पर आधारित मार्गदर्शन, जिसे कंप्यूटर प्रोग्राम की मदद से सरल भाषा में लिखा गया है। स्वास्थ्य, क़ानूनी या पैसे के फ़ैसलों के लिए विशेषज्ञ से सलाह लें।']
 };
 X.rep = {
-  title: ['AI Life Report', 'AI जीवन रिपोर्ट'], sub: ['A complete personal report for {n}: personality, career, money, marriage, health, family, spiritual path and the next 5 years.', '{n} के लिए पूरी निजी रिपोर्ट: स्वभाव, करियर, धन, विवाह, स्वास्थ्य, परिवार, आध्यात्मिक मार्ग और अगले 5 साल।'],
+  title: ['Life Report', 'जीवन रिपोर्ट'], sub: ['A complete personal report for {n}: personality, career, money, marriage, health, family, spiritual path and the next 5 years.', '{n} के लिए पूरी निजी रिपोर्ट: स्वभाव, करियर, धन, विवाह, स्वास्थ्य, परिवार, आध्यात्मिक मार्ग और अगले 5 साल।'],
   make: ['Create my Life Report', 'मेरी जीवन रिपोर्ट बनाएँ'], again: ['Create a new report', 'नई रिपोर्ट बनाएँ'], wait: ['Writing your report… this takes about a minute.', 'आपकी रिपोर्ट लिखी जा रही है… लगभग एक मिनट लगेगा।'],
   made: ['Created on', 'बनाई गई'], pdf: ['Download PDF (with Kundli)', 'PDF डाउनलोड करें (कुंडली के साथ)'], years: ['The next 5 years', 'अगले 5 साल'], remedies: ['Remedies for you', 'आपके लिए उपाय'],
   fail: ['Could not create the report right now. Please try again.', 'अभी रिपोर्ट नहीं बन सकी। कृपया फिर कोशिश करें।'], monthly: ['One new report per person each month.', 'हर व्यक्ति के लिए हर महीने एक नई रिपोर्ट।']
@@ -141,8 +141,8 @@ X.voice = {
 };
 X.prem = {
   nowAdd: [
-    ['🤖', ['AI Jyotishi', 'AI ज्योतिषी'], ['Ask anything and get a detailed answer from your chart (20 a day)', 'कुछ भी पूछें, अपनी कुंडली से विस्तृत जवाब पाएँ (रोज़ 20)']],
-    ['📜', ['AI Life Report', 'AI जीवन रिपोर्ट'], ['A complete personal life report, also in the PDF', 'पूरी निजी जीवन रिपोर्ट, PDF में भी']],
+    ['📜', ['Jyotish Sahayak', 'ज्योतिष सहायक'], ['Ask anything and get a detailed answer from your chart (20 a day)', 'कुछ भी पूछें, अपनी कुंडली से विस्तृत जवाब पाएँ (रोज़ 20)']],
+    ['📜', ['Life Report', 'जीवन रिपोर्ट'], ['A complete personal life report, also in the PDF', 'पूरी निजी जीवन रिपोर्ट, PDF में भी']],
     ['🗓️', ['Shubh Muhurat Finder', 'शुभ मुहूर्त खोजक'], ['Best dates for marriage, griha pravesh, vehicle and more', 'विवाह, गृह प्रवेश, वाहन आदि के लिए शुभ तिथियाँ']],
     ['🎙️', ['Daily voice guidance', 'रोज़ का आवाज़ संदेश'], ['A personal morning message in your language', 'आपकी भाषा में रोज़ सुबह निजी संदेश']]
   ],

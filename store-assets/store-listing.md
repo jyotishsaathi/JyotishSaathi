@@ -3,8 +3,9 @@
 **App name (max 30 chars):** Jyotish Saathi: Kundli & Rashifal
 **Category:** Lifestyle
 **Tags:** Astrology, Horoscope
-**Contact email:** [YOUR EMAIL]
-**Privacy policy URL:** https://YOUR-GITHUB-USERNAME.github.io/jyotish-saathi/privacy-policy.html (see START-HERE.md, Step 3)
+**Contact email:** support@jyotishsaathi.com
+**Website:** https://jyotishsaathi.com
+**Privacy policy URL:** https://jyotishsaathi.com/privacy-policy.html
 
 ## Short description (max 80 chars)
 EN: Kundli, daily horoscope, Panchang, Kundli Milan & palm reading in Hindi.
@@ -59,11 +60,15 @@ For spiritual guidance only. Not a substitute for medical, legal or financial ad
   - **Photos and videos → Photos**: collected, optional, **processed ephemerally** (tick this box). Purpose: App functionality (AI palm reading). They are not stored. If you don't switch on the AI palm reading, answer *not collected*.
   - **Location → Approximate location**: answer **Not collected**. The app reads location on the phone only to build a Google Maps link to nearby temples; it is never sent to your server. (Google's form treats on-device-only use as not collected.)
   - **App info → Other user-generated content (birth details)**: only if the AI features are on. Collected, optional, processed ephemerally for the AI palm reading and AI marriage match. Purpose: App functionality.
+  - **Financial info → Purchase history**: collected, required for Premium. Purpose: App functionality (to turn on what was bought). Card/UPI details are handled by Google Play or Razorpay, never by the app.
+  - **App activity → App interactions**: collected. Purpose: Analytics. These are anonymous counts of which screens are opened, with no name or number.
+  - **App info and performance → Crash logs**: collected. Purpose: App functionality (fixing errors). No name or number is attached.
+  - **Audio → Voice or sound recordings**: answer **Not collected**. "Ask by voice" uses the phone's own speech recognition; the app only receives the typed words, which stay on the phone (or go to the AI Jyotishi as a question if the user is Premium, covered under user-generated content).
 - Is data encrypted in transit? **Yes** (HTTPS)
-- Can users request data deletion? **Yes**: by email (as stated in the privacy policy)
+- Can users request data deletion? **Yes**. Delete-account link (Play asks for it): `https://jyotishsaathi.com/delete-account.html`
 - If you keep `apiBase` empty (no login server), the number stays on the phone. You can then answer "No data collected", but only if you also do not use the "Say Hi on WhatsApp" button for marketing lists.
 
 ## Graphics included in this folder
 - icon-512.png – app icon (512 x 512)
 - feature-graphic-1024x500.png – feature graphic
-- screen-0 … screen-6 – phone screenshots (1080 x 1920). Upload 4 to 8.
+- screen-1 … screen-8 – framed phone screenshots with headlines (1080 x 1920). Upload all 8.

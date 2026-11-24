@@ -1,0 +1,7 @@
+Suryapet|South Goa|Vadodara|Sitapur|Zunheboto
+X Roads Kodad	0	30	16.995	79.972
+Xelvona	1	8	15.267	74.083
+Xelopa-buzruco	2	9	15.593	74.162
+Xi Bn PAC	3	33	27.547	80.683
+Xuivi	4	23	25.888	94.45
+Xukhepu	4	23	25.983	94.451

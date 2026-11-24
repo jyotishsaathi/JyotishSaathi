@@ -167,14 +167,14 @@ const T = {
   palmTitle: ['Palm reading', 'हस्तरेखा'], palmIntro: ['Hold your right palm open in good light. Answer 5 simple questions by looking at your hand.', 'अपनी दाहिनी हथेली अच्छी रोशनी में खोलें। हाथ देखकर 5 आसान सवालों के जवाब दें।'],
   addPhoto: ['Add a photo of your palm (optional)', 'हथेली की फ़ोटो जोड़ें (वैकल्पिक)'], startPalm: ['Start palm reading', 'हस्तरेखा शुरू करें'],
   step: ['Step', 'चरण'], of: ['of', 'में से'], palmResult: ['Your palm reading', 'आपकी हस्तरेखा'], again: ['Read again', 'फिर से पढ़ें'],
-  aiPalm: ['Automatic AI palm scan is coming with Premium.', 'अपने-आप AI हस्तरेखा स्कैन प्रीमियम में जल्द आ रहा है।'],
+  aiPalm: ['Photo palm reading is coming with Premium.', 'फ़ोटो से हस्तरेखा प्रीमियम में जल्द आ रहा है।'],
   panchang: ['Panchang', 'पंचांग'], tithi: ['Tithi', 'तिथि'], yoga: ['Yoga', 'योग'], karana: ['Karana', 'करण'], vaar: ['Day', 'वार'], paksha: ['Paksha', 'पक्ष'],
   shukla: ['Shukla Paksha', 'शुक्ल पक्ष'], krishna: ['Krishna Paksha', 'कृष्ण पक्ष'], moonSign: ['Moon sign', 'चंद्र राशि'], gulika: ['Gulika Kaal', 'गुलिक काल'], yama: ['Yamaganda', 'यमगंड'],
   upcoming: ['Upcoming vrat & special days', 'आने वाले व्रत और विशेष दिन'], city: ['City', 'शहर'], prev: ['Previous day', 'पिछला दिन'], next: ['Next day', 'अगला दिन'], todayBtn: ['Today', 'आज'],
   family: ['Family members', 'परिवार के सदस्य'], addMember: ['Add family member', 'सदस्य जोड़ें'], active: ['Showing', 'चालू'], show: ['Show', 'देखें'], edit: ['Edit', 'बदलें'], del: ['Delete', 'हटाएँ'],
   settings: ['Settings', 'सेटिंग्स'], language: ['Language', 'भाषा'], textSize: ['Text size', 'अक्षरों का आकार'],
   premium: ['Premium', 'प्रीमियम'], comingSoon: ['Coming soon', 'जल्द आ रहा है'], notifyMe: ['Notify me', 'मुझे बताएँ'], notified: ['We will let you know', 'हम आपको सूचित करेंगे'],
-  premiumList: [['Detailed yearly prediction report', 'विस्तृत वार्षिक भविष्यफल रिपोर्ट'], ['Talk to an expert astrologer', 'विशेषज्ञ ज्योतिषी से बात करें'], ['Automatic AI palm scan', 'अपने-आप AI हस्तरेखा स्कैन'], ['No ads, unlimited family Kundlis', 'कोई विज्ञापन नहीं, असीमित पारिवारिक कुंडलियाँ']],
+  premiumList: [['Detailed yearly prediction report', 'विस्तृत वार्षिक भविष्यफल रिपोर्ट'], ['Talk to an expert astrologer', 'विशेषज्ञ ज्योतिषी से बात करें'], ['Photo palm reading', 'फ़ोटो से हस्तरेखा'], ['No ads, unlimited family Kundlis', 'कोई विज्ञापन नहीं, असीमित पारिवारिक कुंडलियाँ']],
   formTitle: ['Birth details', 'जन्म विवरण'], name: ['Full name', 'पूरा नाम'], gender: ['Gender', 'लिंग'], male: ['Male', 'पुरुष'], female: ['Female', 'स्त्री'], relation: ['Relation', 'संबंध'],
   dob: ['Date of birth', 'जन्म तिथि'], tob: ['Time of birth', 'जन्म समय'], noTime: ['I don\'t know my exact birth time', 'मुझे सही जन्म समय नहीं पता'],
   noTimeNote: ['We will use 12:00 noon. Lagna may not be exact.', 'हम दोपहर 12:00 मानेंगे। लग्न सटीक न हो सकता है।'],
@@ -253,7 +253,7 @@ C.prem = {
   title: ['Jyotish Saathi Premium', 'ज्योतिष साथी प्रीमियम'],
   sub: ['Deeper guidance for you and your family', 'आपके और आपके परिवार के लिए गहरा मार्गदर्शन'],
   nowTitle: ['Included in Premium', 'प्रीमियम में शामिल'],
-  aiTitle: ['AI features – coming soon', 'AI सुविधाएँ – जल्द आ रही हैं'],
+  aiTitle: ['New features – coming soon', 'नई सुविधाएँ – जल्द आ रही हैं'],
   aiSub: ['These will unlock automatically for Premium members as they launch.', 'ये सुविधाएँ शुरू होते ही प्रीमियम सदस्यों के लिए अपने-आप खुल जाएँगी।'],
   now: [
     ['📄', ['Download your Kundli (PDF)', 'कुंडली डाउनलोड करें (PDF)'], ['A complete, beautiful report to save, print or share on WhatsApp', 'सहेजने, प्रिंट करने या WhatsApp पर भेजने के लिए पूरी सुंदर रिपोर्ट']],
@@ -262,10 +262,10 @@ C.prem = {
     ['📆', ['Year-ahead forecast', 'आने वाले साल का भविष्यफल'], ['Month-by-month Guru and Shani transit effects', 'महीने-दर-महीने गुरु और शनि गोचर का प्रभाव']]
   ],
   ai: [
-    ['🤖', ['AI Jyotishi', 'AI ज्योतिषी'], ['Ask anything and get a detailed answer from your chart', 'कुछ भी पूछें, अपनी कुंडली से विस्तृत जवाब पाएँ']],
-    ['✋', ['AI Palm Scan', 'AI हस्तरेखा स्कैन'], ['Reads your palm lines automatically from a photo', 'फ़ोटो से अपने-आप आपकी हस्तरेखा पढ़ेगा']],
-    ['📜', ['AI Life Report', 'AI जीवन रिपोर्ट'], ['A personal 20-page report written for you', 'आपके लिए लिखी गई 20 पेज की निजी रिपोर्ट']],
-    ['🗓️', ['AI Muhurat Finder', 'AI मुहूर्त खोजक'], ['Best dates for marriage, griha pravesh, vehicle and more', 'विवाह, गृह प्रवेश, वाहन आदि के लिए शुभ तिथियाँ']],
+    ['📜', ['Jyotish Sahayak', 'ज्योतिष सहायक'], ['Ask anything and get a detailed answer from your chart', 'कुछ भी पूछें, अपनी कुंडली से विस्तृत जवाब पाएँ']],
+    ['✋', ['Photo Palm Reading', 'फ़ोटो से हस्तरेखा'], ['Reads your palm lines automatically from a photo', 'फ़ोटो से अपने-आप आपकी हस्तरेखा पढ़ेगा']],
+    ['📜', ['Life Report', 'जीवन रिपोर्ट'], ['A personal 20-page report written for you', 'आपके लिए लिखी गई 20 पेज की निजी रिपोर्ट']],
+    ['🗓️', ['Muhurat Finder', 'मुहूर्त खोजक'], ['Best dates for marriage, griha pravesh, vehicle and more', 'विवाह, गृह प्रवेश, वाहन आदि के लिए शुभ तिथियाँ']],
     ['🎙️', ['Daily voice guidance', 'रोज़ का आवाज़ संदेश'], ['A personal morning message in your language', 'आपकी भाषा में रोज़ सुबह निजी संदेश']]
   ],
   monthly: ['Monthly', 'मासिक'], yearly: ['Yearly', 'वार्षिक'], best: ['Best value', 'सबसे फ़ायदेमंद'], priceSoon: ['Price coming soon', 'मूल्य जल्द'],
@@ -315,13 +315,13 @@ C.chat = {
   placeholder: ['Type your question…', 'अपना सवाल लिखें…'],
   hello: ['Namaste {n} 🙏 I am Saathi. Ask me about your day, career, money, marriage, health, dasha, gemstone, Rahu Kaal or anything from your Kundli.', 'नमस्ते {n} 🙏 मैं साथी हूँ। अपने दिन, करियर, धन, विवाह, सेहत, दशा, रत्न, राहु काल या कुंडली से जुड़ा कुछ भी पूछें।'],
   chips: [['Today', 'आज कैसा रहेगा?'], ['Career', 'मेरा करियर'], ['Marriage', 'विवाह कब होगा?'], ['Money', 'धन योग'], ['Health', 'मेरी सेहत'], ['Lucky colour', 'शुभ रंग'], ['Gemstone', 'मेरा रत्न'], ['Dasha', 'मेरी दशा'], ['Sade Sati', 'साढ़े साती'], ['Rahu Kaal', 'राहु काल'], ['Remedies', 'उपाय'], ['Next Ekadashi', 'अगली एकादशी']],
-  fallback: ['I can answer questions about your day, career, money, marriage, health, family, children, dasha, gemstone, mantra, Sade Sati, Rahu Kaal, Panchang and vrat days. Try one of the buttons below. For any question in your own words, the AI Jyotishi is coming soon with Premium.', 'मैं आपके दिन, करियर, धन, विवाह, सेहत, परिवार, संतान, दशा, रत्न, मंत्र, साढ़े साती, राहु काल, पंचांग और व्रत के बारे में बता सकता हूँ। नीचे के बटन आज़माएँ। अपने शब्दों में कोई भी सवाल पूछने के लिए AI ज्योतिषी जल्द ही प्रीमियम में आ रहा है।'],
+  fallback: ['I can answer questions about your day, career, money, marriage, health, family, children, dasha, gemstone, mantra, Sade Sati, Rahu Kaal, Panchang and vrat days. Try one of the buttons below. For any question in your own words, the Jyotish Sahayak is coming soon with Premium.', 'मैं आपके दिन, करियर, धन, विवाह, सेहत, परिवार, संतान, दशा, रत्न, मंत्र, साढ़े साती, राहु काल, पंचांग और व्रत के बारे में बता सकता हूँ। नीचे के बटन आज़माएँ। अपने शब्दों में कोई भी सवाल पूछने के लिए ज्योतिष सहायक जल्द ही प्रीमियम में आ रहा है।'],
   thanks: ['You are welcome 🙏 Stay blessed. Ask me anything else anytime.', 'आपका स्वागत है 🙏 सदा प्रसन्न रहें। कभी भी कुछ और पूछें।'],
   decision: ['For any important decision, choose a day rated 4★ or 5★ and avoid Rahu Kaal. Your stars for {a} are {s}/5, and your best period for it is {p}.', 'किसी भी ज़रूरी फ़ैसले के लिए 4★ या 5★ वाला दिन चुनें और राहु काल से बचें। {a} के लिए आपके सितारे {s}/5 हैं, और इसका सबसे शुभ समय {p} है।'],
   noPeriod: ['not in the next few years; steady effort is the key', 'अगले कुछ वर्षों में विशेष नहीं, लगातार प्रयास ही कुंजी है'],
   forWhom: ['(Answers are for {n}. Switch person in Family.)', '({n} के लिए जवाब। व्यक्ति बदलने के लिए परिवार में जाएँ।)'],
   openKundli: ['Open Kundli Milan', 'कुंडली मिलान खोलें'], openPalm: ['Open palm reading', 'हस्तरेखा खोलें'],
-  aiSoon: ['🤖 AI Jyotishi (Premium) will soon answer any question in detail.', '🤖 AI ज्योतिषी (प्रीमियम) जल्द ही हर सवाल का विस्तार से जवाब देगा।']
+  aiSoon: ['📜 Jyotish Sahayak (Premium) will soon answer any question in detail.', '📜 ज्योतिष सहायक (प्रीमियम) जल्द ही हर सवाल का विस्तार से जवाब देगा।']
 };
 C.prem.liveCam = ['Use live camera (computer webcam)', 'लाइव कैमरा इस्तेमाल करें (कंप्यूटर वेबकैम)'];
 
@@ -347,14 +347,14 @@ C.login = {
 C.login.sendFail = ['Could not send the code on WhatsApp. Please check that this number uses WhatsApp.', 'WhatsApp पर कोड नहीं भेजा जा सका। कृपया जाँचें कि इस नंबर पर WhatsApp चलता है।'];
 
 C.pa = {
-  title: ['AI Palm Reading', 'AI हस्तरेखा'], sub: ['Photograph both hands. AI reads every line and combines it with your Kundli.', 'दोनों हाथों की फ़ोटो लें। AI हर रेखा पढ़कर आपकी कुंडली के साथ मिलाकर फल बताएगा।'],
+  title: ['Hastrekha Reading', 'हस्तरेखा विश्लेषण'], sub: ['Photograph both hands. Every line, mount and the hand shape is read by the rules of Samudrik Shastra and combined with your Kundli.', 'दोनों हाथों की फ़ोटो लें। सामुद्रिक शास्त्र के नियमों से हर रेखा, पर्वत और हाथ का आकार पढ़कर आपकी कुंडली के साथ मिलाकर फल बताएगा।'],
   left: ['Left hand', 'बायाँ हाथ'], right: ['Right hand', 'दायाँ हाथ'],
   leftMeans: ['What you were born with', 'जन्म से मिली क्षमता'], rightMeans: ['What you have made of life', 'आपने जीवन में क्या बनाया'],
   tipsTitle: ['For a good reading', 'अच्छी रीडिंग के लिए'],
   tips: [['Open your palm fully, fingers slightly apart', 'हथेली पूरी खोलें, उंगलियाँ थोड़ी अलग रखें'], ['Use bright daylight, no shadow on the palm', 'तेज़ रोशनी में फ़ोटो लें, हथेली पर छाया न हो'], ['Fill the photo with the palm and fingers', 'फ़ोटो में पूरी हथेली और उंगलियाँ आएँ'], ['Keep the phone straight above the hand', 'फ़ोन को हाथ के ठीक ऊपर सीधा रखें']],
   take: ['Camera', 'कैमरा'], gallery: ['Gallery', 'गैलरी'], retake: ['Retake', 'दोबारा लें'], ready: ['Ready', 'तैयार'],
   analyse: ['Read my palms', 'मेरी हस्तरेखा पढ़ें'], needBoth: ['Add photos of both hands to continue', 'आगे बढ़ने के लिए दोनों हाथों की फ़ोटो जोड़ें'],
-  freeNote: ['Your first AI palm reading is free. After that it is part of Premium.', 'आपकी पहली AI हस्तरेखा मुफ़्त है। उसके बाद यह प्रीमियम में शामिल है।'],
+  freeNote: ['Your first detailed palm reading is free. After that it is part of Premium.', 'आपकी पहली विस्तृत हस्तरेखा मुफ़्त है। उसके बाद यह प्रीमियम में शामिल है।'],
   quick: ['Quick reading without photos', 'बिना फ़ोटो के झटपट हस्तरेखा'],
   scanning: [['Studying the shape of your hands…', 'आपके हाथों का आकार देख रहे हैं…'], ['Reading your life line…', 'जीवन रेखा पढ़ रहे हैं…'], ['Reading your head and heart lines…', 'मस्तिष्क और हृदय रेखा पढ़ रहे हैं…'], ['Following your fate and sun lines…', 'भाग्य और सूर्य रेखा देख रहे हैं…'], ['Checking the mounts and special marks…', 'पर्वत और विशेष चिह्न देख रहे हैं…'], ['Matching your palm with your Kundli…', 'हस्तरेखा को कुंडली से मिला रहे हैं…'], ['Writing your detailed reading…', 'आपका विस्तृत फल लिख रहे हैं…']],
   wait: ['This takes about a minute. Please keep the app open.', 'इसमें लगभग एक मिनट लगेगा। कृपया ऐप खुला रखें।'],
@@ -367,14 +367,14 @@ C.pa = {
   advice: ['Advice for you', 'आपके लिए सलाह'], remedies: ['Remedies', 'उपाय'],
   newReading: ['New palm reading', 'नई हस्तरेखा पढ़ें'], readOn: ['Reading from', 'रीडिंग की तारीख़'],
   share: ['Share on WhatsApp', 'WhatsApp पर भेजें'], disclaimer: ['Palmistry is a traditional art for guidance. For health, money or legal matters, consult a professional.', 'हस्तरेखा मार्गदर्शन की पारंपरिक विद्या है। स्वास्थ्य, धन या क़ानूनी मामलों के लिए विशेषज्ञ से सलाह लें।'],
-  errNoAI: ['AI palm reading is not switched on in this version yet. Please use the quick reading for now.', 'इस संस्करण में AI हस्तरेखा अभी चालू नहीं है। अभी के लिए झटपट हस्तरेखा देखें।'],
+  errNoAI: ['Detailed palm reading is not switched on in this version yet. Please use the quick reading for now.', 'इस संस्करण में विस्तृत हस्तरेखा अभी चालू नहीं है। अभी के लिए झटपट हस्तरेखा देखें।'],
   errFail: ['Could not read the palms right now. Please check your internet and try again.', 'अभी हस्तरेखा नहीं पढ़ी जा सकी। इंटरनेट जाँचकर फिर कोशिश करें।'],
   errBusy: ['Too many readings right now. Please try again in a little while.', 'अभी बहुत ज़्यादा रीडिंग चल रही हैं। थोड़ी देर बाद फिर कोशिश करें।'],
   badPhoto: ['Please retake this photo', 'कृपया यह फ़ोटो दोबारा लें'],
   lineIcons: { life: '💗', head: '🧠', heart: '❤️', fate: '🛤️', sun: '☀️', marriage: '💍', health: '🌿', other: '✨' }
 };
 // AI Palm Scan is now available in Premium
-C.prem.now.splice(1, 0, ['✋', ['AI Palm Reading (both hands)', 'AI हस्तरेखा (दोनों हाथ)'], ['Every line of both hands read by AI and combined with your Kundli', 'दोनों हाथों की हर रेखा AI से पढ़ी जाती है और कुंडली से मिलाई जाती है']]);
+C.prem.now.splice(1, 0, ['✋', ['Detailed Palm Reading (both hands)', 'विस्तृत हस्तरेखा (दोनों हाथ)'], ['Every line of both hands read by Samudrik Shastra and combined with your Kundli', 'दोनों हाथों की हर रेखा सामुद्रिक शास्त्र से पढ़ी जाती है और कुंडली से मिलाई जाती है']]);
 C.prem.ai = C.prem.ai.filter(x => x[0] !== '✋');
 C.login.waBtn = ['Continue with WhatsApp', 'WhatsApp से आगे बढ़ें'];
 C.login.waSub = ['Enter your name. You will verify your number with one WhatsApp message – no OTP needed.', 'अपना नाम लिखें। एक WhatsApp संदेश से आपका नंबर सत्यापित हो जाएगा – कोई OTP नहीं।'];
@@ -385,8 +385,8 @@ C.login.waWaiting = ['Waiting for your message', 'आपके संदेश �
 C.login.waCode = ['Your code', 'आपका कोड'];
 C.login.waAgain = ['Start again', 'फिर से शुरू करें'];
 C.login.waDemo = ['Preview: you will be logged in 3 seconds after tapping the button', 'प्रीव्यू: बटन दबाने के 3 सेकंड बाद आप लॉगिन हो जाएँगे'];
-C.pa.freeLeft = ['{n} free AI palm readings left. After that, Premium.', '{n} मुफ़्त AI हस्तरेखा बाकी हैं। उसके बाद प्रीमियम।'];
-C.pa.errLogin = ['Please log in with WhatsApp to use the AI palm reading.', 'AI हस्तरेखा के लिए कृपया WhatsApp से लॉगिन करें।'];
+C.pa.freeLeft = ['{n} free detailed palm readings left. After that, Premium.', '{n} मुफ़्त विस्तृत हस्तरेखा बाकी हैं। उसके बाद प्रीमियम।'];
+C.pa.errLogin = ['Please log in with WhatsApp to use the detailed palm reading.', 'विस्तृत हस्तरेखा के लिए कृपया WhatsApp से लॉगिन करें।'];
 C.prem.perMonth = ['/month', '/महीना'];
 C.prem.perYear = ['/year', '/साल'];
 C.prem.save = ['Save {p}%', '{p}% बचत'];
@@ -400,7 +400,7 @@ C.acc = {
   mCancelJup: ['Mars is with or aspected by Jupiter, which cancels the dosh.', 'मंगल पर गुरु की दृष्टि या युति है, जिससे दोष शांत हो जाता है।'],
   mCancelSign: ['Mars is in a sign that cancels the dosh (its own, exalted, or an exception sign for that house).', 'मंगल ऐसी राशि में है जिससे दोष शांत होता है (स्वराशि, उच्च, या उस भाव का अपवाद)।'],
   tableKey: ['R = retrograde · C = combust (too close to the Sun) · ↑ exalted · ↓ debilitated · ★ vargottama (same sign in D9, extra strong)', 'व = वक्री · अ = अस्त (सूर्य के बहुत पास) · ↑ उच्च · ↓ नीच · ★ वर्गोत्तम (D9 में भी वही राशि, विशेष बलवान)'],
-  placeSearch: ['Type your town or city', 'अपना शहर या कस्बा लिखें'], placeNone: ['No match. Try another spelling, or enter the place by hand.', 'कोई मेल नहीं। दूसरी स्पेलिंग आज़माएँ या स्थान ख़ुद भरें।'],
+  placeSearch: ['Type your town, city or area', 'अपना शहर, कस्बा या इलाका लिखें'], placeNone: ['No match. Try another spelling, or enter the place by hand.', 'कोई मेल नहीं। दूसरी स्पेलिंग आज़माएँ या स्थान ख़ुद भरें।'],
   placeManual: ['Place not in the list? Enter it by hand', 'सूची में नहीं? स्थान ख़ुद भरें'], placeChosen: ['Selected', 'चुना गया']
 };
 C.acc.cancelled = ['cancelled', 'भंग'];
@@ -452,14 +452,14 @@ C.bh = {
   count: ['mantras & prayers', 'मंत्र और प्रार्थनाएँ'], textSize: ['Text size', 'अक्षर का आकार'],
   forYou: ['Mantra for you today', 'आज आपके लिए मंत्र'],
   // AI compatibility (free)
-  aiBtn: ['🤖 Detailed AI marriage reading (free)', '🤖 विस्तृत AI विवाह मिलान (मुफ़्त)'],
+  aiBtn: ['📜 Detailed marriage reading (free)', '📜 विस्तृत विवाह मिलान (मुफ़्त)'],
   aiLeft: ['{n} free today', 'आज {n} मुफ़्त बाकी'], aiDone: ['Free limit of 3 a day reached. Please try again tomorrow.', 'आज की 3 मुफ़्त सीमा पूरी हो गई। कृपया कल फिर देखें।'],
-  aiWait: ['Our AI astrologer is studying both Kundlis…', 'हमारे AI ज्योतिषी दोनों कुंडलियाँ पढ़ रहे हैं…'],
-  aiFail: ['Could not get the AI reading right now. Please try again.', 'अभी AI मिलान नहीं हो सका। कृपया फिर से कोशिश करें।'],
-  aiNoAI: ['AI reading is not set up yet.', 'AI मिलान अभी चालू नहीं है।'],
-  aiTitle: ['AI Marriage Reading', 'AI विवाह मिलान'], strengths: ['Strengths', 'खूबियाँ'], care: ['Be careful about', 'ध्यान रखें'],
+  aiWait: ['Both Kundlis are being studied in detail…', 'दोनों कुंडलियों का विस्तार से अध्ययन हो रहा है…'],
+  aiFail: ['Could not get the detailed reading right now. Please try again.', 'अभी विस्तृत मिलान नहीं हो सका। कृपया फिर से कोशिश करें।'],
+  aiNoAI: ['Detailed reading is not set up yet.', 'विस्तृत मिलान अभी चालू नहीं है।'],
+  aiTitle: ['Detailed Marriage Reading', 'विस्तृत विवाह मिलान'], strengths: ['Strengths', 'खूबियाँ'], care: ['Be careful about', 'ध्यान रखें'],
   timing: ['Good timing', 'शुभ समय'], remedies: ['Remedies', 'उपाय'], free: ['FREE', 'मुफ़्त'],
-  aiNote: ['AI guidance based on both birth charts. Please also consult your family pandit for important decisions.', 'दोनों कुंडलियों पर आधारित AI मार्गदर्शन। बड़े फ़ैसलों के लिए अपने पारिवारिक पंडित जी से भी सलाह लें।']
+  aiNote: ['Guidance based on the calculations of both birth charts, written in simple words with the help of a computer program. Please also consult your family pandit for important decisions.', 'दोनों कुंडलियों की गणना पर आधारित मार्गदर्शन, जिसे कंप्यूटर प्रोग्राम की मदद से सरल भाषा में लिखा गया। बड़े फ़ैसलों के लिए अपने पारिवारिक पंडित जी से भी सलाह लें।']
 };
 C.famous = [
   ['Kashi Vishwanath, Varanasi', 'काशी विश्वनाथ, वाराणसी', '🔱'], ['Somnath Temple, Gujarat', 'सोमनाथ मंदिर, गुजरात', '🔱'], ['Mahakaleshwar, Ujjain', 'महाकालेश्वर, उज्जैन', '🔱'],
@@ -472,7 +472,7 @@ C.famous = [
 ];
 T.tabBhakti = ['Bhakti', 'भक्ति'];
 C.prem.freeTitle = ['Free for everyone', 'सबके लिए मुफ़्त'];
-C.prem.free = [['💑', ['AI Marriage Match', 'AI विवाह मिलान'], ['Detailed AI Kundli Milan for marriage: 3 free every day', 'विवाह के लिए विस्तृत AI कुंडली मिलान: रोज़ 3 मुफ़्त']], ['🛕', ['Temples near you', 'पास के मंदिर'], ['Hindu, Jain and Sikh temples with Google Maps route', 'हिंदू, जैन और सिख मंदिर, Google Maps रास्ते के साथ']], ['🕉️', ['Mantras & prayers', 'मंत्र और प्रार्थना'], ['Aarti, chalisa and mantras with meaning and audio', 'अर्थ और आवाज़ के साथ आरती, चालीसा और मंत्र']]];
+C.prem.free = [['💑', ['Detailed Marriage Match', 'विस्तृत विवाह मिलान'], ['Detailed Kundli Milan for marriage: 3 free every day', 'विवाह के लिए विस्तृत कुंडली मिलान: रोज़ 3 मुफ़्त']], ['🛕', ['Temples near you', 'पास के मंदिर'], ['Hindu, Jain and Sikh temples with Google Maps route', 'हिंदू, जैन और सिख मंदिर, Google Maps रास्ते के साथ']], ['🕉️', ['Mantras & prayers', 'मंत्र और प्रार्थना'], ['Aarti, chalisa and mantras with meaning and audio', 'अर्थ और आवाज़ के साथ आरती, चालीसा और मंत्र']]];
 /* Login order: number -> OTP -> name */
 C.login.sub = ['Enter your WhatsApp number to begin. We will send you a 6-digit code.', 'शुरू करने के लिए अपना WhatsApp नंबर दर्ज करें। हम आपको 6 अंकों का कोड भेजेंगे।'];
 C.login.subSimple = ['Enter your WhatsApp number to begin', 'शुरू करने के लिए अपना WhatsApp नंबर दर्ज करें'];
@@ -490,6 +490,6 @@ C.famous.push(['Mahabodhi Temple, Bodh Gaya', 'महाबोधि मंद�
 C.login.phonePh = ['98765 43210', '98765 43210'];
 /* Coming-soon AI features are now live in Premium */
 T.tabMatch = ['Milan', 'मिलान']; T.tabMore = ['More', 'और'];
-T.premiumList = [['AI Jyotishi: ask anything from your Kundli', 'AI ज्योतिषी: कुंडली से कुछ भी पूछें'], ['AI Life Report and Kundli PDF', 'AI जीवन रिपोर्ट और कुंडली PDF'], ['Shubh Muhurat Finder', 'शुभ मुहूर्त खोजक'], ['Daily voice guidance, unlimited family', 'रोज़ का आवाज़ संदेश, असीमित परिवार']];
+T.premiumList = [['Jyotish Sahayak: ask anything from your Kundli', 'ज्योतिष सहायक: कुंडली से कुछ भी पूछें'], ['Life Report and Kundli PDF', 'जीवन रिपोर्ट और कुंडली PDF'], ['Shubh Muhurat Finder', 'शुभ मुहूर्त खोजक'], ['Daily voice guidance, unlimited family', 'रोज़ का आवाज़ संदेश, असीमित परिवार']];
 C.login.waSub = ['Enter your WhatsApp number. You will verify it by sending us one ready-made message – free, no OTP.', 'अपना WhatsApp नंबर दर्ज करें। हमें एक तैयार संदेश भेजकर इसे सत्यापित करें – मुफ़्त, कोई OTP नहीं।'];
 C.login.waFrom = ['Send the message from WhatsApp on', 'यह संदेश इस नंबर के WhatsApp से भेजें:'];
